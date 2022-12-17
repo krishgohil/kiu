@@ -1,0 +1,359 @@
+.sign_up_header:hover {
+    border: 2px solid skyblue;
+}
+
+.sign_up_header {
+    border: 2px solid gray;
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+}
+
+
+.notiMain {
+    background-color: rgb(21, 20, 20);
+    color: white;
+    width: 35vw;
+    border-left: 1px solid rgb(50, 50, 50);
+    z-index: 100;
+}
+
+.company {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+
+.companyName {
+    font-size: 22px;
+}
+
+.mobheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #16181b;
+    height: 8vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+._mobsrchbar {
+    display: flex;
+    padding: 0.1rem;
+    margin: 0 1rem;
+    border-radius: 3px;
+    border: 1.2px solid;
+    background-color: #121417e3;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* padding: 1rem 3rem; */
+
+    background-color: #121417;
+
+    height: 8vh;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+
+    z-index: 900;
+
+
+}
+
+.header_menu {
+    display: none;
+}
+
+.header_logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+.header_form {
+    flex: 0.6;
+    display: flex;
+    padding: 0.1rem;
+    margin: 0 1rem;
+    border-radius: 3px;
+    border: 1.2px solid rgb(48, 47, 47);
+    background-color: #121417e3;
+
+
+}
+
+.header_input {
+    width: 100%;
+    border: none;
+    font-weight: 500 !important;
+    background: transparent;
+    padding: 0.3rem;
+    color: #e6f8eb;
+    font-size: 16px;
+
+
+}
+
+.header_input:focus {
+    outline: none;
+}
+
+.header_button {
+    padding: 4px 1.25rem;
+    color: #e6f8eb;
+    background: transparent;
+    border: none;
+
+
+}
+
+.header_button:focus {
+    border: none;
+}
+
+.header_icons {
+    flex: 0.15;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+}
+
+.iconHeader {
+    color: white;
+}
+
+
+.companyLogo {
+    width: 2.5rem;
+    height: 2.4rem;
+}
+
+.profimg {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+.plus {
+    color: white;
+    border: 1px solid white;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+}
+
+.plus:hover {
+    border: 1px solid black;
+    background-color: whitesmoke;
+    color: black;
+    font-size: 2rem;
+    cursor: pointer;
+    size: 36;
+}
+
+.mobprofimg {
+    display: none;
+}
+
+.profimg:hover {
+    border: 1px solid rgb(211, 235, 255);
+}
+
+.companyName {
+    user-select: none;
+}
+
+.mob_srchbtn {
+    display: none;
+}
+
+
+.install {
+    height: 25vh;
+    width: 40vw;
+    color: white;
+    background-color: rgb(17, 12, 27);
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem;
+    padding-bottom: 0.2rem;
+    box-shadow: 0px 0px 7px 4px #bdbdbd;
+    text-align: center;
+
+
+}
+
+.installbtn {
+    margin-top: 1rem;
+    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    border: 1px solid #51fca7;
+    background-color: #00dbac;
+    color: black;
+    font-weight: 600;
+    font-family: monospace;
+    border-radius: 0.25rem;
+}
+
+.installbtn:hover {
+    background-color: black;
+    color: white;
+}
+
+.closemodal {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+
+
+.req_noti_dialog {
+    position: fixed;
+    display: flex;
+    overflow-y: scroll;
+    justify-content: flex-end;
+    top: 8vh;
+    height: 92vh;
+    border: none;
+    color: white;
+    width: 100vw;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .35);
+
+}
+
+
+
+@media (max-width: 1020px) {
+    .notiMain {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .notiMain {
+        width: 100vw;
+    }
+
+    .install {
+        height: 30vh;
+        width: 95vw;
+
+    }
+
+    .companyName {
+        font-size: 20px;
+    }
+
+    .closemodal {
+        margin-top: 1rem;
+    }
+
+    .header_menu {
+        display: block;
+        color: white;
+    }
+
+    .header {
+        background-color: black;
+
+
+    }
+
+    .header_menu {
+        display: block;
+        color: white;
+    }
+
+    .header_form {
+        display: none;
+    }
+
+    .header_icons {
+        display: none;
+    }
+
+    .mobprofimg {
+        display: flex;
+    }
+
+    .plus {
+        border: 1px solid black;
+        background-color: whitesmoke;
+        color: black;
+        font-size: 2rem;
+        cursor: pointer;
+        size: 36;
+    }
+
+
+
+    .companyLogo {
+
+        display: none;
+
+    }
+
+
+}
+
+@media (max-width: 600px) {
+    .mob_srchbtn {
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: white;
+    }
+
+    .sbmtbtn {
+        display: none;
+    }
+
+    .header_srchbar {
+        flex: 1;
+        display: none;
+    }
+
+    .header_input {
+        display: none;
+    }
+
+    .header {
+        justify-content: space-between;
+
+    }
+
+
+    .header_logo {
+        display: none;
+    }
+}
+
+
+
+
+@media screen and (max-height: 400px) {
+    .companyLogo {
+        width: 2.125rem;
+        height: 2rem;
+    }
+
+    .mobheader {
+        height: 20vh;
+    }
+
+}

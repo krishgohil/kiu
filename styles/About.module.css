@@ -1,0 +1,291 @@
+.okj {
+    background-color: rgb(0, 0, 0);
+    /* background-color: indigo; */
+    background: linear-gradient(rgb(17, 17, 91), indigo, rgb(130, 0, 124), rgb(148, 22, 89));
+    /* background: linear-gradient(white); */
+
+}
+
+.guest {
+    background: linear-gradient(rgb(18, 186, 155), rgb(19, 127, 152), rgb(7, 83, 165), rgb(58, 12, 167));
+    color: white;
+    font-size: 18px;
+
+}
+
+/* .log_in {
+    background: linear-gradient(rgb(18, 186, 155), rgb(19, 127, 152), rgb(7, 83, 165), rgb(58, 12, 167));
+    color: white;
+} */
+
+.guest:hover, .sign_up:hover {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    transform: scale(1.1);
+}
+
+.sign_up {
+    background: linear-gradient(rgb(18, 186, 155), rgb(19, 127, 152), rgb(7, 83, 165), rgb(58, 12, 167));
+    font-size: 18px;
+
+    color: white;
+}
+
+/* img:hover {
+    transform: scale(1.1);
+} */
+
+.pokl {
+    /* height: 90vh; */
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    /* background: linear-gradient(rgb(17, 17, 91),indigo, rgb(130, 0, 124),rgb(148, 22, 89)); */
+
+    /* background-color: indigo; */
+    /* background: linear-gradient(indigo, rgb(130, 0, 124)); */
+
+}
+
+.pokl2 {
+    background-color: rgb(0, 82, 130);
+    background: linear-gradient(rgb(0, 82, 130), indigo, rgb(130, 0, 124), rgb(148, 22, 89));
+
+}
+
+.pokl3 {
+    background-color: rgb(54, 164, 96);
+
+}
+
+
+.lplayerone {
+    display: flex;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 2rem;
+}
+
+.lptitleImg {
+    width: 50%;
+}
+
+.lpslogan {
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.lpimg1div {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.lpimg1 {
+    width: 70%;
+    margin: auto;
+}
+
+
+.lpsubdet {
+    width: 40%;
+}
+
+.lplayertwo {
+    display: flex;
+    padding: 2rem 0;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: black;
+}
+
+.lpprdctswiper {
+    width: 30%;
+    height: auto;
+    background-color: #16181b;
+    margin: 0;
+}
+
+.lplayerthree {
+    display: flex;
+    padding: 2rem 0;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 5rem;
+    background-color: black;
+}
+
+.lpthreeswiper {
+    width: 30%;
+    height: auto;
+    margin: 0;
+    background-color: #16181b;
+}
+
+.lpthreedetmob {
+    display: none;
+}
+
+.lpthreedetpc {
+    margin-top: 5rem;
+    font-size: 30px;
+}
+
+.lplayerfour {
+    display: flex;
+    padding: 2rem 0;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(20, 16, 36);
+}
+
+.lplayerfourcard {
+    flex: 0.20;
+}
+
+.lplayerfive {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(20, 16, 36);
+}
+
+.lplayerfiveSec {
+    width: 50%;
+}
+
+.lpmission {
+    width: 50%;
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.lpfooter {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    background-color: black;
+    padding: 0.5rem;
+}
+
+.lpfooterlone {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90vh;
+}
+
+.lpcname {
+    font-size: 24px;
+}
+
+
+.accordion-button {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(4, 4, 4) !important;
+}
+
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+@media (max-width: 800px) {
+
+    .lpfooterlone {
+        flex-direction: column;
+    }
+
+    .lpmission {
+        width: 95%;
+    }
+
+    .lplayerone {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+    }
+
+    .lptitleImg {
+        width: 100%;
+    }
+
+
+    .lpsubdet {
+        width: 100%;
+    }
+
+    .lplayertwo {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    .lpprdctswiper {
+        width: 95%;
+    }
+
+    .lplayerthree {
+        flex-direction: column;
+    }
+
+    .lpthreeswiper {
+        width: 80%;
+    }
+
+    .lpthreedetmob {
+        display: block;
+    }
+
+    .lpthreedetpc {
+        display: none;
+    }
+
+    .lplayerfour {
+        flex-direction: column;
+    }
+
+    .plplayerfourimg {
+        width: 90%;
+        margin: auto;
+
+    }
+
+    .lplayerfiveSec {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .kadllkfjalkd {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+
+    }
+}
+
+
+@media (max-width: 320px) {
+    .sign_up {
+        font-size: 16px;
+    }
+
+    .guest {
+        font-size: 16px;
+
+    }
+
+    .lpcname {
+        font-size: 20px;
+    }
+}
