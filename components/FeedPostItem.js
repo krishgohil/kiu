@@ -34,6 +34,7 @@ import 'swiper/swiper.min.css'
 import { IoFlashOutline } from 'react-icons/io5';
 import { useCallback } from 'react';
 import { useAppContext } from '../context';
+import { Spinner } from 'react-bootstrap';
 
 const ENDPOINT = host
 const socket = io.connect(ENDPOINT);
@@ -963,7 +964,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
 
 
                                         })
-                                        : <Loader></Loader>
+                                        : <Spinner></Spinner>
                                 }
 
 
@@ -1278,7 +1279,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                                             >
                                                 {
                                                     feed.postimg.map((img, i) =>
-                                                        <SwiperSlide className="ghik" style={{ width: '100%', borderRadius: "0.5rem", }} >
+                                                        <SwiperSlide key={i} className="ghik" style={{ width: '100%', borderRadius: "0.5rem", }} >
                                                             <img alt="img" style={{ width: '100%', borderRadius: "0rem", }} onDoubleClick={dbclick}
                                                                 className={doubleclicked && showanim ? 'postImg a' : 'postImg'} src={feed.postimg[i]} />
                                                             <div style={{ position: "absolute", top: "50%", left: "50%", transform: 'translate(-50%, -50%)' }} className={showanim ? "starAnimation" : "starAnimationOff"} >
@@ -2000,7 +2001,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                     <>
                         <dialog open style={{ position: 'absolute', border: 'none', color: 'white', zIndex: 999, left: '0%', backgroundColor: "rgba(0,0,0,.85)", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '0vh', alignItems: 'center' }}>
 
-                            <Comments />
+                            {/* <Comments /> */}
                             {/* <div   */}
                             {/* // style={{ backgroundColor: 'lightgreen', color: 'white', width: '40vw', paddingTop: '1rem', borderRadius: '1rem' }}
                             > */}

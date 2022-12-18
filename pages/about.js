@@ -151,7 +151,7 @@ const About = () => {
                                 }} />
 
                                 <div style={{ fontSize: "28px", fontWeight: "400", marginTop: "1rem" }} >
-                                    Connect with more people, build influence, and create compelling content that's distinctly yours.
+                                    Connect with more people, build influence, and create compelling content that is distinctly yours.
                                 </div>
 
                             </div>
@@ -261,7 +261,7 @@ const About = () => {
                                 <div style={{ fontWeight: "500", marginBottom: "2rem", }} >
                                     Read Review Rethink
                                 </div >
-                                " Our Mission Is to Empower    Educate &  Entertain People "
+                                 Our Mission Is to Empower    Educate &  Entertain People 
 
 
                             </div>

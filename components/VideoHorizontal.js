@@ -273,7 +273,7 @@ const VideoHorizontal = ({ video, searchScreen, input, g, c, t }) => {
 
     return (
         <>
-            {
+            {/* {
                 share ?
                     <ShareBox shareFunc={shareFunc} shareUrl={shareUrl} />
                     : ''
@@ -324,7 +324,7 @@ const VideoHorizontal = ({ video, searchScreen, input, g, c, t }) => {
 
                     </dialog>
                     : ''
-            }
+            } */}
             <div style={{ margin: 0, padding: 0 }} >
                 <div className={styles.yt} style={{ padding: 0 }}  >
 

@@ -367,7 +367,7 @@ const Youtube = () => {
 
               {promotedVideosStore.map(video => (
                 <>
-                  <PromotedVideos video={video} key={video.id} g={g} c={c} t={t} revFunc={revFunc} />
+                  {/* <PromotedVideos video={video} key={video.id} g={g} c={c} t={t} revFunc={revFunc} /> */}
                 </>
               ))}
 
