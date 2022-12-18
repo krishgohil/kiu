@@ -2,12 +2,54 @@ import Link from 'next/link'
 import { Spinner } from 'react-bootstrap'
 import styles from "../styles/Home.module.css"
 import Layout from '../components/Layout'
-
+import { useContext, useEffect, useState } from 'react'
+import { useAppContext } from '../context'
+import { host } from '../host'
+import FeedpostItems from '../components/FeedPostItem'
 //eyJhbGciOiJIUzI1NiJ9.NjI3YzA0ZjQxYWUxYWNhYjM3NDliYjMw.KF2eD9F5dp3_f1hcMsoSgvA70uxsit1Fl4v2tFBiqtg
 export default function Home() {
+  const context = useAppContext()
+  const [feed, setfeed] = useState([])
+
+  useEffect(() => {
+    console.log(context.sharedState.feed)
+    fetchfeed()
+  }, [context.sharedState.feed])
+
+
+  async function fetchfeed() {
+
+    let ids = context.sharedState.feed.slice(0, 10)
+
+
+    console.log(ids)
+    console.log(host)
+
+    try {
+      const response = await fetch(`${host}/api/post/fetchfeed`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ feed_postIds: ids, userId: context.sharedState._id })
+      })
+      const json = await response.json();
+      const { feedDataArray } = json
+      console.log(feedDataArray)
+      setfeed(feedDataArray)
+
+    } catch (error) {
+      console.log(error)
+
+    }
+  }
+
+
   return (
     <>
-      <div style={{
+      <div onClick={() => {
+        console.log(context)
+      }} style={{
         display: 'flex', flexDirection: 'row', boxSizing: 'border-box', justifyContent: 'center', position: "relative"
       }}>
         <div className={styles.feedDiv} style={{}}>
@@ -30,16 +72,23 @@ export default function Home() {
 
                 </>
             } */}
-            <Spinner />
-            jjjj Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corporis ipsa velit voluptate eius libero id itaque quidem laudantium et quia iste soluta quo tempora aut illum, reiciendis excepturi ex quod? Error corrupti id facere nisi? Cumque expedita ad facere voluptate a aliquid, animi quia at ullam ut cupiditate illum iste quos exercitationem et, soluta ab vel nobis aperiam atque odio ex quam optio corrupti? Iusto, corrupti? Fuga debitis at, eligendi magni minima praesentium reiciendis earum distinctio mollitia, cupiditate labore blanditiis aliquid veritatis quod aut accusamus cumque voluptatibus amet veniam eos id commodi illo dolorem. Tenetur nostrum odit soluta optio.jjjj Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corporis ipsa velit voluptate eius libero id itaque quidem laudantium et quia iste soluta quo tempora aut illum, reiciendis excepturi ex quod? Error corrupti id facere nisi? Cumque expedita ad facere voluptate a aliquid, animi quia at ullam ut cupiditate illum iste quos exercitationem et, soluta ab vel nobis aperiam atque odio ex quam optio corrupti? Iusto, corrupti? Fuga debitis at, eligendi magni minima praesentium reiciendis earum distinctio mollitia, cupiditate labore blanditiis aliquid veritatis quod aut accusamus cumque voluptatibus amet veniam eos id commodi illo dolorem. Tenetur nostrum odit soluta optio.jjjj Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corporis ipsa velit voluptate eius libero id itaque quidem laudantium et quia iste soluta quo tempora aut illum, reiciendis excepturi ex quod? Error corrupti id facere nisi? Cumque expedita ad facere voluptate a aliquid, animi quia at ullam ut cupiditate illum iste quos exercitationem et, soluta ab vel nobis aperiam atque odio ex quam optio corrupti? Iusto, corrupti? Fuga debitis at, eligendi magni minima praesentium reiciendis earum distinctio mollitia, cupiditate labore blanditiis aliquid veritatis quod aut accusamus cumque voluptatibus amet veniam eos id commodi illo dolorem. Tenetur nostrum odit soluta optio.jjjj Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corporis ipsa velit voluptate eius libero id itaque quidem laudantium et quia iste soluta quo tempora aut illum, reiciendis excepturi ex quod? Error corrupti id facere nisi? Cumque expedita ad facere voluptate a aliquid, animi quia at ullam ut cupiditate illum iste quos exercitationem et, soluta ab vel nobis aperiam atque odio ex quam optio corrupti? Iusto, corrupti? Fuga debitis at, eligendi magni minima praesentium reiciendis earum distinctio mollitia, cupiditate labore blanditiis aliquid veritatis quod aut accusamus cumque voluptatibus amet veniam eos id commodi illo dolorem. Tenetur nostrum odit soluta optio.jjjj Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corporis ipsa velit voluptate eius libero id itaque quidem laudantium et quia iste soluta quo tempora aut illum, reiciendis excepturi ex quod? Error corrupti id facere nisi? Cumque expedita ad facere voluptate a aliquid, animi quia at ullam ut cupiditate illum iste quos exercitationem et, soluta ab vel nobis aperiam atque odio ex quam optio corrupti? Iusto, corrupti? Fuga debitis at, eligendi magni minima praesentium reiciendis earum distinctio mollitia, cupiditate labore blanditiis aliquid veritatis quod aut accusamus cumque voluptatibus amet veniam eos id commodi illo dolorem. Tenetur nostrum odit soluta optio.
+            {
+              feed.map((f) => {
+                return (
+                  <>
+                    <div style={{ color: "white" }} ></div>                    <FeedpostItems feed={f} ></FeedpostItems>
+                  </>
+                )
+              })
+            }
+
+
           </div>
 
 
-          {/* <Outlet /> */}
 
         </div>
 
-        {/* <FrndRecommendation flw_Recommendations={flw_Recommendations} /> */}
 
 
         <div className={styles.recommendation} style={{ width: '30%' }}>

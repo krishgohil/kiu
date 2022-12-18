@@ -1,0 +1,354 @@
+
+.ytmodal {
+    width: 80vw;
+    height: 95vh;
+    background-color: rgb(19, 20, 26);
+    border: 1px solid rgb(56, 56, 56);
+    color: white;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.cmodalTopPc {
+    display: flex;
+}
+
+.cmodalTopMobile {
+    display: none;
+}
+
+
+.cmodalTopPc {
+    display: none;
+}
+
+.subdivYtmodal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.ytimg {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: auto;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.ytrevs {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: auto;
+    padding-right: 1rem;
+    background-color: black;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.ytdetailmob {
+    display: none;
+}
+
+.yt {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ytdesc {
+    color: aliceblue;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ytTitle {
+    font-size: 1.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ytRow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #16181b;
+    border: 1px solid #16181b;
+}
+
+.ytRow:hover {
+    border: 1px solid rgb(70, 70, 70);
+}
+
+.ytduration {
+    position: absolute;
+    font-size: 0.7rem;
+    background-color: #16181b;
+    padding: 0.2rem;
+    border-radius: 0 0 0.5rem 0;
+}
+
+.ytdiv {
+    display: flex;
+    position: relative;
+    width: 30%;
+}
+
+.ytdetail {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background-color: #16181b;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.mobTitle {
+    display: none;
+}
+
+
+@media (max-width: 1200px) {
+    .ytTitle {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .ytrevs {
+        width: 100%;
+    }
+
+    .ytimg {
+        width: 100%;
+    }
+
+    .ytmodal {
+        width: 95vw;
+        height: 95vh;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .mobpostedbyimg {
+        width: 2rem;
+    }
+
+    .cmodalTopMobile {
+        display: flex;
+        justify-content: space-between;
+        background-color: black;
+        color: rgb(190, 188, 188);
+        position: sticky;
+        top: 0;
+
+    }
+
+
+
+    .mobTitle {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+
+    .subdivYtmodal {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .ytrevs {
+        padding-right: 0.25rem;
+        margin-bottom: 5rem;
+
+    }
+
+    .ytmodal {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .ytRow {
+        flex-direction: column;
+        align-items: baseline;
+        justify-content: flex-start;
+    }
+
+    .ytdiv {
+        width: 100%;
+    }
+
+    .ytdetail {
+        display: none;
+    }
+
+    .ytdetailmob {
+        margin-top: 0.5rem;
+        display: flex;
+        width: 100%;
+    }
+
+    .mobChannelIcon {
+        margin-left: 0.2rem;
+        width: 2.5rem;
+        border-radius: 50%;
+    }
+
+    .ytAddRev {
+        right: 0;
+        color: black;
+        font-size: 1.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .mobview {
+        width: inherit;
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobpostedbyimg {
+        width: 2.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-right: 0.6rem;
+    }
+
+    .mobchannel {
+        font-size: 0.7rem;
+        color: rgb(216, 216, 216);
+        margin-top: 0.2rem;
+        display: flex;
+    }
+}
+
+.videoHorizontal {
+    color: white;
+    border-bottom: 0.3px solid #4c4c4c;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.vh_left {
+    position: relative;
+    text-align: center;
+    padding-left: 0 !important;
+}
+
+.vh_thumbnail {
+    width: 100%;
+}
+
+.vh_wrapper {
+    width: 100%;
+}
+
+.vh_channel {
+    width: 50%;
+    border-radius: 50%;
+}
+
+.vh_star {
+    font-size: x-large;
+}
+
+.vh_totalReviews {
+    font-size: small;
+    margin-left: 0.3rem;
+}
+
+.vh_duration {
+    position: absolute;
+    color: white;
+    bottom: 0.6rem;
+    right: 1.2rem;
+
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    background: #080808ec;
+    border-radius: 3px;
+}
+
+.vh_details {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.vh_title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.vh_desc {
+    font-size: 0.7rem;
+    color: aliceblue;
+}
+
+.vh_channel p {
+    font-size: 0.9rem;
+}
+
+.vh_channel img {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    cursor: pointer;
+
+
+}
+
+.br50 {
+    border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+   
+
+    .vh_channel {
+        margin: 0.1rem 0;
+    }
+
+    .vh_channel img {
+        display: none;
+    }
+
+    .vh_channel p {
+        font-size: 0.8rem;
+    }
+
+    .vh_desc {
+        display: none;
+    }
+    .vh_title {
+        font-size: 0.9rem;
+    }
+
+    .videoHorizontal {
+        font-size: 0.8rem;
+    }
+}
+
+.show {
+    display: block;
+}
+
+.dontshow {
+    display: none;
+}
