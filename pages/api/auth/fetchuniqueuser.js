@@ -11,7 +11,7 @@ const JWT = "kRISHISAGOODBOYXD"
 
 export default async function fetchuniqueser(req, res) {
     await connectToMongo();
-    const { searchedusername, token } = req.body
+    const { profile, token } = req.body
 
     if (token) {
         console.log(token,"token")
@@ -30,9 +30,9 @@ export default async function fetchuniqueser(req, res) {
         }
     }
 
-    else if (searchedusername) {
+    else if (profile) {
         try {
-            let fetchsearchedusername = await User.findOne({ username: searchedusername }, { email: 0, password: 0, temp_id: 0, confirmation_status: 0, notifications: 0, feed_posts: 0 });
+            let fetchsearchedusername = await User.findOne({ username: profile }, { email: 0, password: 0, temp_id: 0, confirmation_status: 0, notifications: 0, feed_posts: 0 });
             if (fetchsearchedusername && fetchsearchedusername.logged_in == true) {
                 // console.log('authorized')
                 res.json({ fetchsearchedusername: fetchsearchedusername, message: 'success' })

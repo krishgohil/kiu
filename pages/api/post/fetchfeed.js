@@ -13,7 +13,7 @@ const JWT = "kRISHISAGOODBOYXD"
 export default async function fetchfeed(req, res) {
     await connectToMongo();
     const { feed_postIds, userId } = req.body
-    console.log(feed_postIds)
+    // console.log(feed_postIds)
     
     var feedDataArr = []
     // console.log(feed_postIds[0], userId)
@@ -21,7 +21,7 @@ export default async function fetchfeed(req, res) {
     for (let i = 0; i < feed_postIds.length; i++) {
         feedDataArr.push(feed_postIds[i].content_id)
     }
-    console.log(feedDataArr, 'llll')
+    // console.log(feedDataArr, 'llll')
     var feedPosts = await AllContent.find({ '_id': { $in: feedDataArr } }).limit(10)
         .populate("postedBy", "username profileImg _id notificationSettings notificationToken ")
         // .populate("repost");
@@ -36,7 +36,7 @@ export default async function fetchfeed(req, res) {
             // options: { limit: 5 }
         });
 
-    console.log(feedPosts, 'llll')
+    // console.log(feedPosts, 'llll')
 
 
     res.json({ feedDataArray: feedPosts })

@@ -15,6 +15,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoFlashOutline } from 'react-icons/io5';
+import { useAppContext } from '../context';
 
 
 
@@ -26,7 +27,8 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   const [dikha, setdikha] = useState(false)
   const [showComposePost, setshowComposePost] = useState(false)
   const [modalno, setmodalno] = useState(0)
-
+  const context = useAppContext()
+  const { _id, username, profileImg } = context
   // const { accessToken, loading } = useSelector(state => state.auth)
   // const profileImg = useSelector(state => state.auth2.profileImg)
   // const { username, _id, guest, notificationCount } = useSelector(state => state.auth2)
@@ -34,6 +36,10 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // const { categoryfromstore, unSeenCount } = useSelector(state => state.generalReducer)
   // const currentcategory = sessionStorage.getItem('currentcategory')
   // const [deferredPrompt, setdeferredPrompt] = useState()
+
+  useEffect(() => {
+    console.log(profileImg)
+  }, [context ])
 
 
 
@@ -485,8 +491,8 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
 
                     {
-                      false ?
-                        <img alt="img" className='profimg' style={{ cursor: "pointer", marginLeft: "1rem", borderRadius: '50%', backgroundColor: 'white' }} src={profileImg} /> :
+                      profileImg !== '' ?
+                        <img alt="img" className={styles.profimg} style={{ cursor: "pointer", marginLeft: "1rem", borderRadius: '50%', backgroundColor: 'white' }} src={profileImg} /> :
                         <FaUserCircle style={{ height: '2rem', width: '2rem', cursor: "pointer", marginLeft: '1rem', borderRadius: '50%' }} />
                     }
 

@@ -16,7 +16,7 @@ const Auth = () => {
 
     async function fetchUniqueUser() {
         const token = localStorage.getItem("token")
-        console.log(token)
+        // console.log(token)
         const response = await fetch(`${host}/api/auth/fetchuniqueuser`, {
             // const response = await fetch(`${host}/api/auth/fetchuniqueser`, {
             // const response = await fetch('https://keepitupp.herokuapp.com/api/auth/fetchuniqueser', {
@@ -27,11 +27,13 @@ const Auth = () => {
             body: JSON.stringify({ token }),
         });
         const json = await response.json();
-        console.log(json)
+        // console.log(json)
         const { fetchuniqueser, message } = json
-        console.log(fetchuniqueser)
-        console.log(context)
+        // console.log(fetchuniqueser)
+        // console.log(context)
         let a = fetchuniqueser.feed_posts.reverse()
+        // console.log(fetchuniqueser.feed_posts)
+        // console.log(a)
         context.setsharedState(
             {
                 name: fetchuniqueser.name,

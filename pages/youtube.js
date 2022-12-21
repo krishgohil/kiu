@@ -11,6 +11,7 @@ import { IoFlashOutline } from 'react-icons/io5'
 import { DateTime } from 'luxon'
 import { toast } from 'react-toastify'
 import { useYtContext } from '../context';
+import PromotedVideos from '../components/PromotedVideos';
 
 const Youtube = () => {
   const context = useYtContext()
@@ -54,6 +55,7 @@ const Youtube = () => {
     let obj2 = {
       videos: [...context.ytstate.videos, ...data.items],
       nextPageToken: data.nextPageToken,
+      promotedVideosStore: context.ytstate.promotedVideosStore
     }
 
     console.log(obj2)
@@ -121,7 +123,7 @@ const Youtube = () => {
 
 
 
-  const [top, settop] = useState(true)
+  const [yt, setyt] = useState(true)
   const [bykeepituppers, setbykeepituppers] = useState(false)
 
   const [promote, setpromote] = useState(false)
@@ -214,6 +216,7 @@ const Youtube = () => {
         setpromote(false)
         setshowVideo(false)
         setbykeepituppers(true)
+        setyt(false)
         toast.success(`Video Promoted`, {
           position: "top-center",
           autoClose: 2000,
@@ -237,10 +240,7 @@ const Youtube = () => {
   }
 
   const [promotedVideos, setpromotedVideos] = useState([])
-  const fetch_promoted_videos = (rpostid) => async dispatch => {
-
-    console.log(promotedVideosStore.length)
-
+  async function fetch_promoted_videos() {
     try {
 
       const response = await fetch(`${host}/api/youtube/fetch_promoted_videos`, {
@@ -248,17 +248,12 @@ const Youtube = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ skip: promotedVideosStore.length }),
+        body: JSON.stringify({ skip: promotedVideos.length }),
       })
       const json = await response.json();
       console.log(json)
       setpromotedVideos(promotedVideos.concat(json))
 
-
-      dispatch({
-        type: SET_PROMOTED_VIDEOS,
-        payload: json
-      })
     } catch (error) {
 
     }
@@ -275,8 +270,7 @@ const Youtube = () => {
   }
 
   const fetchAgain = () => {
-    console.log(promotedVideosStore.length)
-    dispatch(fetch_promoted_videos())
+    fetch_promoted_videos()
   }
 
   return (
@@ -287,14 +281,19 @@ const Youtube = () => {
 
           <div
             onClick={() => {
-              navigate("")
+              setshowVideos(true)
+              setbykeepituppers(false)
+              setyt(true)
             }}
-            className='op' style={top ? { backgroundColor: "#212121", flex: 0.5, textAlign: "center" } : { flex: 0.5, textAlign: "center" }} >
+            className='op' style={yt ? { backgroundColor: "#212121", flex: 0.5, textAlign: "center" } : { flex: 0.5, textAlign: "center" }} >
             Trending
           </div>
           <div onClick={() => {
-            navigate("bykeepituppers")
 
+            setbykeepituppers(true)
+            setyt(false)
+            setshowVideos(false)
+            fetchAgain()
           }} className='op' style={bykeepituppers ? { backgroundColor: "#212121", flex: 0.5, textAlign: "center" } : { flex: 0.5, textAlign: "center" }} >
             By Keepituppers
           </div>
@@ -349,12 +348,12 @@ const Youtube = () => {
 
             <InfiniteScroll
               id='myHeader'
-              dataLength={promotedVideosStore.length}
+              dataLength={promotedVideos.length}
               next={fetchAgain}
               hasMore={true}
               className='row'
               // loader={
-              //     <div className='spinner-border text-danger d-block mx-auto'></div>
+              //   <div className='spinner-border text-danger d-block mx-auto'></div>
               // }
               style={{ padding: 0, margin: 0, marginBottom: '7vh' }}
             >
@@ -365,9 +364,9 @@ const Youtube = () => {
                 </button>
               </div>
 
-              {promotedVideosStore.map(video => (
+              {promotedVideos.map(video => (
                 <>
-                  {/* <PromotedVideos video={video} key={video.id} g={g} c={c} t={t} revFunc={revFunc} /> */}
+                  <PromotedVideos video={video} key={video.id} g={g} c={c} t={t} revFunc={revFunc} />
                 </>
               ))}
 
@@ -402,6 +401,7 @@ const Youtube = () => {
                       setshowVideo(false)
                       setpromote(false)
                       setbykeepituppers(true)
+                      setyt(false)
 
 
                     }} style={{ backgroundColor: "gray", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box", fontSize: "0.9rem", borderRadius: "0.5rem" }} >

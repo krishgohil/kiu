@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+import { Schema, model, models } from 'mongoose';
 
 
 const ProductSchema = new Schema({
@@ -12,5 +12,6 @@ const ProductSchema = new Schema({
 
 ProductSchema.index({ product: 'text', description: 'text' })
 
-const Product = mongoose.model('Product', ProductSchema);
+
+const Product = models.Product || model('Product', ProductSchema);
 module.exports = Product

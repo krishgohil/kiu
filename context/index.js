@@ -3,11 +3,12 @@ import { createContext, useContext } from 'react';
 
 const AppContext = createContext();
 const YtContext = createContext()
+const FeedContext = createContext()
 
 export function AuthWrapper({ children }) {
     const [sharedState, setsharedState] = useState(
         {
-            name: 'Krish',
+            name: '',
             profileImg: '',
             username: '',
             bio: '',
@@ -65,5 +66,28 @@ export function YtWrapper({ children }) {
 
 export function useYtContext() {
     return useContext(YtContext);
+}
+
+
+
+// feed context
+
+export function FeedWrapper({ children }) {
+    const [feedstate, setfeedstate] = useState(
+        {
+            feed_Data: [],
+
+        }
+    )
+
+    return (
+        <FeedContext.Provider value={{ feedstate, setfeedstate }}>
+            {children}
+        </FeedContext.Provider>
+    );
+}
+
+export function useFeedContext() {
+    return useContext(FeedContext);
 }
 

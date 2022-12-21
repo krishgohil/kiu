@@ -116,7 +116,9 @@
     align-items: center;
 }
 
-
+.swiper-pagination{
+    margin-top: 4px;
+}
 
 .swiper-pagination, .swiper-pagination-clickable, .swiper-pagination-bullets, .swiper-pagination-horizontal, .swiper-pagination-bullet {
     background-color: inherit;
@@ -132,7 +134,7 @@
 
 .swiper-pagination-bullet {
     color: white;
-    background-color: #7f7e7e;
+    background-color: #7f7e7e !important;
 }
 
 .shareDialog {

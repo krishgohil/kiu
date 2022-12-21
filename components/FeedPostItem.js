@@ -6,7 +6,6 @@ import { BsFlag, BsReply, BsThreeDots, BsThreeDotsVertical } from 'react-icons/b
 import { FaMedal, FaRegComment, FaRegStar, FaStar } from "react-icons/fa";
 import { DateTime } from 'luxon'
 import { MdOutlineDelete, MdLink, MdPermMedia, MdBlockFlipped, MdVerified } from 'react-icons/md'
-import io from "socket.io-client";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { host } from '../host'
@@ -30,20 +29,20 @@ import {
 } from "react-share";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
-import 'swiper/swiper.min.css'
+
+
 import { IoFlashOutline } from 'react-icons/io5';
 import { useCallback } from 'react';
 import { useAppContext } from '../context';
 import { Spinner } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
-const ENDPOINT = host
-const socket = io.connect(ENDPOINT);
 
 const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
 
     const context = useAppContext()
     const { _id, username, profileImg } = context.sharedState
-
+    const router = useRouter()
 
 
 
@@ -204,10 +203,9 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
         sessionStorage.setItem('homeScrollId', feed._id)
         sessionStorage.setItem('homeScroll', window.scrollY)
         if (uname) {
-
-            navigate(`/${uname}`)
+            router.push(`/${uname}`)
         } else {
-            navigate(`/${feed.postedBy.username}`)
+            router.push(`/${feed.postedBy.username}`)
         }
     }
 

@@ -1,0 +1,572 @@
+.products {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pReactions {
+    margin-left: 10rem;
+}
+
+.prdctdiv {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.prdctupdown {
+    color: silver;
+}
+
+.productRow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
+    background-color: #16181b;
+    border: 1px solid #16181b;
+
+}
+
+.productRow:hover {
+    border: 1px solid rgb(70, 70, 70);
+
+}
+
+.eta {
+    color: black;
+}
+
+.eta:hover {
+    color: orangered;
+}
+
+.productdiv {
+    display: flex;
+    position: relative;
+    width: 30%;
+}
+
+.productdetail {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background-color: #16181b;
+    padding: 0.5rem;
+}
+
+.productTitle {
+    font-size: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+
+}
+
+.productDesc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: rgb(202, 201, 201);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.productLink {
+    text-decoration: none;
+    color: cyan;
+}
+
+.productLink:hover {
+    color: cyan;
+    text-decoration: underline white;
+}
+
+.productdetailmob {
+    display: none;
+}
+
+.productRating {
+    display: flex;
+    align-items: center;
+}
+
+.productRatingmob {
+    display: none;
+}
+
+.author {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+
+}
+
+
+
+.gotoProf:hover {
+    text-decoration: underline;
+}
+
+.prdctcross {
+    height: 0;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    /* width: 90%; */
+}
+
+.subdivprdct {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.prdctimg {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: auto;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.prdctrevs {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: auto;
+    padding-right: 1rem;
+    background-color: black;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.productmodal {
+
+    width: 80vw;
+    height: 95vh;
+    background-color: rgb(19, 20, 26);
+    border: 1px solid #171130;
+    color: white;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.prdctcrossmob {
+    display: none;
+}
+
+.prdctImg {
+    width: 10rem;
+    max-height: 13rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+
+}
+
+.singlePrdct {
+    width: 45%;
+    border: 1px solid #242323;
+    display: flex;
+    flex-direction: column;
+    background-color: #16181b;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0.5rem
+}
+
+.prdctTitle {
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.prdctprice {
+    margin-top: 0.5rem;
+    font-size: 14px;
+    color: #d9f9fa;
+
+
+}
+
+.prdctTagLine {
+    font-size: 16px;
+    color: #ededed;
+    margin-top: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.prdctDescription {
+    font-size: 12px;
+    color: #cbcbcb;
+    margin-top: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.productInfo {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    background-color: rgb(18, 18, 22);
+}
+
+.reviewsSection {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(253, 109, 56);
+    background-color: black;
+    color: white;
+    border-radius: 0 0.5rem 0.5rem 0;
+    width: 50%;
+}
+
+
+.modalprdct {
+    width: 85vw;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-margin: 0;
+    background-color: #16181b;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.sskassdf {
+    background-color: #17191c;
+
+}
+
+.phead {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+
+.pmImg {
+    width: 20rem;
+}
+
+.byuser {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    color: gray;
+    cursor: pointer;
+
+}
+
+.pmprice {
+    background-color: #0e5abf;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.pmpricevisit {
+    font-size: 17px;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.pmimages {
+    margin: 2rem 0;
+    border: 2px solid #1c1f24;
+}
+
+.pmdesc {
+    padding: 0.5rem;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-word;
+    width: 80%;
+    color: #e6e6e6
+}
+
+.pmrevrelated {
+    display: flex;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.revmain {
+    height: 50vh;
+    overflow-y: scroll;
+    scroll-margin: 0;
+    width: 50%;
+
+}
+
+.relatedprdcts {
+    position: relative;
+    width: 50%;
+    height: 50vh;
+    overflow-y: scroll;
+    scroll-margin: 0;
+
+}
+
+
+
+
+
+.pvisit {
+    margin-left: 9rem;
+}
+
+.prdctAllCmntsDia {
+    position: absolute;
+    border: none;
+    color: white;
+    z-index: 999;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    bottom: 0;
+    align-items: flex-end;
+}
+
+.allCmntsMain {
+    width: 85vw;
+    border-top: 1px solid rgb(153, 153, 153);
+    border-radius: 1rem 1rem 0 0;
+}
+
+.filterMain {
+    width: 40vw;
+    background-color: #16181b;
+    border: 1px solid rgb(99, 98, 98);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+}
+
+@media (max-width: 1200px) {
+    .prdctrevs {
+        width: 100%;
+    }
+
+    .prdctdiv {
+        flex-direction: column;
+    }
+
+    .prdctimg {
+        width: 100%;
+    }
+
+    .productmodal {
+        width: 95vw;
+        height: 95vh;
+    }
+
+    .singlePrdct {
+        width: 100%;
+    }
+
+
+
+}
+
+
+
+@media (max-width: 800px) {
+    .allCmntsMain {
+        width: 100vw;
+        border-radius: 1rem 1rem 0 0;
+    }
+    .filterMain {
+        width: 80vw;
+    }
+
+    .prdctcrossmob {
+        display: flex;
+        justify-content: flex-end;
+
+    }
+
+    .pmprice {
+        background-color: #0e5abf;
+        padding: 0.25rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+    .pmrevrelated {
+        flex-direction: column;
+    }
+
+    .revmain {
+        width: 100%;
+    }
+
+    .relatedprdcts {
+        width: 100%;
+    }
+
+    .pmdesc {
+        width: 95%;
+    }
+
+
+
+
+
+    .pmimages {
+        margin: 2rem 0;
+        border: 2px solid #24282f;
+    }
+
+
+    .prdctcross {
+        display: none;
+    }
+
+    .subdivprdct {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .prdctrevs {
+        padding-right: 0.25rem;
+        margin-bottom: 5rem;
+
+
+    }
+
+    .productmodal {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .productRow {
+        flex-direction: column;
+        align-items: baseline;
+        justify-content: flex-start;
+    }
+
+    .productdiv {
+        width: 100%;
+    }
+
+    .productdetail {
+        width: 100%;
+    }
+
+    .productRating {
+        display: none;
+    }
+
+    .productRatingmob {
+        display: flex;
+        align-items: center;
+    }
+
+    .author {
+        padding: 0;
+    }
+
+    .pvisitpc {
+        display: none;
+    }
+
+    .pmImg {
+        width: 7rem;
+    }
+
+    /* .pmgoback {
+        display: none;
+    } */
+
+    .modalprdct {
+        width: 100vw;
+        padding: 1rem 0.5rem 0 0.5rem;
+
+    }
+
+    .pmpricevisit {
+        font-size: 15px;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 0.5rem;
+    }
+
+    .pvisit {
+        margin-left: 0rem;
+    }
+
+
+}
+
+@media (max-width: 600px) {
+    .prdct {
+        margin-bottom: 7vh;
+    }
+
+    .prdctImg {
+        width: 7rem;
+        margin-left: 0.5rem;
+        height: auto;
+    }
+
+    .pReactions {
+        margin-left: 0rem;
+    }
+
+    .singlePrdct {
+
+        margin: 0.3rem 0rem
+    }
+
+    .prdctTitle {
+        font-size: 16px;
+        font-weight: bold;
+
+    }
+
+    .prdctprice {
+        margin-top: 0.25rem;
+
+    }
+
+    .prdctTagLine {
+        font-size: 14px;
+        color: #ededed;
+        margin-top: 0.25rem;
+    }
+
+    .prdctDescription {
+        -webkit-line-clamp: 2;
+
+    }
+
+    .filterMain {
+        width: 100vw;
+    }
+
+
+
+}

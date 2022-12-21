@@ -1,0 +1,102 @@
+
+
+
+
+
+
+
+.feedtopinfo {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    color: white
+}
+
+
+.postImg {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+}
+
+
+
+.a {
+    animation: shadowanim 3s;
+}
+
+@keyframes shadowanim {
+    from {
+        box-shadow: 0 4px 16px 0 rgb(114, 1, 99);
+    }
+
+    to {
+        box-shadow: none;
+    }
+}
+
+.feedDiv {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 1rem;
+    scroll-margin: 0;
+}
+
+.recommendation {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 8vh;
+    height: 92vh;
+    background-color: rgb(255, 255, 255);
+    background-color: rgb(5, 5, 5);
+    bottom: 0;
+    margin-left: 5%;
+}
+
+.recomm_info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.recomm_info:hover {
+    background-color: rgba(0, 0, 0);
+    border-radius: 1rem;
+}
+
+@media (max-width: 1020px) {
+
+
+    .recommendation {
+        height: 85vh;
+        display: none;
+    }
+
+    .feedDiv {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    .feedDiv {
+        width: 100%;
+    }
+
+
+
+}
+
+@media (max-width: 420px) {
+    .recommendation {
+        height: 85vh;
+        display: none;
+    }
+
+    .feedDiv {
+        margin-left: 0rem;
+        width: 100vw;
+    }
+}

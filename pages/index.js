@@ -3,27 +3,31 @@ import { Spinner } from 'react-bootstrap'
 import styles from "../styles/Home.module.css"
 import Layout from '../components/Layout'
 import { useContext, useEffect, useState } from 'react'
-import { useAppContext } from '../context'
+import { useAppContext, useFeedContext } from '../context'
 import { host } from '../host'
 import FeedpostItems from '../components/FeedPostItem'
+import InfiniteScroll from 'react-infinite-scroll-component'
 //eyJhbGciOiJIUzI1NiJ9.NjI3YzA0ZjQxYWUxYWNhYjM3NDliYjMw.KF2eD9F5dp3_f1hcMsoSgvA70uxsit1Fl4v2tFBiqtg
 export default function Home() {
   const context = useAppContext()
+  const feed_context = useFeedContext()
   const [feed, setfeed] = useState([])
 
   useEffect(() => {
-    console.log(context.sharedState.feed)
+    // console.log(context.sharedState.feed)
+    console.log(feed_context)
     fetchfeed()
   }, [context.sharedState.feed])
 
 
   async function fetchfeed() {
 
-    let ids = context.sharedState.feed.slice(0, 10)
+    let ids = context.sharedState.feed.slice(feed_context.feedstate.feed_Data.length, (feed_context.feedstate.feed_Data.length + 10))
 
 
-    console.log(ids)
-    console.log(host)
+
+    // console.log(ids)
+    // console.log(host)
 
     try {
       const response = await fetch(`${host}/api/post/fetchfeed`, {
@@ -37,6 +41,11 @@ export default function Home() {
       const { feedDataArray } = json
       console.log(feedDataArray)
       setfeed(feedDataArray)
+      let obj = {
+        feed_Data: [...feed_context.feedstate.feed_Data, ...feedDataArray.reverse()]
+      }
+
+      feed_context.setfeedstate(obj)
 
     } catch (error) {
       console.log(error)
@@ -44,43 +53,53 @@ export default function Home() {
     }
   }
 
+  const fetchNew = () => {
+    fetchfeed()
+  }
 
   return (
     <>
       <div onClick={() => {
-        console.log(context)
+        // console.log(feed_context)
       }} style={{
         display: 'flex', flexDirection: 'row', boxSizing: 'border-box', justifyContent: 'center', position: "relative"
       }}>
         <div className={styles.feedDiv} style={{}}>
           <div style={{ marginBottom: "90vh" }} >
 
-            {/* {
-              show_feedPosts ?
-                <>
+            <InfiniteScroll
 
-                  < FeedPosts feed_postIds={feed_postIds} userId={_id} flw_recomms={flw_recomms} />
-                </>
+              id='myHeader'
+              dataLength={feed_context.feedstate.feed_Data.length}
+              next={fetchNew}
+              hasMore={true}
+              className='row'
+              loader={
+                <div style={{  width: "100%", textAlign: "center" }}>
+                  <Spinner style={{ margin: "40vh 0", color: "skyblue" }} />
+                </div>}
+              style={{ padding: 0, margin: 0, marginBottom: '7vh' }}
+            >
 
-                :
-                <>
-                  {
-
-                    userId ? <Spinner /> : ""
+              {
+                feed_context.feedstate.feed_Data.map((f) => {
+                  if (feed && feed.isDeleted == true) {
+                    return
+                  } else {
+                    return (
+                      <>
+                        <FeedpostItems feed={f} ></FeedpostItems>
+                      </>
+                    )
                   }
 
+                })
+              }
 
-                </>
-            } */}
-            {
-              feed.map((f) => {
-                return (
-                  <>
-                    <div style={{ color: "white" }} ></div>                    <FeedpostItems feed={f} ></FeedpostItems>
-                  </>
-                )
-              })
-            }
+
+
+            </InfiniteScroll>
+
 
 
           </div>

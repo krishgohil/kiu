@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+import { Schema, model, models } from 'mongoose';
 
 const YtPromoted = new Schema({
     thumbnail: { type: String },
@@ -17,5 +17,6 @@ const YtPromoted = new Schema({
 
 // YtPromoted.index({ bookName: 'text', description: 'text' })
 
-const Ytpromoted = mongoose.model('Ytpromoted', YtPromoted);
+
+const Ytpromoted = models.Ytpromoted || model('Ytpromoted', YtPromoted);
 module.exports = Ytpromoted

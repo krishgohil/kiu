@@ -17,24 +17,21 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            <div style={dnone ? { display: "none" } : {}} >
+            <div  >
                 <Header></Header>
                 <div className='app__container'>
                     <Sidebar
 
                     />
 
-                    <div style={{ width: "100%" }} >
+                    <Container style={{ padding: 0, margin: 0 }} >
                         {children}
-                    </div>
+                    </Container>
 
 
                 </div>
             </div>
 
-            <div style={!dnone ? { display: "none", width: "100%" } : { width: "100%" }}  >
-                {children}
-            </div>
         </>
     )
 }

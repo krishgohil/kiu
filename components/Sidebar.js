@@ -65,7 +65,7 @@ const Sidebar = () => {
                     <span className={styles.span} >Home</span>
                 </li>
             </Link>
-            <Link className={styles.sidelink} href='/search/quert'
+            <Link className={styles.sidelink} href='/products'
                 // onClick={() => {
                 //     if (window.location.pathname == "/") { sethomeScroll() };
                 //     sessionStorage.setItem('currentcategory', 'product')
