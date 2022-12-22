@@ -20,10 +20,11 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useRouter } from 'next/router'
 import { Spinner } from 'react-bootstrap'
 import { useAppContext } from '../../context'
+import Head from 'next/head'
 
 
 
-const ProductModal = () => {
+const ProductModal = (props) => {
   const router = useRouter()
   const context = useAppContext()
   const { _id, username, profileImg } = context
@@ -677,7 +678,7 @@ const ProductModal = () => {
                   {
                     req ?
                       <dialog open style={{ position: 'absolute', border: 'none', color: 'white', zIndex: 999, left: '0%', backgroundColor: "rgba(0,0,0,.85)", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '0vh', alignItems: "center" }}>
-                        <RequestOrder feed={feed} requestOrderFunc={requestOrderFunc} />
+                        {/* <RequestOrder feed={feed} requestOrderFunc={requestOrderFunc} /> */}
                       </dialog>
                       : ""
                   }
@@ -697,9 +698,7 @@ const ProductModal = () => {
                               comments && comments.length > 0 ?
                                 comments.map((comment, i) =>
                                   comment.raterComment.length > 0 ?
-                                    <CommentItem key={i} comment={comment} userId={_id} postId={feed._id}
-                                    //    fetchcomments={fetchcomments} 
-                                    />
+                                    ''
                                     : ""
                                 )
                                 :
@@ -781,7 +780,232 @@ const ProductModal = () => {
           </div>
       }
 
+      <ForBot props={props}></ForBot>
+
     </>
   )
 }
+
+
+export const ForBot = ({ props }) => {
+  return (
+    <div style={{ display: "none" }} >
+
+      <Head>
+
+        <title>{props?.title.length > 0 ? props?.title : props.description} : {props.postedBy.username} | Product / Keepituppp</title>
+        <meta name="description" content={props?.description ? props.description : "Keepitupp post and comments"} />
+        <meta
+          name="keywords"
+          content={`Keepitupp Post, ${props.postedBy.username},Social media, fun ,movies ,products ,news`}
+        />
+      </Head>
+      <dialog dialog open style={{ position: 'absolute', border: 'none', color: 'white', zIndex: 999, left: '0%', backgroundColor: "#1c1f24", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '0vh', padding: 0 }}>
+        <div className='modalprdct' >
+          <div className='byuser'  >
+
+            <div className='pmgoback' style={{ padding: "0.2rem" }} >
+              <BsArrowLeft size={24} color='silver' onClick={() => router.back(-1)} ></BsArrowLeft>
+            </div>
+
+
+
+
+            <div style={{ display: "flex", alignItems: "center" }} onClick={() => navigate(`/${props.postedBy.username}`)} >
+              BY
+              <span style={{ color: "silver", fontWeight: "500", marginLeft: "0.5rem", }} >
+                {props.postedBy.username}
+              </span>
+              <img alt="img" style={{ width: "2rem", height: "2rem", borderRadius: "50%", marginLeft: "0.5rem" }} src={props.postedBy.profileImg} />
+            </div>
+          </div>
+          <div className='phead'  >
+            <div style={{ display: "flex", alignItems: 'center' }} >
+              <img alt="img" className='pmImg' src={props.postimg[0]}
+              />
+
+              <div style={{ margin: "0 1rem", whiteSpace: 'pre-wrap', wordBreak: "break-word" }} >
+                <h3>
+                  {props.title}
+                </h3>
+                <div className='pmtaglinepc' >
+                  {props.tagLine}
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+          <div className='pmpricevisit' >
+            {
+              props.price > 0 ?
+                <>
+                  <div className='pmprice' onClick={() => requestOrderFunc(props.postedBy._id)} >
+
+                    <span  >₹</span>
+                    <span style={{ marginRight: "0.5rem", marginLeft: "0.25rem", color: "white", fontWeight: "500" }} >{props.price}</span >
+                    <s style={{ color: "#ededed" }} > <span style={{ color: "" }} >₹</span> {props.discountedPrice}</s>
+                  </div>
+
+                </> :
+                <div className='pmprice' onClick={() => requestOrderFunc(props.postedBy._id)} >
+                  Free
+                </div  >
+            }
+
+            <div onClick={() => window.open(`${props.link}`, '_blank')
+            } className='pvisit' style={{ fontWeight: "500", borderLeft: "1px solid gray", padding: "0.5rem", display: "flex", alignItems: 'center', cursor: "pointer" }} >
+              <span>
+                Visit
+              </span>
+
+              <span style={{ margin: "0 0 0.25rem 0.5rem" }} ><FiExternalLink size={15} /></span>
+            </div>
+          </div>
+
+
+
+          <div className='pmimages'  >
+            <Swiper
+              className='jkliop'
+              style={{ width: 'auto', height: "auto", backgroundColor: "#16181b", }}
+              // install Swiper modules
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              // spaceBetween={50}
+              slidesPerView={4}
+              navigation
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+            // onSwiper={(swiper) => console.log(swiper)} 
+            // onSlideChange={() => console.log('slide change')}
+            >
+              {
+
+
+                props.postimg.map((img, i) =>
+                  <div key={i}>
+                    <SwiperSlide style={{ width: '100%', borderRadius: "0.5rem", padding: "0.25rem", backgroundColor: "#16181b", }} >
+                      <img alt="img" style={{ width: '100%', borderRadius: "0.5rem" }}
+                        //  onDoubleClick={dbclick}
+                        className='postImg' src={props.postimg[i]} />
+                    </SwiperSlide>
+                    {/* < img src={props.postimg[i]}  style={{ marginBottom: '4px' }} /> */}
+                  </div>
+                )
+              }
+            </Swiper>
+
+          </div>
+
+          <h6 style={{ padding: "0.5rem", marginTop: "1rem" }} >
+            About this product
+          </h6>
+          <div className='pmdesc' >
+            {props.description}
+          </div>
+
+
+          <div className='pmrevrelated'  >
+
+            <div className='revmain' >
+              <div style={{ padding: "0.5rem", margin: "0.5rem 0", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" }} >
+
+                <span style={{ fontWeight: "500", }} >Comments</span>
+                <span style={{ marginRight: "2rem", fontSize: "14px", }}  >Read All <AiOutlineRight></AiOutlineRight> </span>
+              </div>
+
+              <div>
+
+              </div>
+
+
+
+
+
+
+            </div>
+
+            <div className='relatedprdcts' >
+              <div style={{ position: "sticky", top: 0, padding: "0.5rem", backgroundColor: "#16181b", }} >
+                More from
+                <span style={{ fontWeight: '500', marginLeft: '0.25rem' }} >
+                  {props.postedBy.username}
+                </span>
+                <img alt="img" style={{ width: "2rem", height: "2rem", borderRadius: "50%", marginLeft: "0.5rem" }} src={props.postedBy.profileImg} />
+              </div>
+              <div className='prdctdiv' style={{ display: "flex", flexWrap: "wrap", boxSizing: "border-box", width: "100%", alignItems: "center", width: "100%" }} >
+
+
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <h6 style={{ margin: "2rem 0 1rem 0.5rem" }} >More On Keepitupp :</h6>
+          <Swiper
+            className='jkliop'
+            style={{ width: 'auto', height: "auto", backgroundColor: "#16181b", alignItems: "flex-start" }}
+            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+            slidesPerView={4}
+            navigation={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+
+          >
+
+
+
+          </Swiper>
+
+
+          <div style={{
+            marginTop: '2rem',
+            color: "gray", textAlign: "center"
+          }} >
+            Copyright <MdOutlineCopyright /> <span>Keepitupp</span> 2022 @All rights reserved
+          </div>
+
+
+
+
+
+
+        </div>
+      </dialog >
+    </div>
+  )
+}
+
+
+
+export async function getServerSideProps(context) {
+
+  console.log("wesrtyui", context.params)
+  const response = await fetch(`${host}/api/product/fetchUniqProduct`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ productId: context.params.productId }),
+  })
+  const json = await response.json();
+  console.log(json)
+
+  return {
+    props: json[0], // will be passed to the page component as props
+  }
+
+
+}
+
+
 export default ProductModal

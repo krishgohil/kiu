@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import request from '../api';
 
-import VideoHorizontal, { YtModal } from '../components/VideoHorizontal'
+import VideoHorizontal from '../components/VideoHorizontal'
 import { FaRegComment, FaRegStar, FaStar } from "react-icons/fa";
 import { AiFillEye, AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { host } from '../host'
@@ -336,203 +336,203 @@ const Youtube = () => {
 
       {
         showModal ?
-          <YtModal />
-          :
-          ""
+          <></>
+            :
+            ""
       }
-
-      {
-        bykeepituppers ?
-          <>
-
-
-            <InfiniteScroll
-              id='myHeader'
-              dataLength={promotedVideos.length}
-              next={fetchAgain}
-              hasMore={true}
-              className='row'
-              // loader={
-              //   <div className='spinner-border text-danger d-block mx-auto'></div>
-              // }
-              style={{ padding: 0, margin: 0, marginBottom: '7vh' }}
-            >
-
-              <div style={{ margin: "1rem 0", textAlign: "end" }} >
-                <button onClick={adf} style={promote ? { backgroundColor: "red", padding: "0.15rem 0.5rem", color: "white", fontWeight: "500", border: "none", fontSize: "0.9rem", margin: "0 0.5rem" } : { backgroundColor: "red", padding: "0.15rem 0.5rem", color: "white", fontWeight: "500", border: "none", fontSize: "0.9rem", margin: "0 0.5rem" }} >
-                  +Promote
-                </button>
-              </div>
-
-              {promotedVideos.map(video => (
-                <>
-                  <PromotedVideos video={video} key={video.id} g={g} c={c} t={t} revFunc={revFunc} />
-                </>
-              ))}
-
-
-            </InfiniteScroll>
-          </> : ""
-      }
-
-      {
-        promote ?
-          <div style={{ width: "100%", display: "flex", flexDirection: "column", minHeight: "50vh", marginTop: "2rem", overflowY: "scroll", scrollMargin: 0 }} >
-            <div style={{ margin: "1rem auto" }} >
-              Enter Video Url
-            </div>
-            <div style={{ width: '100%', display: "flex", alignItems: "center" }} >
-              <input onChange={onChangeUrl} type="text" style={{ border: "none", outline: "none", backgroundColor: "rgb(29,29,29)", padding: "0.5rem", cursor: "pointer", caretColor: "white", color: "white", width: '100%' }} placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
-
-              <button onClick={findFunc} style={{ backgroundColor: "red", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box" }} >
-                <AiOutlineSearch size={18} />
-              </button>
-            </div>
 
             {
-              showVideo ?
+              bykeepituppers ?
                 <>
-                  <Promotedvids video={vidData} channelIcon={channelIcon} />
-
-                  <div style={{ display: "flex", justifyContent: "space-evenly", width: "100%" }} >
-
-                    <button onClick={() => {
-                      // navigate(-1)
-                      setshowVideo(false)
-                      setpromote(false)
-                      setbykeepituppers(true)
-                      setyt(false)
 
 
-                    }} style={{ backgroundColor: "gray", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box", fontSize: "0.9rem", borderRadius: "0.5rem" }} >
-                      Cancel
-                    </button>
+                  <InfiniteScroll
+                    id='myHeader'
+                    dataLength={promotedVideos.length}
+                    next={fetchAgain}
+                    hasMore={true}
+                    className='row'
+                    // loader={
+                    //   <div className='spinner-border text-danger d-block mx-auto'></div>
+                    // }
+                    style={{ padding: 0, margin: 0, marginBottom: '7vh' }}
+                  >
 
-                    <button onClick={promoteFunc} style={{ backgroundColor: "#0e5abf", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box", fontSize: "0.9rem", borderRadius: "0.5rem" }} >
-                      Promote
+                    <div style={{ margin: "1rem 0", textAlign: "end" }} >
+                      <button onClick={adf} style={promote ? { backgroundColor: "red", padding: "0.15rem 0.5rem", color: "white", fontWeight: "500", border: "none", fontSize: "0.9rem", margin: "0 0.5rem" } : { backgroundColor: "red", padding: "0.15rem 0.5rem", color: "white", fontWeight: "500", border: "none", fontSize: "0.9rem", margin: "0 0.5rem" }} >
+                        +Promote
+                      </button>
+                    </div>
+
+                    {promotedVideos.map(video => (
+                      <>
+                        <PromotedVideos video={video} key={video.id} g={g} c={c} t={t} revFunc={revFunc} />
+                      </>
+                    ))}
+
+
+                  </InfiniteScroll>
+                </> : ""
+            }
+
+            {
+              promote ?
+                <div style={{ width: "100%", display: "flex", flexDirection: "column", minHeight: "50vh", marginTop: "2rem", overflowY: "scroll", scrollMargin: 0 }} >
+                  <div style={{ margin: "1rem auto" }} >
+                    Enter Video Url
+                  </div>
+                  <div style={{ width: '100%', display: "flex", alignItems: "center" }} >
+                    <input onChange={onChangeUrl} type="text" style={{ border: "none", outline: "none", backgroundColor: "rgb(29,29,29)", padding: "0.5rem", cursor: "pointer", caretColor: "white", color: "white", width: '100%' }} placeholder="https://www.youtube.com/watch?v=jNQXAC9IVRw" />
+
+                    <button onClick={findFunc} style={{ backgroundColor: "red", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box" }} >
+                      <AiOutlineSearch size={18} />
                     </button>
                   </div>
-                </>
+
+                  {
+                    showVideo ?
+                      <>
+                        <Promotedvids video={vidData} channelIcon={channelIcon} />
+
+                        <div style={{ display: "flex", justifyContent: "space-evenly", width: "100%" }} >
+
+                          <button onClick={() => {
+                            // navigate(-1)
+                            setshowVideo(false)
+                            setpromote(false)
+                            setbykeepituppers(true)
+                            setyt(false)
+
+
+                          }} style={{ backgroundColor: "gray", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box", fontSize: "0.9rem", borderRadius: "0.5rem" }} >
+                            Cancel
+                          </button>
+
+                          <button onClick={promoteFunc} style={{ backgroundColor: "#0e5abf", padding: "0.5rem", color: "white", fontWeight: "500", border: "none", boxSizing: "border-box", fontSize: "0.9rem", borderRadius: "0.5rem" }} >
+                            Promote
+                          </button>
+                        </div>
+                      </>
+                      : ""
+                  }
+
+
+
+                </div>
                 : ""
             }
 
-
-
-          </div>
-          : ""
-      }
-
-    </>
+          </>
   )
 }
 
-export default Youtube
+      export default Youtube
 
 
 
 
 
-const Promotedvids = ({ video, channelIcon }) => {
+      const Promotedvids = ({video, channelIcon}) => {
   return (
-    <>
+      <>
 
-      <div style={{ margin: 0, padding: 0 }} >
+        <div style={{ margin: 0, padding: 0 }} >
 
-        <div className='yt' style={{ padding: 0 }}  >
+          <div className='yt' style={{ padding: 0 }}  >
 
-          <div className='ytRow'  >
+            <div className='ytRow'  >
 
-            <div className='ytdiv'  >
+              <div className='ytdiv'  >
 
-              <img alt="img"
-                // onClick={handleClick}
-                style={{ paddingTop: '0.5rem', paddingBottom: "0.5rem", cursor: 'pointer', }}
-                src={video.items[0].snippet.thumbnails.medium.url}
-                className={`videoHorizontal__thumbnail`}
-              />
+                <img alt="img"
+                  // onClick={handleClick}
+                  style={{ paddingTop: '0.5rem', paddingBottom: "0.5rem", cursor: 'pointer', }}
+                  src={video.items[0].snippet.thumbnails.medium.url}
+                  className={`videoHorizontal__thumbnail`}
+                />
 
-              <div className='ytduration'  >
-                <span>
-                  {/* {video.items[0].contentDetails.duration} */}
-                  {moment.utc((moment.duration(video.items[0].contentDetails.duration).asSeconds()) * 1000).format('mm:ss')}
-                </span>
-              </div>
+                <div className='ytduration'  >
+                  <span>
+                    {/* {video.items[0].contentDetails.duration} */}
+                    {moment.utc((moment.duration(video.items[0].contentDetails.duration).asSeconds()) * 1000).format('mm:ss')}
+                  </span>
+                </div>
 
 
-
-            </div>
-
-            <div className='ytdetail' >
-              <p className='ytTitle' style={{ fontWeight: "400", marginBottom: "0.5rem", cursor: 'pointer', }}
-              // onClick={revFunc}
-              >
-                {video.items[0].snippet.title}
-              </p>
-
-              <div style={{ display: "flex", cursor: 'pointer', }}
-              // onClick={revFunc}
-              >
-                <p style={{ fontSize: "0.8rem" }} >
-                  <AiFillEye />
-                  {/* {numeral(views).format('0.a')} Views • */}
-                </p>
-                <p style={{ fontSize: "0.8rem", marginLeft: '0.5rem' }} >
-                  {DateTime.fromISO(video.items[0].snippet.publishedAt).toRelative()}
-                </p>
 
               </div>
 
-
-              <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', }} >
-                <img style={{ width: '1.8rem', borderRadius: '50%', cursor: 'pointer', }}
-                  src={channelIcon?.url}
-                  // src={channelIcon?.url} onClick={goToChannel} 
-                  effect='blur' />
-                <span style={{ fontSize: "14px", marginLeft: '0.5rem', cursor: 'pointer', }}
-                // onClick={goToChannel}
+              <div className='ytdetail' >
+                <p className='ytTitle' style={{ fontWeight: "400", marginBottom: "0.5rem", cursor: 'pointer', }}
+                // onClick={revFunc}
                 >
-                  {video.items[0].snippet.channelTitle}
-                </span>
-
-              </div>
-              <div className='ytdesc' >
-                {video.items[0].snippet.description}
-              </div>
-
-
-            </div>
-
-
-            <div className='ytdetailmob' >
-              <div className='temp'  >
-                <img className='mobChannelIcon'
-                  src={channelIcon?.url}
-                  //  onClick={goToChannel}
-                  effect='blur' />
-              </div>
-
-              <div className='mobview'  >
-                <div className='mobTitle' >
                   {video.items[0].snippet.title}
-                </div>
-                <div className='mobchannel' >
-                  <div>
-                    {video.items[0].snippet.channelTitle}•
-                  </div>
+                </p>
 
-
-                  <div style={{ marginLeft: "0.8rem" }} >
+                <div style={{ display: "flex", cursor: 'pointer', }}
+                // onClick={revFunc}
+                >
+                  <p style={{ fontSize: "0.8rem" }} >
+                    <AiFillEye />
                     {/* {numeral(views).format('0.a')} Views • */}
-                  </div>
-
-                  <div style={{ marginLeft: "0.8rem" }} >
-                    {/* {DateTime.fromISO(publishedAt).toRelative()} */}
+                  </p>
+                  <p style={{ fontSize: "0.8rem", marginLeft: '0.5rem' }} >
                     {DateTime.fromISO(video.items[0].snippet.publishedAt).toRelative()}
+                  </p>
 
-                  </div>
                 </div>
 
-                {/* <div style={{ cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "flex-end" }}  >
+
+                <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', }} >
+                  <img style={{ width: '1.8rem', borderRadius: '50%', cursor: 'pointer', }}
+                    src={channelIcon?.url}
+                    // src={channelIcon?.url} onClick={goToChannel} 
+                    effect='blur' />
+                  <span style={{ fontSize: "14px", marginLeft: '0.5rem', cursor: 'pointer', }}
+                  // onClick={goToChannel}
+                  >
+                    {video.items[0].snippet.channelTitle}
+                  </span>
+
+                </div>
+                <div className='ytdesc' >
+                  {video.items[0].snippet.description}
+                </div>
+
+
+              </div>
+
+
+              <div className='ytdetailmob' >
+                <div className='temp'  >
+                  <img className='mobChannelIcon'
+                    src={channelIcon?.url}
+                    //  onClick={goToChannel}
+                    effect='blur' />
+                </div>
+
+                <div className='mobview'  >
+                  <div className='mobTitle' >
+                    {video.items[0].snippet.title}
+                  </div>
+                  <div className='mobchannel' >
+                    <div>
+                      {video.items[0].snippet.channelTitle}•
+                    </div>
+
+
+                    <div style={{ marginLeft: "0.8rem" }} >
+                      {/* {numeral(views).format('0.a')} Views • */}
+                    </div>
+
+                    <div style={{ marginLeft: "0.8rem" }} >
+                      {/* {DateTime.fromISO(publishedAt).toRelative()} */}
+                      {DateTime.fromISO(video.items[0].snippet.publishedAt).toRelative()}
+
+                    </div>
+                  </div>
+
+                  {/* <div style={{ cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "flex-end" }}  >
                                     <div className='cmnticon' style={{}} title='comments'
                                     // onClick={revFunc}
                                     >
@@ -548,23 +548,23 @@ const Promotedvids = ({ video, channelIcon }) => {
                                         <IoFlashOutline style={{ fontSize: "21px", margin: '0.5rem' }} ></IoFlashOutline>
                                     </div>
                                 </div> */}
+                </div>
+
+
+
+
+
               </div>
-
-
 
 
 
             </div>
 
 
-
           </div>
 
-
         </div>
-
-      </div>
-    </>
-  )
+      </>
+      )
 }
 

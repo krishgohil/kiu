@@ -1,0 +1,123 @@
+.uniqDiv ::-webkit-scrollbar {
+    display: none;
+}
+
+.uniqDiv {
+    display: flex;
+    border-radius: 0.25rem;
+    height: 95vh;
+    width: 80vw;
+    border: 1px solid #1c1245;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.uihjkl ::-webkit-scrollbar {
+    display: none;
+}
+
+.uihjkl ::-webkit-scrollbar {
+    display: none;
+}
+
+.uihjkl {
+    overflow-y: scroll;
+    scroll-margin: 0;
+    height: 69vh;
+    padding: 0.5rem;
+    color: white;
+    background-color: black;
+}
+
+.jfkslxk ::-webkit-scrollbar {
+    display: none;
+}
+
+.jfkslxk {
+    border-bottom: 1px solid rgb(22, 22, 22);
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.cmntPostInfo {
+    width: 50%;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    overflow-y: scroll;
+    scroll-margin: 0;
+    padding: 0.5rem;
+
+}
+
+.commentSection {
+    width: 50%;
+    height: auto;
+    background-color: black;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.starredByModal {
+    position: absolute;
+    border: none;
+    color: white;
+    z-index: 999;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    width: 100vw;
+
+    position: fixed;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    bottom: 0;
+    align-items: flex-end;
+}
+
+.starredByMain {
+    width: 40vw;
+    min-height: 50vh;
+    border-top: 1px solid rgb(153, 153, 153);
+    border-radius: 1rem 1rem 0 0;
+}
+
+@media (max-width: 800px) {
+    .starredByMain {
+        width: 100vw;
+        border-radius: 1rem 1rem 0 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .uniqDiv {
+        flex-direction: column;
+        overflow-y: scroll;
+        height: 100vh;
+        width: 100vw;
+        border: none;
+        border-radius: 0;
+    }
+
+    .cmntPostInfo {
+        width: 100%;
+        overflow-y: visible;
+        scroll-margin: 0;
+    }
+
+    .commentSection {
+        width: 100%;
+        overflow-y: visible;
+        scroll-margin: 0;
+    }
+
+    .uihjkl {
+        height: 75vh;
+    }
+
+
+}
+
+@media screen and (max-height: 400px) {}

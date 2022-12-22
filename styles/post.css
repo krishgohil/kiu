@@ -1,0 +1,270 @@
+
+.launchProduct {
+  width: 60vw;
+  max-height: 95vh;
+  padding: 0 0.5rem;
+
+  position: relative;
+  overflow-y: scroll;
+  scroll-margin: 0;
+  border-radius: 0.5rem;
+  background-color: #16181b;
+  border: 1px solid white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.postModal {
+  position: absolute;
+  z-index: 999;
+  width: 60vw;
+  background-color: black;
+}
+
+.ios {
+  background-color: #0e5abf;
+  transition: 0.5s;
+}
+
+.postbtn {
+  background-color: #0e5abf;
+  margin: 1rem;
+  transition: 0.9s;
+  padding: 0.5rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.postbtndisabled {
+  background-color: #032147;
+}
+
+
+
+.ios:hover {
+  background-color: #0566e5;
+
+}
+
+.postbtn:hover {
+  background-color: #0566e5;
+}
+
+.postbtndisabled:hover {
+  background-color: #032147;
+}
+
+.option:hover {
+  background-color: #7e087c;
+}
+
+.postIcons_Btn {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  background-color: #16181b;
+  bottom: 0;
+  z-index: 2;
+}
+
+.postContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+  scroll-margin: 0;
+}
+
+.launchProductBtn {
+  position: sticky;
+  bottom: 0;
+  background-color: #16181b;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.postdiv {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  max-height: 95vh;
+  overflow-y: scroll;
+  scroll-margin: 0;
+  padding: 0 0.5rem;
+  background-color: #16181b;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 0.5rem;
+}
+
+.postUser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: #16181b;
+  padding-top: 0.5rem;
+  z-index: 990;
+}
+
+.postinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.preview {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+
+  margin-top: 1rem;
+  color: rosybrown;
+  box-sizing: border-box;
+}
+
+.previewimg {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 0.2rem;
+}
+
+.showpreview {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 100%;
+  color: rosybrown;
+}
+
+.cancel {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
+.cancelIcon:hover {
+  padding: 0.2rem;
+  color: red;
+  background-color: rgb(68, 54, 54);
+  border-radius: 50%;
+}
+
+.delImg {
+  color: gray;
+  margin-left: 0.5rem;
+}
+
+.delImg:hover {
+  color: red;
+  border-radius: 50%;
+}
+
+
+
+.uploadicons {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: cornflowerblue;
+  font-size: 1.2rem;
+}
+
+.selectedImgs {
+  margin-left: 1rem;
+}
+
+@media (max-width: 1020px) {
+  .launchProduct {
+    width: 75vw;
+  }
+
+  .postdiv {
+    width: 60vw;
+
+  }
+
+}
+
+@media (max-width: 800px) {
+  .lkkjlsfs {
+    flex-direction: column;
+  }
+
+  .selectedImgsMain {
+    flex-direction: column;
+  }
+
+  .selectedImgs {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .postdiv {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .postContainer {
+    height: 100vh;
+  }
+
+  .preview {
+    width: 12rem;
+    height: 8rem;
+  }
+
+  .showpreview {
+    width: 100%;
+  }
+
+  .launchProduct {
+    border: none;
+    width: 100vw;
+    max-height: 100vh;
+  }
+}
+
+.ankerPp {
+  text-decoration: none;
+  font-size: 0.7rem;
+  color: rgb(179, 174, 174);
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.ankerPp:hover {
+  text-decoration: underline black;
+  color: rgb(255, 205, 255);
+}
+
+
+@media screen and (max-height: 600px) {
+
+  .launchProductBtn,
+  .postUser,
+  .postIcons_Btn {
+    position: sticky;
+  }
+
+
+
+}

@@ -16,6 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoFlashOutline } from 'react-icons/io5';
 import { useAppContext } from '../context';
+import { useRouter } from 'next/router';
 
 
 
@@ -28,7 +29,9 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   const [showComposePost, setshowComposePost] = useState(false)
   const [modalno, setmodalno] = useState(0)
   const context = useAppContext()
-  const { _id, username, profileImg } = context
+  const { _id, username, profileImg } = context.sharedState
+  const router = useRouter()
+
   // const { accessToken, loading } = useSelector(state => state.auth)
   // const profileImg = useSelector(state => state.auth2.profileImg)
   // const { username, _id, guest, notificationCount } = useSelector(state => state.auth2)
@@ -38,8 +41,8 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // const [deferredPrompt, setdeferredPrompt] = useState()
 
   useEffect(() => {
-    console.log(profileImg)
-  }, [context ])
+    console.log(context)
+  }, [context])
 
 
 
@@ -209,13 +212,10 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   //   })
   // }
 
-  // const handleAddClick = () => {
-  //   // overflowhidden()  
-  //   dispatch(setcategory())
-  //   setshowComposePost(true)
-  //   navigate('compose-post')
-  //   // navigate(`/${category}/compose-post`)
-  // }
+  const handleAddClick = () => {
+    
+    router.push('/compose-post')
+      }
 
   // const handlecancel = () => {
   //   setshowComposePost(false)
@@ -467,7 +467,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                     {
                       showAddBtn !== false ?
                         <MdAddCircleOutline size={32} className={styles.iconHeader}
-                          //  onClick={handleAddClick}
+                          onClick={handleAddClick}
                           style={{ marginLeft: '1rem' }} />
 
                         : ''
@@ -492,8 +492,8 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
                     {
                       profileImg !== '' ?
-                        <img alt="img" className={styles.profimg} style={{ cursor: "pointer", marginLeft: "1rem", borderRadius: '50%', backgroundColor: 'white' }} src={profileImg} /> :
-                        <FaUserCircle style={{ height: '2rem', width: '2rem', cursor: "pointer", marginLeft: '1rem', borderRadius: '50%' }} />
+                        <img onClick={() => { router.push(`/${username}`) }} alt="img" className={styles.profimg} style={{ cursor: "pointer", marginLeft: "1rem", borderRadius: '50%', backgroundColor: 'white' }} src={profileImg} /> :
+                        <FaUserCircle onClick={() => { router.push(`/${username}`) }} style={{ height: '2rem', width: '2rem', cursor: "pointer", marginLeft: '1rem', borderRadius: '50%' }} />
                     }
 
                   </>
@@ -542,74 +542,18 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
 
 
-
-      {/* {
+      {
         showComposePost ?
           <dialog open style={{
             position: 'absolute', border: 'none', color: 'white', zIndex: 999, top: '0%', left: '0%', backgroundColor: "rgba(0,0,0,.6)", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', justifyContent: "center", alignItems: 'center',
           }}>
-
-            <Helmet>
-              <title>Compose Post / Keepitupp</title>
-              <meta name="description" content="Quickly send private messages with Keepitupp chats " />
-
-            </Helmet>
-
-            <Post handlecancel={handlecancel} />
+            {/* <Post handlecancel={handlecancel} /> */}
           </dialog>
           : ''
       }
 
 
-      {
-        dikha ?
-          <dialog className='req_noti_dialog' open >
-            <div className='notiMain' >
 
-
-
-
-              <Requests dikha={dikha} userId={_id} n={n} />
-
-
-            </div>
-          </dialog>
-          : ''
-      }
-
-      {
-        modal ?
-          <dialog open style={{
-            position: 'absolute', border: 'none', color: 'white', zIndex: 999, top: '0%', left: '0%',
-            backgroundColor: "rgba(0,0,0,0.45)",
-            height: '90vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '8vh',
-          }} >
-            <div className='install'  >
-
-
-              <div style={{ display: "flex", justifyContent: 'center', flexDirection: "column", alignItems: "center" }} >
-
-                <h4>
-                  For a better experience,
-                  Install the app now !
-                </h4>
-                <button className='installbtn' onClick={install}  >
-                  Install
-                </button>
-              </div>
-
-              <div className='closemodal' >
-                <AiOutlineClose size={28} color='gray' onClick={() => setmodal(false)} />
-              </div>
-
-
-            </div>
-
-          </dialog>
-
-          : ''
-      }
- */}
 
     </>
   )

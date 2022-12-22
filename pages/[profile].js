@@ -1249,7 +1249,7 @@ const SearchedProfile = (props) => {
                             showeditprofilemodal ?
                                 <dialog open style={{ position: 'fixed', top: '0%', left: '0%', boxSizing: 'border-box', display: 'flex', height: '100vh', width: '100vw', zIndex: 999, backgroundColor: "rgba(0,0,0,.85)", marign: 0, justifyContent: 'center', alignItems: 'center' }}>
 
-                                    <EditProfile handleEditButton={handleEditButton} setshoweditprofilemodal={setshoweditprofilemodal} />
+                                    {/* <EditProfile handleEditButton={handleEditButton} setshoweditprofilemodal={setshoweditprofilemodal} /> */}
                                 </dialog>
                                 : ''
                         }
@@ -1257,7 +1257,7 @@ const SearchedProfile = (props) => {
                         {
                             showSettingModal ?
                                 <dialog open style={{ position: 'fixed', top: '0%', left: '0%', boxSizing: 'border-box', display: 'flex', height: '100vh', width: '100vw', zIndex: 999, backgroundColor: "rgba(0,0,0,0.85)", marign: 0, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Settings handle={handle} />
+                                    {/* <Settings handle={handle} /> */}
                                 </dialog>
                                 : ''
                         }

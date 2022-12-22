@@ -20,6 +20,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useRouter } from 'next/router'
 import { Spinner } from 'react-bootstrap'
 import { useAppContext } from '../../context'
+import SendItem from '../../components/SendItem'
+import ShareBox from '../../components/ShareBox'
 
 const ENDPOINT = host
 // const socket = io.connect(ENDPOINT);
@@ -433,7 +435,7 @@ const Products = () => {
                 productModal ?
                     <>
                         <dialog dialog open style={{ position: 'absolute', border: 'none', color: 'white', zIndex: 999, left: '0%', backgroundColor: "#1c1f24", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '0vh', }}>
-                            <ProductModal />
+                            {/* <ProductModal /> */}
                         </dialog >
 
 

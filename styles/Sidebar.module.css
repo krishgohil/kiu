@@ -5,7 +5,6 @@
     flex-direction: column;
     background-color: #121417e3;
     height: 92vh;
-    overflow-y: scroll;
     scroll-margin: 0;
     /* padding-top: 1rem; */
     transition: transform 0.2s ease-in;
@@ -14,10 +13,16 @@
     position: sticky;
     top: 8vh;
     left: 0;
-
-
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+    overflow-y: scroll;
 }
 
+.sidebar::-webkit-scrollbar {
+    display: none;
+  }
 .sidelink {
     padding: 0 4px
 }

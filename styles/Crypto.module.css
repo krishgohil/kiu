@@ -1,0 +1,345 @@
+
+
+
+.coinmain {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    align-items: center;
+    border-bottom: 1px solid #323136;
+}
+
+.coinmain:hover {
+    background-color: rgb(15, 15, 15);
+
+}
+
+.cryptomodal {
+    width: 75vw;
+    height: 95vh;
+    background-color: rgb(19, 20, 26);
+    overflow-y: scroll;
+    scroll-margin: 0;
+    border: 1px solid #171130;
+
+}
+
+
+
+
+
+
+
+
+.hcommon,
+.icommon {
+    flex: 0.25;
+    text-align: center;
+    vertical-align: center
+}
+
+.hcommon {
+    color: rgb(227, 237, 225);
+}
+
+.icommon {
+    color: rgb(213, 227, 227);
+}
+
+
+
+
+
+
+
+
+
+.cryptomodalsub {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+.cModalInfo {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-margin: 0;
+}
+
+
+
+.cmodalTopPc {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+
+.cModalRevs {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: black;
+    overflow-y: scroll;
+    scroll-margin: 0;   
+}
+
+
+
+.show {
+    display: block;
+}
+
+.dontshow {
+    display: none;
+}
+
+
+
+
+
+.detailmob {
+    display: none;
+  }
+  
+  .avgStarmob {
+    display: none;
+  }
+  
+  .detail {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background-color: #16181b;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: rgb(202, 201, 201);
+  
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .cdetailHead {
+    display: flex;
+  }
+  
+  .cdetailmain {
+    display: flex;
+    width: 90%;
+    padding: 1rem;
+    margin: 2rem auto;
+    flex-direction: column;
+  }
+  
+  .cdetaildesc {
+    margin-top: 2rem;
+    width: 80%;
+    color: #e8e8e8;
+  }
+  
+  
+  
+  
+  .raMain {
+    display: flex;
+    background-color: #16181b;
+    width: 80%;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: 1px solid rgb(55, 55, 55);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  
+  }
+  
+  .raImg {
+    width: 10rem;
+    margin-left: 1rem;
+    background-color: #16181b
+  }
+  
+  .raMainMob {
+    display: none;
+  }
+  
+  @media (max-width: 800px) {
+    .raMain {
+      display: none;
+    }
+  
+    .cdetailHead {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .raMainMob {
+      display: flex;
+      flex-direction: column;
+      background-color: #16181b;
+      width: 100%;
+      cursor: pointer;
+  
+      padding: 0.5rem;
+      border: 1px solid rgb(55, 55, 55);
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  
+    .raImgMob {
+      width: 50%;
+      margin: auto;
+    }
+  
+    .cdetailmain {
+      display: flex;
+      width: 100%;
+      padding: 1rem;
+      margin: 2rem 0;
+      flex-direction: column;
+    }
+  
+  
+  
+  
+    .raImg {
+      width: 7rem;
+    }
+  
+    .cdetaildesc {
+      margin-top: 2rem;
+      width: 100%;
+      color: #e8e8e8;
+    }
+  
+    .cryptomodal {
+      width: 100vw;
+      height: 100vh;
+    }
+  
+    .cryptomodalsub {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .cModalInfo {
+      width: 100%;
+      overflow-y: visible;
+    }
+  
+    .cModalRevs {
+      margin-bottom: 5rem;
+      width: 100%;
+      overflow-y: visible;
+      background-color: rgb(19, 20, 26);
+    }
+  
+  
+  
+  
+  
+  }
+  
+  @media (max-width: 800px) {
+  
+    .detailmob {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0.5rem;
+    }
+  
+    .mobtitlestar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    .ptitle {
+      margin-bottom: 0;
+      font-size: 1.25rem;
+      margin-left: 0.5rem;
+    }
+  
+    .avgStarmob {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-right: 1rem;
+    }
+  
+    .detail {
+      display: none;
+    }
+  
+    .mobDesc {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      color: rgb(202, 201, 201);
+  
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .rev_star {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (max-width: 600px) {
+  
+    .hMcap,
+    .iMcap {
+      display: none;
+    }
+  
+    .hCoin,
+    .icoin {
+      flex: 0.5;
+    }
+  
+    .iprice,
+    .hPrice {
+      flex: 0.3;
+    }
+  
+    .h24h,
+    .i24price {
+      flex: 0.2;
+    }
+  
+    .raImg {
+      width: 6rem;
+  
+    }
+  
+  }

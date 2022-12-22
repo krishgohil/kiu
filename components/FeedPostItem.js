@@ -149,7 +149,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
     const b = (gotocomments) => {
         // console.log(dikha, '+++++++++++++++++++')
         if (dikha === true) {
-            navigate(-1)
+            router.back(-1)
         }
         else if (dikha === false) {
             console.log(path)
@@ -167,7 +167,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                 }
                 console.log(path)
 
-                navigate(`upp/product/${feed._id}`)
+                router.push(`/product/${feed._id}`)
 
             } else {
                 // console.log(sc)
@@ -176,7 +176,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                 }
                 console.log(path)
 
-                navigate(`post/${feed._id}`)
+                router.push(`post/${feed._id}`)
             }
         }
         // setdikha(value => !value)
@@ -264,7 +264,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                 sessionStorage.setItem('homeScrollId', feed._id)
                 sessionStorage.setItem('homeScroll', window.scrollY)
 
-                navigate('compose-post')
+                router.push('compose-post')
             }
             else if (hasReposted === true) {
                 if (window.confirm("Remove Repost") == true) {
@@ -776,11 +776,11 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
         console.log(feed)
         if (feed.repost.postType == "media" || feed.repost.postType == "kwik" || feed.repost.postType == "post" || feed.repost.postType == "poll") {
             setdikha(true)
-            navigate(`/post/${feed.repost._id}`)
+            router.push(`/post/${feed.repost._id}`)
         }
         else if (feed.repost.postType == "product") {
             setdikha(true)
-            navigate(`/upp/product/${feed.repost._id}`)
+            router.push(`//product/${feed.repost._id}`)
         }
     }
 
@@ -821,7 +821,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
         var result = searchfeed[0].data.slice(1);
         sessionStorage.setItem('homeScrollId', feed._id)
         sessionStorage.setItem('homeScroll', window.scrollY)
-        navigate(`search/${result}/posts`)
+        router.push(`search/${result}/posts`)
         // alert(searchfeed)
     }
     const searchUser = (searchfeed) => {
@@ -829,7 +829,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
         var result = searchfeed[0].data.slice(1);
         sessionStorage.setItem('homeScrollId', feed._id)
         sessionStorage.setItem('homeScroll', window.scrollY)
-        navigate(`/${result}`)
+        router.push(`/${result}`)
         // alert(searchfeed)
     }
 

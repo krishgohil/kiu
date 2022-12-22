@@ -2,8 +2,10 @@ import Layout from '../components/Layout'
 import '../styles/globals.css'
 import '../styles/index.css'
 import '../styles/feed.css'
+import '../styles/comments.css'
 import '../styles/profile.css'
 import '../styles/products.css'
+import '../styles/post.css'
 import 'react-toastify/dist/ReactToastify.min.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
