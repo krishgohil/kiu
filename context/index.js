@@ -4,6 +4,7 @@ import { createContext, useContext } from 'react';
 const AppContext = createContext();
 const YtContext = createContext()
 const FeedContext = createContext()
+const GeneralContext = createContext()
 
 export function AuthWrapper({ children }) {
     const [sharedState, setsharedState] = useState(
@@ -89,5 +90,114 @@ export function FeedWrapper({ children }) {
 
 export function useFeedContext() {
     return useContext(FeedContext);
+}
+
+
+
+
+// general 
+export function GeneralWrapper({ children }) {
+    const [genstate, setgenstate] = useState(
+        {
+            category: '',
+            flw_Recommendations: [],
+            ratedPosts: [],
+            sliceValue: '',
+            productSearches: [],
+            cryptoSearches: [],
+            bookSearches: [],
+            stockSearches: [],
+            movieSearches: [],
+            sportSearches: [],
+            chatz: [
+                // {
+                //     chatId: '',
+                //     chatMessages: [
+                //         {
+                //             message: 'uuu',
+                //             room: '00'
+                //         }
+                //     ]
+
+
+                // }
+            ],
+            destress_chatz: [],
+            productChatSetup: {},
+            //  {
+            //     img: "",
+            //     price: "",
+            //     title: "",
+            //     tagLine: "",
+            //     discountedPrice: ""
+            // }
+            repost: {
+                // status: false,
+                // description: "",
+                // postimg: "",
+                // pUsername: "",
+                // pDate: "",
+
+            },
+            ytVideosInfo: [
+
+            ],
+            editProduct: {
+                status: false,
+                productId: ""
+            },
+            deleted_posts: [],
+            starred_posts: [
+                // {
+                //     postId: "",
+                //     stars: 00
+                // }
+            ],
+            reposted_posts: [
+                // postId:"" , repostCount
+            ],
+            notificationTokenCurrent: "",
+            to_follow_requests: [
+                // {  toFollowId :""                                                                }
+            ],
+
+            pollOptedPosts: [
+                // {   optionSelectedId,totalvotes         }
+            ],
+
+
+
+            recentChatsStore: [
+                // {}
+            ],
+            unSeenCount: {
+                unseen: 0,
+                unseenChatIds: []
+            },
+            newMessages: [],
+            post_search_results: [
+                // 
+            ],
+            product_search_results: [
+                // 
+            ],
+            profile_search_results: [
+                // 
+            ],
+            upp_productResults: [
+                // 
+            ],
+        }
+    )
+
+    return (
+        <GeneralContext.Provider value={{ genstate, setgenstate }}>
+            {children}
+        </GeneralContext.Provider>
+    );
+}
+
+export function useGeneralContext() {
+    return useContext(GeneralContext);
 }
 

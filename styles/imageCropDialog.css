@@ -1,0 +1,97 @@
+.imageCard {
+    text-align: center;
+  }
+  
+  .imageCard img {
+    width: 100%;
+    max-height: 100%;
+    z-index: 999;
+  
+  }
+  
+  .backdrop {
+    position: fixed;
+    background-color: black;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+  
+  }
+  
+  .crop-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 80px;
+    z-index: 999;
+  
+  }
+  
+  .controls {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0;
+    z-index: 999;
+    background-color: black;
+  }
+  
+  .controls-upper-area {
+    text-align: center;
+  }
+  
+  .slider {
+    width: 50%;
+  }
+  
+  .button-area {
+    text-align: center;
+    margin: 0.5rem;
+  }
+  
+  .aspectBtn {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 14px;
+    border: 1px solid dodgerblue;
+  }
+  
+  .ratioBtn {
+    color: white
+  }
+  
+  
+  
+  .activeRatio {
+    color: rgb(57, 221, 221)
+  }
+  
+  .aspectBtn:hover {
+    background-color: gainsboro;
+  }
+  
+  .editPostImg:hover {
+    opacity: 0.8;
+  }
+  
+  .editPostImgIcon {
+    display: none;
+  }
+  
+  @media (max-width: 720px) {
+    .editPostImg {
+      display: none;
+    }
+  
+    .editPostImgIcon {
+      display: block;
+    }
+  }

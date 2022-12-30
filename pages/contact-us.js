@@ -138,63 +138,67 @@ const ContactUs = () => {
 
     return (
         <>
-            <ToastContainer />
+            <dialog dialog open style={{ position: 'absolute', border: 'none', color: 'white', zIndex: 999, left: '0%', backgroundColor: "#1c1f24", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '0vh', padding: 0 }}>
 
-            <div className={styles.contactUsMain} >
+                <ToastContainer />
 
-                <div className={styles.contactUsContent}>
-                    <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }} >
-                        <img src="/star-removebg-preview.png" alt="" style={{ width: '5rem', marginRight: "1rem" }} />
+                <div className={styles.contactUsMain} >
 
-                        <h1 style={{ color: "black", marginBottom: "0rem" }} >Contact Us</h1>
+                    <div className={styles.contactUsContent}>
+                        <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }} >
+                            <img src="/star-removebg-preview.png" alt="" style={{ width: '5rem', marginRight: "1rem" }} />
+
+                            <h1 style={{ color: "black", marginBottom: "0rem" }} >Contact Us</h1>
+                        </div>
+
+                        <h4 style={{ color: "black" }} >
+                            Send Us Your Feedback
+                        </h4>
+
+                        <div className="mb-3">
+                            <input
+                                onChange={onchange} placeholder='Email address' type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp" />
+                        </div>
+                        <div className="mb-3">
+                            <TextareaAutosize
+                                onChange={onchange}
+                                // onChange={(event) => {
+                                //     setmessage(event.target.value);
+                                // }}
+                                minRows={3} maxRows={7}
+                                className="form-control"
+                                // value={message}
+                                style={{ resize: 'none', outline: 'none', padding: '0.5rem', borderRadius: "0.5rem", width: '100%', }} name="feedback" placeholder="Feedback" >
+
+                            </TextareaAutosize>
+                        </div>
+
+
+                        {
+                            sent === false ?
+                                <div style={{ display: 'flex', justifyContent: 'center' }} >
+
+                                    <button disabled={wait ? true : false} onClick={send} type="submit" className="btn btn-primary"  >Send</button>
+                                </div>
+                                : ""
+                        }
+
+                        {
+                            sent === true ?
+                                <div style={{ display: 'flex', justifyContent: 'center' }} >
+
+                                    <button className="btn btn-success"  >Sent</button>
+                                </div>
+                                : ""
+                        }
+
+
+
                     </div>
-
-                    <h4 style={{ color: "black" }} >
-                        Send Us Your Feedback
-                    </h4>
-
-                    <div className="mb-3">
-                        <input
-                            onChange={onchange} placeholder='Email address' type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp" />
-                    </div>
-                    <div className="mb-3">
-                        <TextareaAutosize
-                            onChange={onchange}
-                            // onChange={(event) => {
-                            //     setmessage(event.target.value);
-                            // }}
-                            minRows={3} maxRows={7}
-                            className="form-control"
-                            // value={message}
-                            style={{ resize: 'none', outline: 'none', padding: '0.5rem', borderRadius: "0.5rem", width: '100%', }} name="feedback" placeholder="Feedback" >
-
-                        </TextareaAutosize>
-                    </div>
-
-
-                    {
-                        sent === false ?
-                            <div style={{ display: 'flex', justifyContent: 'center' }} >
-
-                                <button disabled={wait ? true : false} onClick={send} type="submit" className="btn btn-primary"  >Send</button>
-                            </div>
-                            : ""
-                    }
-
-                    {
-                        sent === true ?
-                            <div style={{ display: 'flex', justifyContent: 'center' }} >
-
-                                <button className="btn btn-success"  >Sent</button>
-                            </div>
-                            : ""
-                    }
-
-
 
                 </div>
+            </dialog>
 
-            </div>
         </>
 
     )

@@ -259,29 +259,25 @@ const Comments = (props) => {
     }
   }
 
-  useEffect(() => {
-    if (hasVoted == false && feed[0]) {
-      for (let i = 0; i < pollOptedPosts.length; i++) {
+  // useEffect(() => {
+  //   if (hasVoted == false && feed[0]) {
+  //     for (let i = 0; i < pollOptedPosts.length; i++) {
 
-        if (feed[0]._id === pollOptedPosts[i].postId) {
+  //       if (feed[0]._id === pollOptedPosts[i].postId) {
 
-          settotalVotes(pollOptedPosts[i].totalVotes)
-          setuserselected(pollOptedPosts[i].userselected)
-          setoptionSelectedId(pollOptedPosts[i].optionSelectedId)
-          sethasVoted(true)
-          setshowResults(true)
-          setOpt1Votes(pollOptedPosts[i]._one)
-          setOpt2Votes(pollOptedPosts[i]._two)
-          setOpt3Votes(pollOptedPosts[i]._three)
-          setOpt4Votes(pollOptedPosts[i]._four)
-          // optionSelectedId: optSelId,
-          //     totalVotes: totalVotes,
-          //         userselected: userselected,
-          //             postId: feed[0]._id
-        }
-      }
-    }
-  }, [])
+  //         settotalVotes(pollOptedPosts[i].totalVotes)
+  //         setuserselected(pollOptedPosts[i].userselected)
+  //         setoptionSelectedId(pollOptedPosts[i].optionSelectedId)
+  //         sethasVoted(true)
+  //         setshowResults(true)
+  //         setOpt1Votes(pollOptedPosts[i]._one)
+  //         setOpt2Votes(pollOptedPosts[i]._two)
+  //         setOpt3Votes(pollOptedPosts[i]._three)
+  //         setOpt4Votes(pollOptedPosts[i]._four)
+  //       }
+  //     }
+  //   }
+  // }, [])
 
   const [comments, setcomments] = useState([])
   const goToProfile = () => {
@@ -316,7 +312,7 @@ const Comments = (props) => {
   }
 
 
-  const fetchcomments = (temp) => async dispatch => {
+  async function fetchcomments() {
     try {
       console.log(comment._id)
       console.log(postId)
@@ -345,7 +341,7 @@ const Comments = (props) => {
 
     }
   }
-  const postCmnt = () => async dispatch => {
+  async function postCmnt() {
 
 
 
@@ -361,7 +357,7 @@ const Comments = (props) => {
       console.log(json)
       if (json.modifiedCount > 0) {
         setcomment('')
-        dispatch(fetchcomments())
+        fetchcomments()
       }
     } catch (error) {
       console.log(error)
@@ -504,7 +500,7 @@ const Comments = (props) => {
 
   }
 
-  const recentChats = () => async dispatch => {
+  async function recentChats() {
     const response = await fetch(`${host}/api/chats/recentChats`, {
       method: 'PUT',
       headers: {
@@ -649,7 +645,7 @@ const Comments = (props) => {
     // window.document.body.style.overflowY = 'hidden'
   }
 
-  const removeRepost = () => async dispatch => {
+  async function removeRepost() {
     sethasReposted(false)
     setrepostCount(repostCount - 1)
     const response = await fetch(`${host}/api/post/removeRepost`, {
@@ -1036,13 +1032,12 @@ const Comments = (props) => {
                         <span style={{ color: 'gray', marginLeft: '0.2rem' }} >
                           {cmntlytics}
                         </span>
+                        <span style={{ marginLeft: '1rem', fontWeight: '500' }}>Views </span>
+                        <span style={{ color: 'gray', marginLeft: '0.2rem' }} >
+                          {feed.views == 0 ? 1 : feed.views}
+                        </span>
 
-                        <div title='average star' style={{ display: "flex", alignItems: 'center', marginLeft: "1rem", }}  >
 
-                          <span style={{ color: 'gray', marginLeft: '0.2rem' }} >
-
-                          </span>
-                        </div>
 
                       </div>
 
@@ -1096,7 +1091,7 @@ const Comments = (props) => {
 
 
                         <button style={{ border: '1px solid black', padding: '0.5rem 1rem 0.5rem 1rem', marginRight: '0.5rem', borderRadius: '0.5rem', backgroundColor: '#0095f6', color: 'white', fontWeight: 'bold' }}
-                          onClick={() => dispatch(postCmnt())}
+                          onClick={() => postCmnt()}
                         >Post</button>
 
 
@@ -1380,36 +1375,33 @@ export const ForBot = ({ props }) => {
 
             </div>
 
-            {
-              props.postType == 'poll' && showResults == false && hasVoted == false ?
-                <>
-                  <div className='polloptions' onClick={() => showResultsFunc(1)}  >
-                    {props.pollOptions[0].option}
-                  </div>
-                  <div className='polloptions' onClick={() => showResultsFunc(2)}  >
-                    {props.pollOptions[1].option}
+            <>
+              <div className='polloptions' onClick={() => showResultsFunc(1)}  >
+                {props.pollOptions[0]?.option}
+              </div>
+              <div className='polloptions' onClick={() => showResultsFunc(2)}  >
+                {props.pollOptions[1]?.option}
 
-                  </div>
-                  {props.pollOptions[2].option != '' ?
-                    <div className='polloptions' onClick={() => showResultsFunc(3)}  >
-                      {props.pollOptions[2].option}
+              </div>
+              {props.pollOptions[2]?.option != '' ?
+                <div className='polloptions' onClick={() => showResultsFunc(3)}  >
+                  {props.pollOptions[2]?.option}
 
-                    </div>
+                </div>
 
-                    : ''
-                  }
-
-                  {props.pollOptions[3].option != '' ?
-                    <div className='polloptions' onClick={() => showResultsFunc(4)}  >
-                      {props.pollOptions[3].option}
-                    </div>
-
-                    : ''
-                  }
-
-                </>
                 : ''
-            }
+              }
+
+              {props.pollOptions[3]?.option != '' ?
+                <div className='polloptions' onClick={() => showResultsFunc(4)}  >
+                  {props.pollOptions[3]?.option}
+                </div>
+
+                : ''
+              }
+
+            </>
+
 
 
 
@@ -1685,7 +1677,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
     dispatch(deldescription())
   }
 
-  const deldescription = () => async dispatch => {
+  async function deldescription() {
     try {
       const response = await fetch(`${host}/api/post/deldescription`, {
         method: 'PUT',
@@ -1696,9 +1688,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
       })
       const json = await response.json();
       console.log(json)
-      // dispatch(fetchreplies())
 
-      // dispatch(fetchcomments())
 
 
     } catch (error) {
@@ -1715,18 +1705,18 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
     if (downvoted) {
       setdownvoted(false)
       setdownvotes(downvotes - 1)
-      dispatch(remove_downvote_comment())
+      remove_downvote_comment()
     }
     if (upvoted) {
       setupvoted(false)
       setupvotes(upvotes - 1)
-      dispatch(remove_upvote_comment())
+      remove_upvote_comment()
 
     } else {
       // alert("koool")
       setupvoted(true)
       setupvotes(upvotes + 1)
-      dispatch(upvote_comment())
+      upvote_comment()
     }
 
   }
@@ -1737,7 +1727,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
       console.log("ruc")
       setupvoted(false)
       setupvotes(upvotes - 1)
-      dispatch(remove_upvote_comment())
+      remove_upvote_comment()
     }
 
     if (downvoted) {
@@ -1745,13 +1735,12 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
 
       setdownvoted(false)
       setdownvotes(downvotes - 1)
-      dispatch(remove_downvote_comment())
-
+      remove_downvote_comment()
     } else {
       setdownvoted(true)
       setdownvotes(downvotes + 1)
 
-      dispatch(downvoteComment())
+      downvoteComment()
     }
   }
 
@@ -1771,13 +1760,13 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
   }
   const submitReply = () => {
     setshowReplyInput(false)
-    dispatch(postreply())
+    postreply()
   }
   const showRepliesfunc = () => {
     // setshowReplies(!showReplies)
     if (showReplies === false) {
       console.log('dispatch fetch replies')
-      dispatch(fetchreplies())
+      fetchreplies()
     }
     else {
       setshowReplies(false)
@@ -1792,7 +1781,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
 
 
 
-  const postreply = () => async dispatch => {
+  async function postreply() {
     console.log(userId)
     console.log(comment.cmntId, 'guzaarish', postId)
     try {
@@ -1806,7 +1795,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
       })
       const json = await response.json();
       console.log(json)
-      dispatch(fetchreplies())
+      fetchreplies()
 
 
 
@@ -1820,7 +1809,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
 
 
 
-  const fetchreplies = (temp) => async dispatch => {
+  async function fetchreplies(temp) {
     try {
       console.log(comment._id)
       console.log(postId)
@@ -1863,7 +1852,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
   }
 
 
-  const upvote_comment = () => async dispatch => {
+  async function upvote_comment() {
 
     console.log(postId)
     console.log(comment)
@@ -1888,7 +1877,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
     }
 
   }
-  const remove_upvote_comment = () => async dispatch => {
+  async function remove_upvote_comment() {
 
     console.log(postId)
     console.log(comment)
@@ -1915,7 +1904,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
   }
 
 
-  const downvoteComment = () => async dispatch => {
+  async function downvoteComment() {
 
 
 
@@ -1935,7 +1924,7 @@ export const CommentItem = ({ comment, userId, postId, fetchcomments }) => {
     }
   }
 
-  const remove_downvote_comment = () => async dispatch => {
+  async function remove_downvote_comment() {
 
 
 
@@ -2091,8 +2080,6 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
   const [upvoted, setupvoted] = useState(false)
   const [downvoted, setdownvoted] = useState(false)
   const [showComments, setshowComments] = useState(false)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   const [replyOpts, setreplyOpts] = useState(false)
   const [tricolon, settricolon] = useState(false)
 
@@ -2135,21 +2122,21 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
       setdownvotes(downvotes - 1)
       console.log("rdr")
 
-      dispatch(remove_downvote_reply())
+      remove_downvote_reply()
     }
     if (upvoted) {
       console.log("rur")
 
       setupvoted(false)
       setupvotes(upvotes - 1)
-      dispatch(remove_upvote_reply())
+      remove_upvote_reply()
 
     } else {
       setupvoted(true)
       setupvotes(upvotes + 1)
       console.log("ur")
 
-      dispatch(upvoteReply())
+      upvoteReply()
     }
 
 
@@ -2159,18 +2146,18 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
     if (upvoted) {
       setupvoted(false)
       setupvotes(upvotes - 1)
-      dispatch(remove_upvote_reply())
+      remove_upvote_reply()
     }
 
     if (downvoted) {
       setdownvoted(false)
       setdownvotes(downvotes - 1)
-      dispatch(remove_downvote_reply())
+      remove_downvote_reply()
 
     } else {
       setdownvoted(true)
       setdownvotes(downvotes + 1)
-      dispatch(downvoteReply())
+      downvoteReply()
     }
   }
 
@@ -2190,10 +2177,10 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
   const delReplyFunc = () => {
     console.log(rep.replyObjId)
     setreplyOpts(false)
-    dispatch(delreply())
+    delreply()
   }
 
-  const delreply = () => async dispatch => {
+  async function delreply() {
     console.log(comment)
     console.log(rep, 'guzaarish', postId)
     try {
@@ -2207,7 +2194,7 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
       })
       const json = await response.json();
       console.log(json)
-      dispatch(fetchreplies())
+      fetchreplies()
 
 
 
@@ -2219,7 +2206,7 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
 
 
 
-  const upvoteReply = () => async dispatch => {
+  async function upvoteReply() {
 
     console.log(postId)
     console.log(comment)
@@ -2244,7 +2231,7 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
     }
 
   }
-  const remove_upvote_reply = () => async dispatch => {
+  async function remove_upvote_reply() {
 
     console.log(postId)
     console.log(comment)
@@ -2263,7 +2250,6 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
       if (prevResult !== 'like') {
         setprevResult('like')
       }
-      // dispatch(fetchcomments())
     } catch (error) {
       console.log(error)
     }
@@ -2271,7 +2257,7 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
   }
 
 
-  const downvoteReply = () => async dispatch => {
+  async function downvoteReply() {
 
 
 
@@ -2291,7 +2277,7 @@ const Reply = ({ rep, userId, comment, postId, fetchreplies }) => {
     }
   }
 
-  const remove_downvote_reply = () => async dispatch => {
+  async function remove_downvote_reply() {
 
 
 

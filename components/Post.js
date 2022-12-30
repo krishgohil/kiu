@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 import { host } from '../host'
 import { useAppContext } from '../context';
 import { useRouter } from 'next/router';
+import ImageCropMain from './ImageCropMain';
 
 
 
@@ -1462,8 +1463,8 @@ const Post = ({ handlecancel }) => {
                                                                                     <AiOutlineClose color='white' size={20} />
                                                                                 </div>
                                                                             </div>
-                                                                            <div className='previewimg'  >
-                                                                                {/* <ImageCropMain img={rev} id={1} setImgFunc={setImgFunc} index={i} seteditingImg={seteditingImg} setdraggable_id={setdraggable_id} name={rev.name ? rev.name : draggable_id} /> */}
+                                                                            <div className='previewimg'  > b
+                                                                                <ImageCropMain img={rev} id={1} setImgFunc={setImgFunc} index={i} seteditingImg={seteditingImg} setdraggable_id={setdraggable_id} name={rev.name ? rev.name : draggable_id} />
                                                                             </div>
 
 

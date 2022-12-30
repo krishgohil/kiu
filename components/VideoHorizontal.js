@@ -11,12 +11,12 @@ import numeral from 'numeral'
 import { AiOutlineClose, AiFillLike, AiFillDislike, AiFillEye, AiOutlineShareAlt } from 'react-icons/ai';
 import { IoFlashOutline } from 'react-icons/io5';
 import { host } from "../host"
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import parse from 'html-react-parser';
 
 // const ENDPOINT = 'https://keepitupp.herokuapp.com'
 const ENDPOINT = host
-const socket = io.connect(ENDPOINT);
+// const socket = io.connect(ENDPOINT);
 const VideoHorizontal = ({ video, searchScreen, input, g, c, t }) => {
 
     const [showDialog, setshowDialog] = useState(false)
@@ -261,7 +261,7 @@ const VideoHorizontal = ({ video, searchScreen, input, g, c, t }) => {
         let url = `https://keepitupp.herokuapp.com/upp/youtube/${id}`
 
         console.log(shareUrl)
-        socket.emit("send_post", { sendTo: sendTo, sender: _id, senderUsername: username, ytlink: url, });
+        // socket.emit("send_post", { sendTo: sendTo, sender: _id, senderUsername: username, ytlink: url, });
         // console.log('sendPostTo', ok)
 
         if (sendTo) {

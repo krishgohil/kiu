@@ -5,13 +5,13 @@ import { AiFillEye, AiOutlineClose, AiOutlineShareAlt } from 'react-icons/ai'
 import { FaRegComment } from 'react-icons/fa'
 import { IoFlashOutline } from 'react-icons/io5'
 import { host } from "../host"
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import styles from "../styles/VideoHorizontal.module.css"
 import { useRouter } from 'next/router'
 
 
 const ENDPOINT = host
-const socket = io.connect(ENDPOINT);
+// const socket = io.connect(ENDPOINT);
 
 const PromotedVideos = ({ video, revFunc }) => {
     const router = useRouter()
@@ -109,7 +109,7 @@ const PromotedVideos = ({ video, revFunc }) => {
         let url = `https://keepitupp.herokuapp.com/upp/youtube/${video?.ytid}`
 
         console.log(shareUrl)
-        socket.emit("send_post", { sendTo: sendTo, sender: _id, senderUsername: username, ytlink: url, });
+        // socket.emit("send_post", { sendTo: sendTo, sender: _id, senderUsername: username, ytlink: url, });
         // console.log('sendPostTo', ok)
 
         if (sendTo) {

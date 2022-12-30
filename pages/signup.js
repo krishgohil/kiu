@@ -22,7 +22,7 @@ const Signup = (props) => {
     const onchange = (e) => {
         setcredentials({ ...credentials, [e.target.name]: e.target.value });
     }
-   
+
 
 
 
@@ -262,83 +262,84 @@ const Signup = (props) => {
 
     return (
         <>
-            <ToastContainer />
+            <dialog dialog open style={{ position: 'absolute', border: 'none', color: 'white', zIndex: 999, left: '0%', backgroundColor: "#1c1f24", height: '100vh', width: '100vw', position: 'fixed', display: 'flex', overflow: 'hidden', justifyContent: 'center', top: '0vh', padding: 0 }}>
+                <ToastContainer />
 
 
-            {
-                show ?
-                    <div className={styles.signupdiv} >
-                        <div className={styles.supsubdiv}  >
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }} >
-                                <img alt="img" src="/star-removebg-preview.png" style={{ width: '5rem', marginRight: "1rem" }} />
+                {
+                    show ?
+                        <div className={styles.signupdiv} >
+                            <div className={styles.supsubdiv}  >
+                                <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }} >
+                                    <img alt="img" src="/star-removebg-preview.png" style={{ width: '5rem', marginRight: "1rem" }} />
 
-                                <h1 style={{ color: "dodgerblue", marginBottom: "0rem" }} >Sign Up</h1>
-                            </div>
-
-
-                            <div className="mb-3">
-                                <label style={{ color: 'black' }} htmlFor="_name" className="form-label" maxLength={50}>Name</label>
-                                <input placeholder='Full Name' maxLength={50} required onChange={onchange} type="text" className="form-control" id="_name" name="_name" aria-describedby="name" style={{ textTransform: 'uppercase' }} />
-                            </div>
+                                    <h1 style={{ color: "dodgerblue", marginBottom: "0rem" }} >Sign Up</h1>
+                                </div>
 
 
-                            <div className="mb-3">
-                                <label style={{ color: 'black' }} htmlFor="email" className="form-label"> <AiOutlineMail size={20} />   Email address</label>
-                                <input placeholder='Your email address here' onChange={onchange} required type="email" className="form-control" id="_email" name="_email" aria-describedby="emailHelp" style={{ textTransform: 'lowercase' }} />
-                                {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
-                            </div>
-
-                            <div className="mb-3">
-                                <label style={{ color: 'black' }} htmlFor="password" className="form-label"><MdOutlineLock size={20} /> Password</label>
-                                <input maxLength={30} placeholder='Enter a strong password' onChange={onchange} type="password" className="form-control" id="password" name="password" minLength={8} required />
-                            </div>
+                                <div className="mb-3">
+                                    <label style={{ color: 'black' }} htmlFor="_name" className="form-label" maxLength={50}>Name</label>
+                                    <input placeholder='Full Name' maxLength={50} required onChange={onchange} type="text" className="form-control" id="_name" name="_name" aria-describedby="name" style={{ textTransform: 'uppercase' }} />
+                                </div>
 
 
-                            <div className="mb-3">
-                                <label style={{ color: 'black' }} htmlFor="username" className="form-label"><FaRegUser size={20} /> Username</label>
-                                <input placeholder='Unique username' maxLength={30} onChange={onchange} type="text" required className="form-control" id="username" name="username" aria-describedby="username" style={{ textTransform: 'lowercase' }} />
-                            </div>
+                                <div className="mb-3">
+                                    <label style={{ color: 'black' }} htmlFor="email" className="form-label"> <AiOutlineMail size={20} />   Email address</label>
+                                    <input placeholder='Your email address here' onChange={onchange} required type="email" className="form-control" id="_email" name="_email" aria-describedby="emailHelp" style={{ textTransform: 'lowercase' }} />
+                                    {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
+                                </div>
+
+                                <div className="mb-3">
+                                    <label style={{ color: 'black' }} htmlFor="password" className="form-label"><MdOutlineLock size={20} /> Password</label>
+                                    <input maxLength={30} placeholder='Enter a strong password' onChange={onchange} type="password" className="form-control" id="password" name="password" minLength={8} required />
+                                </div>
 
 
-
-                            <div style={{ display: 'flex', justifyContent: 'center' }} >
-                                <button type="submit/" onClick={handleSubmit} className="btn btn-primary" disabled={wait ? true : false} >Submit</button>
-                            </div>
-
-                            <div style={{ color: "gray", fontSize: "14px", marginTop: "1rem" }} >
-                                <div>Already have an account?</div>
-                                <button onClick={gotologin} style={{ border: "1px solid gray", padding: "0.25rem 0.5rem", borderRadius: "1rem" }} >Login Now</button>
-                            </div>
+                                <div className="mb-3">
+                                    <label style={{ color: 'black' }} htmlFor="username" className="form-label"><FaRegUser size={20} /> Username</label>
+                                    <input placeholder='Unique username' maxLength={30} onChange={onchange} type="text" required className="form-control" id="username" name="username" aria-describedby="username" style={{ textTransform: 'lowercase' }} />
+                                </div>
 
 
 
+                                <div style={{ display: 'flex', justifyContent: 'center' }} >
+                                    <button type="submit/" onClick={handleSubmit} className="btn btn-primary" disabled={wait ? true : false} >Submit</button>
+                                </div>
+
+                                <div style={{ color: "gray", fontSize: "14px", marginTop: "1rem" }} >
+                                    <div>Already have an account?</div>
+                                    <button onClick={gotologin} style={{ border: "1px solid gray", padding: "0.25rem 0.5rem", borderRadius: "1rem" }} >Login Now</button>
+                                </div>
 
 
-                        </div>
 
-                    </div>
-                    : ''
-            }
 
-            {
-                mailmessage ?
-                    <>
 
-                        <div className={styles.mailmsgDiv}  >
-
-                            <div className={styles.mailsub} >
-                                <img alt="img" src="/star-removebg-preview.png" style={{ height: '5rem', width: '5rem', margin: "auto", marginBottom: "1rem" }} />
-                                <h3 style={{ color: "indigo", marginBottom: "1rem", textAlign: 'center' }} >We have sent you a mail on
-                                    {mail && mail.length > 0 ? " " + mail : ' your registered email address'} to confirm if its you.  </h3>
                             </div>
 
                         </div>
-                    </>
-                    : ""
-            }
+                        : ''
+                }
+
+                {
+                    mailmessage ?
+                        <>
+
+                            <div className={styles.mailmsgDiv}  >
+
+                                <div className={styles.mailsub} >
+                                    <img alt="img" src="/star-removebg-preview.png" style={{ height: '5rem', width: '5rem', margin: "auto", marginBottom: "1rem" }} />
+                                    <h3 style={{ color: "indigo", marginBottom: "1rem", textAlign: 'center' }} >We have sent you a mail on
+                                        {mail && mail.length > 0 ? " " + mail : ' your registered email address'} to confirm if its you.  </h3>
+                                </div>
+
+                            </div>
+                        </>
+                        : ""
+                }
 
 
-
+            </dialog>
         </>
     )
 }

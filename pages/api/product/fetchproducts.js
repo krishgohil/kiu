@@ -11,7 +11,7 @@ const Product = require('../../../models/ProductSchema')
 
 
 
-export default async function fetchfeed(req, res) {
+export default async function fetchproducts(req, res) {
     await connectToMongo();
     try {
         const { skip } = req.body

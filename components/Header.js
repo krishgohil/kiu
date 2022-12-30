@@ -15,7 +15,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoFlashOutline } from 'react-icons/io5';
-import { useAppContext } from '../context';
+import { useAppContext, useGeneralContext } from '../context';
 import { useRouter } from 'next/router';
 
 
@@ -29,6 +29,8 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   const [showComposePost, setshowComposePost] = useState(false)
   const [modalno, setmodalno] = useState(0)
   const context = useAppContext()
+  const genContext = useGeneralContext()
+  const { guest } = genContext.genstate
   const { _id, username, profileImg } = context.sharedState
   const router = useRouter()
 
@@ -41,8 +43,10 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // const [deferredPrompt, setdeferredPrompt] = useState()
 
   useEffect(() => {
-    console.log(context)
-  }, [context])
+    console.log(guest)
+  }, [context, guest])
+
+
 
 
 
@@ -213,9 +217,9 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // }
 
   const handleAddClick = () => {
-    
+
     router.push('/compose-post')
-      }
+  }
 
   // const handlecancel = () => {
   //   setshowComposePost(false)
@@ -324,9 +328,9 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
   // }
 
-  // const gotosignup = () => {
-  //   navigate("/signup")
-  // }
+  const gotosignup = () => {
+    router.push("/signup")
+  }
 
 
   return (
@@ -427,7 +431,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                       guest == true ?
                         <button
                           onClick={gotosignup}
-                          className='sign_up_header'
+                          className={styles.sign_up_header}
                         >Sign Up</button> : ""
                     }
                   </>
@@ -440,7 +444,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
             <div className={styles.header_icons}>
               {
-                true ?
+                guest === false ?
                   <>
                     <div style={{ position: "relative", cursor: "pointer" }}
                     //  onClick={gotoChats}
@@ -502,7 +506,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                       guest == true ?
                         <button
                           onClick={gotosignup}
-                          className='sign_up_header'
+                          className={styles.sign_up_header}
                         >Sign Up</button> : ""
                     }
                   </>

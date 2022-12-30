@@ -4,7 +4,7 @@
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const connectToMongo = require('../../../db')
-const AllContent = require('../../../models/All_content')
+const AllContent = require('../../../models/AllContent')
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const JWT = "kRISHISAGOODBOYXD"

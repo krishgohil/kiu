@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 import { Schema, model, models } from 'mongoose';
 
-const All_content = new Schema({
+const AllContentSchema = new Schema({
     isDeleted: { type: Boolean, default: false },
 
     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
@@ -41,6 +41,10 @@ const All_content = new Schema({
             ]
         }
     ],
+
+
+
+    views: { type: Number, default: 0 },
     seenBy: [
         {
             userId: { type: String },
@@ -48,6 +52,10 @@ const All_content = new Schema({
 
         }
     ],
+
+
+
+
     ratedBy: [
         {
             raterComment: { type: String, default: "" },
@@ -114,17 +122,7 @@ const All_content = new Schema({
 
 });
 
-All_content.index({ title: 'text', description: 'text ', tagLine: 'text', "ratedBy.raterComment": 'text' },
-    {
-        weights: {
-            title: 10, description: 5, tagLine: 7, productCategory: 2
-        }
-    }
-)
+AllContentSchema.index({ title: 'text', description: 'text', "ratedBy.raterComment": 'text' }, { weights: { title: 10, description: 5 } })
 
-
-
-
-
-const AllContent = models.AllContent || model('AllContent', All_content);
+const AllContent = models.AllContent || model('AllContent', AllContentSchema);
 module.exports = AllContent

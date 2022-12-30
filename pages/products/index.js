@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import { BsArrowLeft, BsFlag, BsReply, BsThreeDots, BsThreeDotsVertical } from 'react-icons/bs'
 import { IoFlashOutline, IoOptions } from 'react-icons/io5';
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import { host } from '../../host'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useRouter } from 'next/router'

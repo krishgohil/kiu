@@ -20,12 +20,22 @@ body {
 
 }
 
-.modal-content {
+.modal-dialog {
+  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black !important;
+  /* background-color: black !important; */
   width: auto;
 }
+
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: black !important; */
+  width: auto;
+}
+
 
 .modal-dialog {
   margin: 0

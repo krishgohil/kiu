@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { useAppContext, useGeneralContext } from '../context';
 
 
 const Stars = ({ star, doubleclicked, postId, userId, hasRated, rating, clickedStar, _rstar, postedBy }) => {
@@ -7,11 +8,56 @@ const Stars = ({ star, doubleclicked, postId, userId, hasRated, rating, clickedS
     const stars = Array(5).fill(0)
     const [starRating, setstarRating] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
+    const context = useAppContext()
+    const genContext = useGeneralContext()
+    const { _id, username } = context.sharedState
+    const { guest } = genContext.genstate
 
 
 
 
 
+
+    useEffect(() => {
+
+        // console.log('kuch hhua fksjkdfjaksfj')
+
+        if (hasRated) {
+            // console.log(rating)
+            setstarRating(rating)
+        }
+        // console.log(ratedBy)
+        if (doubleclicked) {
+            // setstarRating(5)
+            // console.log(hasRated)
+            // console.log(rating)
+            handleClick(5)
+            // dispatch(updateRating(5))
+
+        }
+
+        if (_rstar == true && guest == false) {
+            dispatch({
+                type: SET_STARRED_POSTS,
+                payload: {
+                    postId: postId,
+                    stars: 0
+                }
+            })
+            dispatch(removeStar())
+        }
+
+        if (rating == 5 && star == true && starRating != rating) {
+            // console.log(rating, 'hehehehehehehheheheheh', starRating)
+            handleClick(5, 5)
+
+        }
+
+
+
+
+
+    }, [star, doubleclicked, userId, hasRated, rating, _rstar, guest]);
 
 
 

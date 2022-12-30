@@ -33,7 +33,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 
 import { IoFlashOutline } from 'react-icons/io5';
 import { useCallback } from 'react';
-import { useAppContext } from '../context';
+import { useAppContext, useGeneralContext } from '../context';
 import { Spinner } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 
@@ -42,6 +42,8 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
 
     const context = useAppContext()
     const { _id, username, profileImg } = context.sharedState
+    const genContext = useGeneralContext()
+    const {guest} = genContext.genstate
     const router = useRouter()
 
 
@@ -101,6 +103,109 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
 
 
 
+    useEffect(() => {
+        let y = sessionStorage.getItem('homeScroll')
+        if (y && window.scrollY < y) {
+            window.scrollTo({ top: y, left: 0, behavior: "instant" })
+        }
+
+        if (feed && feed.avgStarRating) {
+            var result = (feed.avgStarRating - Math.floor(feed.avgStarRating)) !== 0;
+            if (result) {
+                // console.log('HAS DECIMAL ')
+                setavgStar(feed.avgStarRating.toFixed(2))
+            }
+            else {
+                setavgStar(feed.avgStarRating)
+                // console.log('does not have a decimal')
+            }
+        }
+
+        if (feed.postType == 'poll') {
+
+            var actual = 0
+
+            for (let i = 0; i < feed.pollOptions.length; i++) {
+                if (feed.pollOptions[i].option.length > 0) {
+                    var has_voted = false
+                    for (let j = 0; j < feed.pollOptions[i].voters.length; j++) {
+
+                        if (_id == feed.pollOptions[i].voters[j].voterId) {
+                            sethasVoted(true)
+                            let a = i + 1
+                            setuserselected(a)
+                            // alert("showResult1", feed._id)
+
+                            setshowResults(true)
+                        }
+
+                    }
+                    actual = actual + 1
+                    if (i == 0) {
+                        // console.log(feed.pollOptions[i].voters.length)
+                        setOpt1Votes(feed.pollOptions[i].voters.length)
+                    }
+                    else if (i == 1) {
+                        // console.log(feed.pollOptions[i].voters.length)
+                        setOpt2Votes(feed.pollOptions[i].voters.length)
+                    }
+                    else if (i == 2) {
+                        // console.log(feed.pollOptions[i].voters.length)
+                        setOpt3Votes(feed.pollOptions[i].voters.length)
+                    }
+                    else if (i == 3) {
+                        // console.log(feed.pollOptions[i].voters.length)
+                        setOpt4Votes(feed.pollOptions[i].voters.length)
+                    }
+                }
+
+            }
+            setactualOpts(actual)
+            settotalVotes(feed.pollVotes)
+        }
+
+        var comments = 0
+        var hasRated = false
+        var _rating = 0
+        var totalstars = 0
+        var total_reposts = 0
+
+        for (let i = 0; i < feed.ratedBy.length; i++) {
+            totalstars = feed.ratedBy[i].starRating + totalstars
+
+            if (feed.ratedBy[i].raterId == _id) {
+                hasRated = true
+                _rating = feed.ratedBy[i].starRating
+            }
+
+            if (feed.ratedBy[i].raterComment.length > 0) {
+                comments = comments + 1
+            }
+
+        }
+
+
+        settotalStars(totalstars)
+        sethasRated(hasRated)
+        if (hasRated == true) {
+            setrating(_rating)
+            setstar(true)
+        }
+        settotalComments(comments)
+
+        if (feed.reposts) {
+            setrepostCount(feed.reposts)
+        }
+
+        if (feed.reposters) {
+
+            for (let j = 0; j < feed.reposters.length; j++) {
+                if (feed.reposters[j].reposterId == _id) {
+                    sethasReposted(true)
+                }
+            }
+        }
+    }, [feed])
 
 
 
@@ -167,7 +272,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                 }
                 console.log(path)
 
-                router.push(`/product/${feed._id}`)
+                router.push(`/products/${feed._id}`)
 
             } else {
                 // console.log(sc)
@@ -216,18 +321,25 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
     }
 
 
+    useEffect(() => {
+        if (window.innerWidth < 601) {
+            settimeOut(500)
+        }
+    }, [router.isReady])
+
     var oks = false
 
     var timeout
     const omo = () => {
-        // if (guest == false) {
-        //     oks = false
-        //     timeout = setTimeout(() => {
-        //         if (oks == false) {
-        //             setlehrado(true)
-        //         }
-        //     }, timeOut);
-        // }
+        console.log(guest)
+        if (guest == false) {
+            oks = false
+            timeout = setTimeout(() => {
+                if (oks == false) {
+                    setlehrado(true)
+                }
+            }, timeOut);
+        }
 
     }
 
@@ -415,16 +527,16 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
             setsendToChat(true)
             window.document.body.style.overflowY = 'hidden'
             window.document.body.style.scrollMargin = 0
-            if (recentChatsStore && recentChatsStore.length > 0) {
-                if (recentChatsStore[0].recent && recentChatsStore[0].recent == 'false') {
-                    setsendToChatUsers(recentChatsStore[1])
-                } else {
-                    setsendToChatUsers(recentChatsStore)
-                    // setchatUsers(arr)
-                }
-            } else {
-                dispatch(recentChats())
-            }
+            // if (recentChatsStore && recentChatsStore.length > 0) {
+            //     if (recentChatsStore[0].recent && recentChatsStore[0].recent == 'false') {
+            //         setsendToChatUsers(recentChatsStore[1])
+            //     } else {
+            //         setsendToChatUsers(recentChatsStore)
+            //         // setchatUsers(arr)
+            //     }
+            // } else {
+            //     dispatch(recentChats())
+            // }
         } else {
             toast.info(`SignUp to access all features`, {
                 position: "top-center",
@@ -484,7 +596,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
         let ok = _id.toString()
 
         // console.log(sendPostTo)
-        socket.emit("send_post", { sendTo: sendTo, postId: feed._id, sender: _id, senderUsername: username, notificationToken: notificationToken, notificationSettings: notificationSettings });
+        // socket.emit("send_post", { sendTo: sendTo, postId: feed._id, sender: _id, senderUsername: username, notificationToken: notificationToken, notificationSettings: notificationSettings });
         // console.log('sendPostTo', ok)
 
         if (sendTo) {
@@ -780,7 +892,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
         }
         else if (feed.repost.postType == "product") {
             setdikha(true)
-            router.push(`//product/${feed.repost._id}`)
+            router.push(`/products/${feed.repost._id}`)
         }
     }
 
@@ -1744,7 +1856,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                             </div>
                         </div>
                         :
-                        <div onMouseLeave={oml} style={{ backgroundColor: "#16181b", marginBottom: "0.75rem", width: "inherit" }} >
+                        <div onMouseLeave={oml} style={{ backgroundColor: "#16181b", marginBottom: "0.75rem", width: "100%" }} >
                             <div onClick={() => goToProfile(feed.postedBy.username)} style={{ color: '#808080', fontSize: "12px", display: "flex", fontWeight: "bold", marginLeft: "0.5rem", marginTop: "0.5rem", alignItems: "center" }} >
 
                                 <div style={{ marginTop: "0.2rem" }} >
