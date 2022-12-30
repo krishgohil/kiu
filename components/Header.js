@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { IoFlashOutline } from 'react-icons/io5';
 import { useAppContext, useGeneralContext } from '../context';
 import { useRouter } from 'next/router';
+import Requests from './Requests';
 
 
 
@@ -170,6 +171,21 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   }
 
 
+  useEffect(() => {
+    if (router.asPath !== "/?notifications") {
+      window.document.body.style.overflowY = 'scroll'
+      window.document.body.style.scrollMargin = 0
+      setdikha(false)
+    } else {
+      window.document.body.style.overflowY = 'hidden'
+      window.document.body.style.scrollMargin = 0
+      setdikha(true)
+    }
+
+  }, [router.isReady, router.asPath])
+
+
+
 
 
 
@@ -219,17 +235,13 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // const placeholder = `Search ${a}`
 
 
-  // const n = () => {
-  //   if (dikha == false) {
-  //     window.document.body.style.overflowY = 'hidden'
-  //     window.document.body.style.scrollMargin = 0
-  //     setdikha(true)
-  //   } else {
-  //     window.document.body.style.overflowY = 'scroll'
-  //     window.document.body.style.scrollMargin = 0
-  //     setdikha(false)
-  //   }
-  // }
+  const n = () => {
+    window.document.body.style.overflowY = 'hidden'
+    window.document.body.style.scrollMargin = 0
+    router.push(`/?notifications`, undefined, { shallow: true, })
+
+
+  }
 
 
   // const [modal, setmodal] = useState(false)
@@ -403,7 +415,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                 true ?
                   <>
                     <div style={{ position: "relative", cursor: "pointer" }} >
-                      <MdOutlineNewReleases className={styles.iconHeader} size={25} style={{ marginRight: "0.8rem", backgroundColor: 'black', borderRadius: '50%' }} />
+                      <MdOutlineNewReleases onClick={n} className={styles.iconHeader} size={25} style={{ marginRight: "0.8rem", backgroundColor: 'black', borderRadius: '50%' }} />
                       {/* {
                         notificationCount && notificationCount > 0 ?
                           <div style={{ position: "absolute", right: "6px", top: "-5px", color: "white", backgroundColor: "red", fontSize: "11px", borderRadius: "50%", padding: " 0 5px" }} >
@@ -498,7 +510,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                           </div>
                           : ""
                       } */}
-                      <MdOutlineNewReleases className={styles.iconHeader} size={32} style={{ marginLeft: "1rem", backgroundColor: 'black', borderRadius: '50%' }}
+                      <MdOutlineNewReleases onClick={n} className={styles.iconHeader} size={32} style={{ marginLeft: "1rem", backgroundColor: 'black', borderRadius: '50%' }}
                       />
                     </div>
 
@@ -552,7 +564,23 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
       }
 
+      {
+        router.asPath === "/?notifications" && dikha ?
+          <dialog className={styles.req_noti_dialog} style={{padding:0}} open >
+            {/* <Post handlecancel={handlecancel} /> */}
+            <div className={styles.notiMain} >
 
+
+
+              {/* <div style={{ overflow: "scroll", scrollMargin: 0, color: 'black', textAlign: "justify" }}>
+
+                     </div> */}
+              <Requests dikha={dikha} userId={_id} n={n} />
+
+            </div>
+          </dialog>
+          : ''
+      }
 
 
       {

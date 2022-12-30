@@ -281,7 +281,7 @@ const SearchedProfile = (props) => {
     }, [router.asPath])
 
     const launchfollowing = () => {
-        router.replace(`/${profile}?following`, undefined, { shallow: true })
+        router.push(`/${profile}?following`, undefined, { shallow: true })
 
         // set(true)
         // navigate(`/${profile}/following`)

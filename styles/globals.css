@@ -13,6 +13,24 @@ body {
   color: white;
 }
 
+.stickbar {
+  overflow-x: scroll;
+  scroll-margin: 0;
+  display: none;
+  transition: 0.5s;
+  scrollbar-width: none;
+  position: sticky;
+  top: -56px;
+  z-index: 899;
+  background-color: rgb(11, 13, 22);
+
+  background-color: #000000e3;
+}
+
+.stickbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
@@ -421,7 +439,6 @@ body {
 
 .categoriesBar {
   padding: 0.25rem 0;
-  padding-bottom: 0;
   font-size: 0.8rem;
 
   display: none;

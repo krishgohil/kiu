@@ -226,7 +226,7 @@
     display: flex;
     overflow-y: scroll;
     justify-content: flex-end;
-    top: 8vh;
+    top: 56px;
     height: 92vh;
     border: none;
     color: white;
