@@ -120,7 +120,8 @@ export default function Home() {
               loader={
                 <div style={{ width: "100%", textAlign: "center" }}>
                   <Spinner style={{ margin: "40vh 0", color: "skyblue" }} />
-                </div>}
+                </div>
+                }
               style={{ padding: 0, margin: 0, marginBottom: '7vh' }}
             >
 

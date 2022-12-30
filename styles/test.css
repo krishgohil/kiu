@@ -1,0 +1,32 @@
+.testMain {
+    background-color: black;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(41, 41, 41);
+}
+
+.testMain:hover {
+    /* border: 1px solid rgb(41, 41, 41);
+    border-top: 1px solid rgb(0, 0, 0); */
+
+    background-color: rgb(12, 12, 13);
+
+}
+
+
+@media (max-width: 1020px) {
+    .testMain {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .testMain {
+        background-color: white;
+        background-color: black;
+        width: 100%;
+    }
+}

@@ -1,26 +1,30 @@
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Modal } from 'react-bootstrap'
+import BottomBar from './BottomBar'
 import Header from './Header'
+import Post from './Post'
 import Sidebar from './Sidebar'
 
 const Layout = ({ children }) => {
-    const [dnone, setdnone] = useState(false)
-    useEffect(() => {
-        if (window.location.pathname == "/login" || window.location.pathname == "/signup" || window.location.pathname == "/about" || window.location.pathname == "/contact-us") {
-            setdnone(true)
-        } else {
-            setdnone(false)
-        }
+    const router = useRouter()
+    const [show, setshow] = useState(false)
+    function addpost() {
+        // router.push('/compose-post')
+        setshow(true)
+    }
 
-    }, [])
-
+    const [sidebar, toggleSidebar] = useState(false)
+    const handleToggleSidebar = () => toggleSidebar(value => !value)
     return (
         <>
             <div  >
-                <Header></Header>
+                <Header addpost={addpost} handleToggleSidebar={handleToggleSidebar} ></Header>
                 <div className='app__container'>
                     <Sidebar
+                        handleToggleSidebar={handleToggleSidebar}
+                        sidebar={sidebar}
 
                     />
 
@@ -30,7 +34,33 @@ const Layout = ({ children }) => {
 
 
                 </div>
+                <div className='bBar' >
+                    <BottomBar
+                        addpost={addpost}
+                    // search={search}
+                    // navbar={navbar ? navbar : false}
+                    // category={category}
+                    // overflowhidden={overflowhidden}
+                    />
+                </div>
             </div>
+
+            <Modal
+                show={show}
+                onHide={() => {
+                    setshow(false)
+                    // router.back()
+                }
+                }
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            // style={{ padding: "0.5rem" }}
+
+            >
+                <Post setshow={setshow} ></Post>
+
+            </Modal>
 
         </>
     )

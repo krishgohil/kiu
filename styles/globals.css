@@ -20,6 +20,56 @@ body {
 
 }
 
+
+.reqDivmain {
+  /* min-width: 25vw; */
+  width: 100vw;
+  background-color: rgb(21, 20, 20);
+  /* display: flex; */
+  color: white;
+  height: 90vh;
+}
+
+.bBarDiv {
+  background-color: rgb(0, 0, 0);
+  color: black;
+  border-top: 1px solid rgb(25, 25, 25);
+}
+
+.bBar {
+  display: none;
+}
+
+
+@media screen and (max-height: 500px) {
+  .bBar {
+    display: none;
+  }
+}
+
+
+
+
+@media (max-width: 600px) {
+  .bBar {
+    display: block;
+  }
+
+  .stickbar {
+    display: flex;
+  }
+
+
+}
+
+
+
+@media (max-width: 600px) {
+  .reqDivmain {
+    height: 83vh;
+  }
+}
+
 .modal-dialog {
   display: flex;
   align-items: center;

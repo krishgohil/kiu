@@ -15,18 +15,23 @@ import parse, { domToReact } from 'html-react-parser';
 import { SiSmartthings } from 'react-icons/si';
 
 
-import { host } from '../host'
+import { host } from '../../host'
 import { IoFlashOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
-import { useAppContext } from '../context';
+import { useAppContext, useGeneralContext } from '../../context';
 import Head from 'next/head';
+import Scoreinfo from '../../components/Scoreinfo';
+import AllOpts from '../../components/AllOpts';
+import { RiShoppingCartLine } from 'react-icons/ri';
 
 
 const SearchedProfile = (props) => {
     const router = useRouter()
     const { profile } = router.query
     const context = useAppContext()
-    const { _id, username, profileImg } = context
+    const genContext = useGeneralContext()
+    const { _id, username, profileImg } = context.sharedState
+    const { guest } = genContext.genstate
     const [showSocialScore, setshowSocialScore] = useState(false);
     const [visitedUserId, setvisitedUserId] = useState('');
     const [heightbelow, setheightbelow] = useState(0);
@@ -43,10 +48,6 @@ const SearchedProfile = (props) => {
     // const { rpostid, category } = useParams()
 
     const [loading, setloading] = useState(true)
-
-
-
-
 
 
     const [userNotFound, setuserNotFound] = useState(false)
@@ -141,8 +142,36 @@ const SearchedProfile = (props) => {
             })
             setloading(false)
 
-            console.log(fetchsearchedusername.posts)
+            for (let i = 0; i < fetchsearchedusername.followers.length; i++) {
+                console.log(fetchsearchedusername.followers[i].followedById)
+                if (fetchsearchedusername.followers[i].followedById == _id) {
+                    setisFollowing(true)
+                    // console.log('me hu don')
+                    // alert('dfasd')
+                }
+            }
+
+            console.log(fetchsearchedusername.followRequests.length)
+
+            for (let j = 0; j < fetchsearchedusername.followRequests.length; j++) {
+                console.log(fetchsearchedusername.followRequests[j].requesterId, "fdgfdgd", _id)
+
+                if (fetchsearchedusername.followRequests[j].requesterId == _id) {
+                    console.log("maratha")
+
+                    sethasRequested(true)
+                }
+            }
+
+            // console.log(fetchsearchedusername.posts)
+
+            if (searcheduserinfo._id !== fetchsearchedusername._id) {
+                fetch_posts(fetchsearchedusername._id)
+            }
+
+
         }
+
 
         else if (message == 'user_loggedOut' || message == "failed") {
             setloading(false)
@@ -154,7 +183,7 @@ const SearchedProfile = (props) => {
         // if (profile) {
         //     fetchSearchedUserProfile()
         // }
-    }, [profile])
+    }, [profile, _id])
 
 
 
@@ -163,7 +192,7 @@ const SearchedProfile = (props) => {
 
 
 
-    const fetch_posts = (id) => async dispatch => {
+    async function fetch_posts(id) {
         // console.log(isFollowingId)\
         console.log('tum ho toh', id, 'kl')
         const response = await fetch(`${host}/api/post/fetch_posts`, {
@@ -175,7 +204,7 @@ const SearchedProfile = (props) => {
         });
         console.log('jfkjaskfjsk')
         const json = await response.json();
-        console.log(json.posts)
+        console.log(json)
         if (json.posts.length == 0) {
             setuserposts(json.posts)
             setnoPosts(true)
@@ -186,28 +215,29 @@ const SearchedProfile = (props) => {
             setuserposts(json.posts)
 
 
-            dispatch({
-                type: SET_SEARCHED_PROFILE_POSTS,
-                payload: json
-            })
+            // dispatch({
+            //     type: SET_SEARCHED_PROFILE_POSTS,
+            //     payload: json
+            // })
 
         }
 
     }
 
     const turnOnBtn = () => {
-        console.log(searcheduserinfo.posts)
-        setshowSocialScore(true)
-        navigate(`socialscore`)
+        router.replace(`/${profile}?socialscore`, undefined, { shallow: true })
 
-        if (searcheduserinfo._id.length) {
-            setvisitedUserId(searcheduserinfo._id)
-        }
-        if (w < 1000) {
-            console.log(w)
-            // console.log('ha bhai chala')
-            setscoreonprofile(true)
-        }
+        // console.log(searcheduserinfo.posts)
+        // setshowSocialScore(true)
+        // navigate(`socialscore`)
+
+        // if (searcheduserinfo._id.length) {
+        //     setvisitedUserId(searcheduserinfo._id)
+        // }
+        // if (w < 1000) {
+        //     console.log(w)
+        //     setscoreonprofile(true)
+        // }
     }
 
 
@@ -216,8 +246,7 @@ const SearchedProfile = (props) => {
 
 
 
-    const searchUniqueUserFollowing = (isFollowingId) => async dispatch => {
-        // console.log(isFollowingId)
+    async function searchUniqueUserFollowing(isFollowingId) {
         const response = await fetch(`${host}/api/auth/searchuniqueserfollowing`, {
             method: 'PUT',
             headers: {
@@ -226,10 +255,11 @@ const SearchedProfile = (props) => {
             body: JSON.stringify({ isFollowingId }),
         });
         const json = await response.json();
+        console.log(json)
         setfollowingUserDetails({ ...followingUserDetails, followingUserinfo: json, counter: 1 })
     }
 
-    const searchUniqueUserFollower = (followedById) => async dispatch => {
+    async function searchUniqueUserFollower(followedById) {
         // console.log(followedById)
         const response = await fetch(`${host}/api/auth/searchuniqueserfollower`, {
             method: 'PUT',
@@ -244,33 +274,42 @@ const SearchedProfile = (props) => {
     }
 
 
+    useEffect(() => {
+
+        console.log("changed", router.asPath)
+
+    }, [router.asPath])
+
     const launchfollowing = () => {
-        setshowfollowing(true)
-        navigate(`/${profile}/following`)
+        router.replace(`/${profile}?following`, undefined, { shallow: true })
+
+        // set(true)
+        // navigate(`/${profile}/following`)
         if (followingUserDetails.counter < 1) {
             // console.log('rann')
             let isFollowingId = (searcheduserinfo.following)
-            dispatch(searchUniqueUserFollowing(isFollowingId))
+            searchUniqueUserFollowing(isFollowingId)
         }
     }
 
 
     const launchfollowers = () => {
-        setshowfollowers(true)
-        navigate(`/${profile}/followers`)
+        router.replace(`/${profile}?followers`, undefined, { shallow: true })
+
         if (followerUserDetails.counter < 1) {
             // console.log('rann')
             let followedById = (searcheduserinfo.followers)
-            dispatch(searchUniqueUserFollower(followedById))
+            searchUniqueUserFollower(followedById)
         }
     }
     const handle = () => {
-        setshowSettingModal(false)
-        setshowfollowing(false)
-        setshowfollowers(false)
-        setshowSocialScore(false)
+        router.replace(`/${profile}`, undefined, { shallow: true })
+        // setshowSettingModal(false)
+        // setshowfollowing(false)
+        // setshowfollowers(false)
+        // setshowSocialScore(false)
         // navigate(`/${profile}`)
-        navigate(-1)
+        // navigate(-1)
     }
 
     const goAndCancel = () => {
@@ -305,20 +344,23 @@ const SearchedProfile = (props) => {
 
 
     const showallfunc = () => {
-        navigate("")
+        router.replace(`/${profile}`, undefined, { shallow: true })
 
     }
     const showpostsfunc = () => {
-        navigate("media")
+        router.replace(`/${profile}?media`, undefined, { shallow: true })
 
     }
 
     const showkwiksfunc = () => {
-        navigate("kwiks")
+        router.replace(`/${profile}?kwiks`, undefined, { shallow: true })
+        
+
     }
 
     const showprdctsfunc = () => {
-        navigate("products")
+        router.replace(`/${profile}?products`, undefined, { shallow: true })
+
 
     }
 
@@ -356,24 +398,22 @@ const SearchedProfile = (props) => {
 
 
 
-
     //settings 
 
     const [showSettingModal, setshowSettingModal] = useState(false)
 
     const settingFunc = () => {
-        setshowSettingModal(true)
-        navigate('settings')
+
+        router.push(`/${profile}/settings`)
     }
 
     const handleFollowClick = () => {
         if (_id && guest === false) {
-            dispatch(followFunc())
+            followFunc()
         }
-
     }
 
-    const followFunc = () => async dispatch => {
+    async function followFunc() {
         const response = await fetch(`${host}/api/users/follow-rqst`, {
             method: 'POST',
             headers: {
@@ -388,31 +428,31 @@ const SearchedProfile = (props) => {
             setisFollowing(false)
             sethasRequested(true)
             // SET_TO_FOLLOW_REQUESTS
-            dispatch({
-                type: SET_TO_FOLLOW_REQUESTS,
-                payload: {
-                    toFollowId: searcheduserinfo._id,
-                }
-            })
+            // dispatch({
+            //     type: SET_TO_FOLLOW_REQUESTS,
+            //     payload: {
+            //         toFollowId: searcheduserinfo._id,
+            //     }
+            // })
         }
 
-        if (flw_Recommendations && flw_Recommendations.length > 0) {
-            let arr = []
-            for (let f = 0; f < flw_Recommendations.length; f++) {
-                if (flw_Recommendations[f]._id != searcheduserinfo._id) {
-                    arr.push(flw_Recommendations[f])
-                }
+        // if (flw_Recommendations && flw_Recommendations.length > 0) {
+        //     let arr = []
+        //     for (let f = 0; f < flw_Recommendations.length; f++) {
+        //         if (flw_Recommendations[f]._id != searcheduserinfo._id) {
+        //             arr.push(flw_Recommendations[f])
+        //         }
 
-                if (f == (flw_Recommendations.length - 1)) {
-                    dispatch({
-                        type: SET_FLW_RECOMMENDATION,
-                        payload: {
-                            flw_Recommendations: arr
-                        }
-                    })
-                }
-            }
-        }
+        //         if (f == (flw_Recommendations.length - 1)) {
+        //             dispatch({
+        //                 type: SET_FLW_RECOMMENDATION,
+        //                 payload: {
+        //                     flw_Recommendations: arr
+        //                 }
+        //             })
+        //         }
+        //     }
+        // }
 
 
     }
@@ -421,7 +461,7 @@ const SearchedProfile = (props) => {
     const handleUnfollowClick = () => {
         if (_id && guest == false) {
             if (window.confirm(`Unfollow ${searcheduserinfo.username} ?`) === true) {
-                dispatch(unfollow())
+                unfollow()
             }
         }
     }
@@ -429,13 +469,13 @@ const SearchedProfile = (props) => {
     const handleCancelRequest = () => {
         if (_id && guest == false) {
             if (window.confirm(`Cancel Request`) === true) {
-                dispatch(cancelRequest())
+                cancelRequest()
             }
         }
     }
 
 
-    const unfollow = () => async dispatch => {
+    async function unfollow() {
         const response = await fetch(`${host}/api/users/unfollow`, {
             method: 'PUT',
             headers: {
@@ -463,7 +503,7 @@ const SearchedProfile = (props) => {
         }
 
     }
-    const cancelRequest = () => async dispatch => {
+    async function cancelRequest() {
         const response = await fetch(`${host}/api/users/cancelRequest`, {
             method: 'PUT',
             headers: {
@@ -723,13 +763,6 @@ const SearchedProfile = (props) => {
                                     </Col>
 
                                 </Col>
-                                {/* <Col lg={2} xs={2} >
-                            <Col onClick={launchfollowing} style={{ marginTop: '1rem', display: "flex" }} ><p style={{ fontWeight: 'bold', cursor: 'pointer' }} className='flwng' >{searcheduserinfo.following.length}</p></Col>
-                            <Col onClick={launchfollowers} style={{ marginTop: '1rem', display: "flex" }} ><p style={{ fontWeight: 'bold', cursor: 'pointer' }} className='flwrs' >{searcheduserinfo.followers.length}</p></Col>
-                            <Col onClick={turnOnBtn} style={{ marginTop: '1rem', display: "flex" }} ><p style={{ fontWeight: 'bold', cursor: 'pointer' }} className='sscore' >
-                                {searcheduserinfo.avgSocialScore ? searcheduserinfo.avgSocialScore : ''} </p>
-                            </Col>
-                        </Col> */}
 
                             </Row>
                             <hr />
@@ -777,7 +810,7 @@ const SearchedProfile = (props) => {
                                 className='srchRow'
                             // style={{width :'70%'}}
                             >
-                                <div className='gobackPC' style={{ position: "fixed", top: '8vh', width: "inherit", backgroundColor: "black", maxWidth: "inherit", zIndex: "9", }} >
+                                <div className='gobackPC' style={{ position: "fixed", top: '56px', width: "inherit", backgroundColor: "black", maxWidth: "inherit", zIndex: "9", }} >
                                     <div onClick={() => router.back()} style={{ marginLeft: '1rem', color: 'silver' }}  >
                                         <BsArrowLeft size={20} />
                                     </div>
@@ -949,15 +982,15 @@ const SearchedProfile = (props) => {
 
                                     <Row style={{ opacity: "1", display: 'flex', justifyContent: "center", }} >
                                         <Col id='krish' className='segmain'   >
-                                            <p className={showall ? 'seg segactive ' : 'seg'} onClick={showallfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >All</p>
-                                            <p className={showprdcts ? 'seg segactive ' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >
-                                                <SiSmartthings color="white" size={20} />
+                                            <p className={router.asPath === `/${profile}` ? 'seg segactive ' : 'seg'} onClick={showallfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >All</p>
+                                            <p className={router.asPath === `/${profile}?products` ? 'seg segactive ' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >
+                                                <RiShoppingCartLine color="white" size={20} />
                                             </p>
-                                            <p className={showposts ? 'seg segactive' : 'seg'} onClick={showpostsfunc} style={{ marginBottom: 0, fontWeight: 'bold' }} >
+                                            <p className={router.asPath === `/${profile}?media` ? 'seg segactive' : 'seg'} onClick={showpostsfunc} style={{ marginBottom: 0, fontWeight: 'bold' }} >
                                                 {/* Photos */}
                                                 <MdPhotoCameraFront size={25} />
                                             </p>
-                                            <p className={showkwiks ? 'seg segactive' : 'seg'} onClick={showkwiksfunc} style={{ marginBottom: 0, fontWeight: 'bold', }} >Kwiks</p>
+                                            <p className={router.asPath === `/${profile}?kwiks` ? 'seg segactive' : 'seg'} onClick={showkwiksfunc} style={{ marginBottom: 0, fontWeight: 'bold', }} >Kwiks</p>
                                             {/* <p className={showprdcts ? 'p_showprdcts' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, borderRadius: "0.5rem", fontWeight: 'bold' }} >Reviews</p> */}
                                         </Col>
                                     </Row>
@@ -979,16 +1012,16 @@ const SearchedProfile = (props) => {
                                                         {
                                                             (post.content != null || post.content != undefined) ?
                                                                 <>
-                                                                    {/* {showall && post.content.isDeleted == false ?
+                                                                    {router.asPath === `/${profile}` && post.content.isDeleted == false ?
 
                                                                         <AllOpts key={i} _id={_id} i={i} feed={post} showkwiks={showkwiks} showposts={showposts} showall={showall} searcheduserinfo={searcheduserinfo} /> : ""
                                                                     }
 
-                                                                    {showkwiks && post.content.postType == "kwik" && post.content.isDeleted == false ?
+                                                                    {router.asPath === `/${profile}?kwiks` && post.content.postType == "kwik" && post.content.isDeleted == false ?
 
                                                                         <AllOpts key={i} _id={_id} i={i} feed={post} showkwiks={showkwiks} showposts={showposts} showall={showall} searcheduserinfo={searcheduserinfo} /> : ""
                                                                     }
-                                                                    {showprdcts && post.content.postType == "product" && post.content.isDeleted == false ?
+                                                                    {router.asPath === `/${profile}?products` && post.content.postType == "product" && post.content.isDeleted == false ?
 
                                                                         <AllOpts key={i} _id={_id} i={i} feed={post} showkwiks={showkwiks} showposts={showposts} showall={showall} searcheduserinfo={searcheduserinfo} /> : ""
                                                                     }
@@ -997,10 +1030,6 @@ const SearchedProfile = (props) => {
 
                                                                         <AllOpts key={i} _id={_id} i={i} feed={post} showkwiks={showkwiks} showposts={showposts} showall={showall} searcheduserinfo={searcheduserinfo} /> : ""
                                                                     }
-
- */}
-
-
 
                                                                 </>
 
@@ -1100,7 +1129,7 @@ const SearchedProfile = (props) => {
                         {/* <Row>KRISH</Row> */}
 
                         {
-                            showSocialScore === true ?
+                            router.asPath == `/${profile}?socialscore` ?
                                 <dialog open style={{ position: 'fixed', top: '0%', left: '0%', boxSizing: 'border-box', display: 'flex', height: '100vh', width: '100vw', zIndex: 999, backgroundColor: "rgba(0,0,0,.65)", margin: 0, justifyContent: 'center', alignItems: 'center', padding: 0 }}>
                                     <div className='scoreInfodiv' >
 
@@ -1115,7 +1144,7 @@ const SearchedProfile = (props) => {
 
                                         <div style={{ overflowY: "scroll", scrollMargin: 0, marginBottom: 0, margin: 0, backgroundColor: 'rgb(14, 15, 16)', borderRadius: '0rem 0rem 1rem 1rem' }}>
 
-                                            {/* <Scoreinfo goAndCancel={goAndCancel} _id={_id} profile={profile} visitedProfId={searcheduserinfo._id} profileImg={profileImg} notificationToken={searcheduserinfo.notificationToken} notificationSettings={searcheduserinfo.notificationSettings} username={username} /> */}
+                                            <Scoreinfo goAndCancel={goAndCancel} _id={_id} profile={profile} visitedProfId={searcheduserinfo._id} profileImg={profileImg} notificationToken={searcheduserinfo.notificationToken} notificationSettings={searcheduserinfo.notificationSettings} username={username} />
                                         </div>
                                     </div>
                                 </dialog>
@@ -1123,7 +1152,7 @@ const SearchedProfile = (props) => {
                         }
 
                         {
-                            showfollowing === true ?
+                            router.asPath == `/${profile}?following` ?
                                 <dialog open style={{
                                     // position: 'absolute',  app.scss body relative with absolute here not working so user fixed
                                     position: 'fixed',
@@ -1150,7 +1179,7 @@ const SearchedProfile = (props) => {
                                                     )
                                                     ) : ''
                                             }
-                                            {
+                                            {/* {
                                                 flw_Recommendations && flw_Recommendations.length > 0 ?
                                                     <>
                                                         <p style={{ marginBottom: '0.5rem', fontWeight: "400", marginTop: '1rem' }} >Follow Recommendations</p>
@@ -1179,7 +1208,7 @@ const SearchedProfile = (props) => {
 
                                                     : ''
 
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                 </dialog>
@@ -1188,7 +1217,7 @@ const SearchedProfile = (props) => {
 
 
                         {
-                            showfollowers === true ?
+                            router.asPath == `/${profile}?followers` ?
                                 <dialog open style={{ position: 'fixed', top: '0%', left: '0%', boxSizing: 'border-box', display: 'flex', height: '100vh', width: '100vw', zIndex: 999, backgroundColor: "rgba(0,0,0,.65)", marign: 0, justifyContent: 'center', alignItems: 'center' }}>
                                     <div className='flwrdiv' >
 
@@ -1204,13 +1233,13 @@ const SearchedProfile = (props) => {
                                                 followerUserDetails.followerUserinfo.length > 0 ?
                                                     followerUserDetails.followerUserinfo.map((followers, index) => (
                                                         <>
-                                                            <Followers searcheduserinfoId={searcheduserinfo._id} followers={followers} key={index} index={index} goAndCancel={goAndCancel} />
+                                                            <Followers searcheduserinfoId={searcheduserinfo._id} followers={followers} key={index} index={index} goAndCancel={goAndCancel} _id={_id} />
                                                         </>
 
                                                     )
                                                     ) : ''
                                             }
-                                            {
+                                            {/* {
                                                 flw_Recommendations && flw_Recommendations.length > 0 ?
                                                     <>
                                                         <p style={{ marginBottom: '0.5rem', fontWeight: "400", marginTop: '1rem' }} >Follow Recommendations</p>
@@ -1239,7 +1268,7 @@ const SearchedProfile = (props) => {
 
                                                     : ''
 
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                 </dialog>
@@ -1330,7 +1359,7 @@ export async function getServerSideProps(context) {
 //--------------------------------------- ScorerComment
 
 // FOLLOWING COMPONENT --------------------------------------------------------------------------------------------------------------
-export const Following = ({ following, index, goAndCancel, searcheduserinfoId }) => {
+export const Following = ({ following, index, goAndCancel, searcheduserinfoId, _id }) => {
     const onclick = () => {
         goAndCancel()
         console.log(following.username)
@@ -1338,23 +1367,22 @@ export const Following = ({ following, index, goAndCancel, searcheduserinfoId })
         // navigate(-1)
         // window.history.back()
     }
-    const { _id } = useSelector(state => state.auth2)
-    const dispatch = useDispatch()
-
-    const { flw_Recommendations } = useSelector(state => state.generalReducer)
-
 
     useEffect(() => {
-        console.log(flw_Recommendations)
+
+        console.log(_id, searcheduserinfoId)
     }, [])
+
+
+
     const [dnone, setdnone] = useState(false)
     const unfollowFunc = () => {
 
-        dispatch(unfollow())
+        unfollow()
         setdnone(true)
     }
 
-    const unfollow = () => async dispatch => {
+    async function unfollow() {
         const response = await fetch(`${host}/api/users/unfollow`, {
             method: 'PUT',
             headers: {
@@ -1363,7 +1391,7 @@ export const Following = ({ following, index, goAndCancel, searcheduserinfoId })
             body: JSON.stringify({ id: _id, toUnfollow: following._id }),
         });
         const json = await response.json();
-        // console.log(json)
+        console.log(json)
         if (json === 'success') {
             toast.info(`Unfollowed ${following.username}`, {
                 position: "top-center",
@@ -1407,7 +1435,7 @@ export const Following = ({ following, index, goAndCancel, searcheduserinfoId })
 }
 
 //FOLLOWERS COMPONENT ------------------------------------------------------------------------------------------------------------
-export const Followers = ({ followers, index, goAndCancel, searcheduserinfoId }) => {
+export const Followers = ({ followers, index, goAndCancel, searcheduserinfoId, _id }) => {
 
     const onclick = () => {
         goAndCancel()
@@ -1419,11 +1447,11 @@ export const Followers = ({ followers, index, goAndCancel, searcheduserinfoId })
     const [dnone, setdnone] = useState(false)
     const unfollowFunc = () => {
 
-        dispatch(unfollow())
+        unfollow()
         setdnone(true)
     }
 
-    const unfollow = () => async dispatch => {
+    async function unfollow() {
         const response = await fetch(`${host}/api/users/unfollow`, {
             method: 'PUT',
             headers: {
@@ -1446,7 +1474,6 @@ export const Followers = ({ followers, index, goAndCancel, searcheduserinfoId })
 
             })
         }
-
     }
     return (
         <div style={dnone ? { display: "none" } : { display: "block" }}>
@@ -1533,8 +1560,8 @@ const ForBot = ({ props }) => {
                 className='srchRow'
             // style={{width :'70%'}}
             >
-                <div className='gobackPC' style={{ position: "fixed", top: '8vh', width: "inherit", backgroundColor: "black", maxWidth: "inherit", zIndex: "9", }} >
-                    <div onClick={() => navigate(-1)} style={{ marginLeft: '1rem', color: 'silver' }}  >
+                <div className='gobackPC' style={{ position: "fixed", top: '56px', width: "inherit", backgroundColor: "black", maxWidth: "inherit", zIndex: "9", }} >
+                    <div onClick={() => router.back()} style={{ marginLeft: '1rem', color: 'silver' }}  >
                         <BsArrowLeft size={20} />
                     </div>
                     <div>

@@ -282,7 +282,7 @@ const Comments = (props) => {
   const [comments, setcomments] = useState([])
   const goToProfile = () => {
     // console.log(feed[0])
-    navigate(`/${feed[0].postedBy.username}`)
+    router.push(`/${feed[0].postedBy.username}`)
   }
 
   const close = () => {

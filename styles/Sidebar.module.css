@@ -20,6 +20,11 @@
     overflow-y: scroll;
 }
 
+.open{
+    transform: translateX(0) !important ;
+    text-decoration: none;
+}
+
 .sidebar::-webkit-scrollbar {
     display: none;
   }
@@ -79,6 +84,7 @@
 @media (max-width:600px) {
 
     .sidebar {
+        width: auto;
         height: 92vh;
         background-color: black;
         z-index: 998;
@@ -86,5 +92,8 @@
 
         position: fixed;
         z-index: 999;
+    }
+    .span{
+        display: flex;
     }
 }

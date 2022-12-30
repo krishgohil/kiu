@@ -17,7 +17,7 @@ import ImageCropMain from './ImageCropMain';
 
 
 
-const Post = ({ handlecancel }) => {
+const Post = ({ handlecancel,setshow }) => {
     const router = useRouter()
     const context = useAppContext()
     const { username, _id, profileImg } = context.sharedState
@@ -1091,7 +1091,7 @@ const Post = ({ handlecancel }) => {
                                 </select>
                             </div>
                             <div>
-                                <AiOutlineClose size={28} onClick={()=>router.back()} style={{ marginBottom: '0.4rem' }} className='cancelIcon' />
+                                <AiOutlineClose size={28} onClick={()=>setshow(false)} style={{ marginBottom: '0.4rem' }} className='cancelIcon' />
                             </div>
                         </div>
                         <h5 style={{ margin: "1rem 0.5rem 1rem 0", color: "#c7c6c5" }} >
@@ -1357,7 +1357,7 @@ const Post = ({ handlecancel }) => {
                                 </select>
                             </div>
                             <div className='cancel'  >
-                                <AiOutlineClose size={28} onClick={()=>router.back()} style={{ marginBottom: '0.4rem' }} className='cancelIcon' />
+                                <AiOutlineClose size={28} onClick={()=>setshow(false)} style={{ marginBottom: '0.4rem' }} className='cancelIcon' />
                             </div>
                         </div>
 

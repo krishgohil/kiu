@@ -22,7 +22,7 @@ import { useRouter } from 'next/router';
 
 
 
-const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAddBtn, navbar, showsrchBar, sethomeScroll }) => {
+const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAddBtn, navbar, showsrchBar, sethomeScroll, addpost }) => {
 
   const [_input, setInput] = useState('')
   const [dikha, setdikha] = useState(false)
@@ -33,6 +33,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   const { guest } = genContext.genstate
   const { _id, username, profileImg } = context.sharedState
   const router = useRouter()
+  const { query } = router.query
 
   // const { accessToken, loading } = useSelector(state => state.auth)
   // const profileImg = useSelector(state => state.auth2.profileImg)
@@ -63,7 +64,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   //     // console.log('ye chala')
   //     // console.log(username)
   //     setshowComposePost(true)
-  //     // navigate(-1)
+  //     // router.push(-1)
   //   } else if (window.location.pathname === '/' && showComposePost === true) {
   //     console.log("false ki")
   //     setshowComposePost(false)
@@ -83,7 +84,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   //     console.log(category)
   //     setshowComposePost(true)
 
-  //     // navigate(-1)
+  //     // router.push(-1)
   //   }
   //   else if (window.location.pathname === `/upp/${category}` && showComposePost === true) {
   //     setshowComposePost(false)
@@ -152,7 +153,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
     if (guest == false) {
       if (window.location.pathname == "/") { sethomeScroll() }
 
-      navigate(`/${username}`)
+      router.push(`/${username}`)
     } else {
       toast(`SignUp to view your profile`, {
         position: "top-center",
@@ -170,42 +171,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
 
 
-  // const handleSubmit = e => {
 
-  //   e.preventDefault()
-  //   let x = _input.replace(/\s\s+/g, ' ')
-  //   console.log(input)
-  //   console.log(window.location.pathname)
-  //   if (window.location.pathname != `/search/${input}` &&
-  //     window.location.pathname != `/search/${input}/posts` &&
-  //     window.location.pathname != `/search/${input}/products` && category !== 'product') {
-  //     if (category == "youtube") {
-  //       setInput(x)
-  //       navigate(`/searchyt/${x}`)
-  //     } else {
-  //       setInput(x)
-  //       navigate(`/search/${x}`)
-  //     }
-  //   } else if (window.location.pathname == `/search/${input}/posts`) {
-  //     if (category == "youtube") {
-  //       setInput(x)
-  //       // navigate(`/searchyt/${x}`)
-  //     } else {
-  //       setInput(x)
-  //       navigate(`/search/${x}/posts`)
-  //     }
-  //   } else if (window.location.pathname == `/search/${input}/products` || category == 'product') {
-  //     if (category == "youtube") {
-  //       setInput(x)
-  //       // navigate(`/searchyt/${x}`)
-  //     } else {
-  //       setInput(x)
-  //       navigate(`/search/${x}/products`)
-  //     }
-  //   } else if (window.location.pathname == `/search/${input}`) {
-  //     navigate(`/search/${x}`)
-  //   }
-  // }
 
   // const setcategory = () => async dispatch => {
   //   // console.log(category)
@@ -217,8 +183,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // }
 
   const handleAddClick = () => {
-
-    router.push('/compose-post')
+    addpost()
   }
 
   // const handlecancel = () => {
@@ -234,7 +199,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   //       pDate: '',
   //     }
   //   })
-  //   navigate(-1)
+  //   router.push(-1)
   // }
 
   // let a = categoryfromstore ? categoryfromstore : ''
@@ -270,7 +235,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   // const [modal, setmodal] = useState(false)
 
   // const ja = () => {
-  //   navigate('/')
+  //   router.push('/')
   //   console.log(deferredPrompt)
   //   if (deferredPrompt !== undefined) {
   //     setmodal(value => !value)
@@ -282,7 +247,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
   //   if (guest == false) {
   //     if (window.location.pathname == "/") { sethomeScroll() }
-  //     navigate('/upp/chats')
+  //     router.push('/upp/chats')
   //   } toast(`SignUp to chat with people`, {
   //     position: "top-center",
   //     autoClose: 2000,
@@ -333,6 +298,49 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
   }
 
 
+  const handleSubmit = e => {
+
+    e.preventDefault()
+    let x = _input.replace(/\s\s+/g, ' ')
+    console.log(query)
+    console.log(_input)
+    console.log(x)
+    console.log(router.asPath)
+
+    if (router.asPath != `/search/${query}` &&
+      router.asPath != `/search/${query}?posts` &&
+      router.asPath != `/search/${query}?products` && category !== 'product') {
+      if (category == "youtube") {
+        setInput(x)
+        router.push(`/searchyt/${x}`)
+      } else {
+        setInput(x)
+        router.push(`/search/${x}`)
+      }
+    } else if (router.asPath == `/search/${query}?posts`) {
+      if (category == "youtube") {
+        setInput(x)
+        // router.push(`/searchyt/${x}`)
+      } else {
+        setInput(x)
+        router.push(`/search/${x}?posts`)
+      }
+    } else if (router.asPath == `/search/${query}?products` || category == 'product') {
+      if (category == "youtube") {
+        setInput(x)
+        // router.push(`/searchyt/${x}`)
+      } else {
+        setInput(x)
+        router.push(`/search/${x}?products`)
+      }
+    } else if (router.asPath == `/search/${query}`) {
+      router.push(`/search/${x}`)
+    }
+
+
+  }
+
+
   return (
     <>
       <ToastContainer />
@@ -351,6 +359,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                 className={styles.header_menu}
                 size={20}
                 onClick={() => handleToggleSidebar()}
+                style={{ marginLeft: "1rem" }}
               />
               <img alt="img" className={styles.companyLogo}
                 // onClick={ja}
@@ -368,7 +377,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
 
             <form className={`${styles.header_form} ${styles.header_srchbar}`}
-            // onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
             >
               <input
                 className={styles.header_input}
@@ -519,7 +528,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
           <div className={styles.mobheader} style={showComposePost ? { overflow: 'hidden' } : { backgroundColor: colour }}>
             <form className={styles._mobsrchbar}
-              // onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               style={{ width: '100%' }}>
               <input
                 autoFocus

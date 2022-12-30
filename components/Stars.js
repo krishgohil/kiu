@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useAppContext, useGeneralContext } from '../context';
+import { host } from '../host';
 
 
 const Stars = ({ star, doubleclicked, postId, userId, hasRated, rating, clickedStar, _rstar, postedBy }) => {
@@ -61,6 +62,59 @@ const Stars = ({ star, doubleclicked, postId, userId, hasRated, rating, clickedS
 
 
 
+    const handleClick = (value, alreadyCalculated) => {
+        if (guest == false) {
+            if (value) {
+
+                setstarRating(value)
+                if (value != rating && hasRated == true) {
+                    console.log(rating) // previous rating
+                    console.log(value)  // current rating
+                    // dispatch({
+                    //     type: SET_STARRED_POSTS,
+                    //     payload: {
+                    //         postId: postId,
+                    //         stars: value
+                    //     }
+                    // })
+                    var totalStarCalc
+                    if (!alreadyCalculated) {
+
+                        totalStarCalc = value - rating
+                    } else {
+                        totalStarCalc = alreadyCalculated
+                    }
+                    console.log("totalStarCalc", totalStarCalc)
+
+                    updateRating(value, totalStarCalc)
+                }
+                else if (hasRated == false) {
+                    console.log(rating) // previous rating
+                    console.log(value)  // current rating
+                    // dispatch({
+                    //     type: SET_STARRED_POSTS,
+                    //     payload: {
+                    //         postId: postId,
+                    //         stars: value
+                    //     }
+                    // })
+                    var totalStarCalc
+                    if (!alreadyCalculated) {
+
+                        totalStarCalc = value - rating
+                    } else {
+                        totalStarCalc = alreadyCalculated
+                    } console.log("totalStarCalc", totalStarCalc)
+                    updateRating(value, totalStarCalc)
+                }
+                clickedStar(value)
+            }
+        }
+        // console.log('STAR')
+
+
+    }
+
 
     const handleMouseOver = newHoverValue => {
         setHoverValue(newHoverValue)
@@ -70,15 +124,9 @@ const Stars = ({ star, doubleclicked, postId, userId, hasRated, rating, clickedS
         setHoverValue(undefined)
     }
 
-    const handleClick = (value, alreadyCalculated) => {
-        setstarRating(value)
+ 
 
-
-
-
-    }
-
-    const updateRating = (num, totalStarCalc) => async dispatch => {
+    async function updateRating  (num, totalStarCalc)  {
 
         console.log(num)
         console.log(postId)

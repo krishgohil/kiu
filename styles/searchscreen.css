@@ -1,0 +1,44 @@
+.searchResultCategory {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 600;
+    position: sticky;
+    top: 56px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 0.5rem;
+    background-color: rgb(0, 0, 0);
+    z-index: 2;
+}
+
+.srchresultProf {
+    margin-left: 3rem;
+}
+
+.srCat {
+    background-color: rgb(0, 0, 0);
+    padding: 0.25rem 0.5rem;
+    border-bottom: 3px solid rgb(0, 0, 0);
+    cursor: pointer;
+
+}
+
+.srCatActive {
+    border-bottom: 3px solid cyan;
+
+}
+
+.srCat:hover {
+    background-color: rgb(28, 36, 40);
+    padding: 0.25rem 0.5rem;
+}
+
+.srchresultProf:hover {
+    background-color: rgb(15, 16, 17);
+}
+
+@media (max-width: 800px) {
+    .srchresultProf {
+        margin-left: 0rem;
+    }
+}
