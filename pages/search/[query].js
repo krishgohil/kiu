@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify';
 
-import { host } from '../../Host'
+import { host } from '../../host'
 import { BiCategory } from 'react-icons/bi'
 import { FaRegComment, FaRegStar, FaStar } from 'react-icons/fa'
 import { IoFlashOutline } from 'react-icons/io5'
