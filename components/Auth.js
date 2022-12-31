@@ -8,14 +8,15 @@ import { host } from '../host'
 const Auth = () => {
     const context = useAppContext()
     const genContext = useGeneralContext()
-    const { _id ,guest } = context.sharedState
+    const { _id, guest } = context.sharedState
     const [compareId, setcompareId] = useState()
     const router = useRouter()
 
     useEffect(() => {
 
-        console.log(_id)
+        console.log("_id", _id)
         if (_id !== compareId) {
+            console.log("fetch start")
             fetchUniqueUser()
         }
     }, [_id])
@@ -36,13 +37,13 @@ const Auth = () => {
                 body: JSON.stringify({ token }),
             });
             const json = await response.json();
-            // console.log(json)
+            console.log(json)
             const { fetchuniqueser, message } = json
             // console.log(fetchuniqueser)
             // console.log(context)
             let a = fetchuniqueser.feed_posts.reverse()
             // console.log(fetchuniqueser.feed_posts)
-            // console.log(a)
+            console.log(a)
             setcompareId(fetchuniqueser._id)
 
             context.setsharedState(
@@ -61,10 +62,11 @@ const Auth = () => {
                     notificationToken: fetchuniqueser.notificationToken,
                     notificationSettings: fetchuniqueser.notificationSettings,
                     notificationCount: fetchuniqueser.notificationCount,
+                    guest:false
                 }
             )
             // genContext.setgenstate({ ...genContext.genstate, guest: false })
-            context.setsharedState({ ...context.sharedState, guest: false })
+            // context.setsharedState({ ...context.sharedState, guest: false })
 
 
         } else if (!token && guest == null) {

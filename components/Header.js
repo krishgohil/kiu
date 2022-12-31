@@ -48,6 +48,7 @@ const Header = ({ handleToggleSidebar, colour, overflowhidden, showAddBtn, navba
 
   useEffect(() => {
     console.log(guest)
+    console.log(context)
   }, [context, guest])
 
 
