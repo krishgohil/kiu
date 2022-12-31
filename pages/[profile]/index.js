@@ -30,8 +30,8 @@ const SearchedProfile = (props) => {
     const { profile } = router.query
     const context = useAppContext()
     const genContext = useGeneralContext()
-    const { _id, username, profileImg } = context.sharedState
-    const { guest } = genContext.genstate
+    const { _id, username, profileImg, guest } = context.sharedState
+    // const { guest } = genContext.genstate
     const [showSocialScore, setshowSocialScore] = useState(false);
     const [visitedUserId, setvisitedUserId] = useState('');
     const [heightbelow, setheightbelow] = useState(0);
@@ -225,7 +225,7 @@ const SearchedProfile = (props) => {
     }
 
     const turnOnBtn = () => {
-        router.replace(`/${profile}?socialscore`, undefined, { shallow: true })
+        router.push(`/${profile}?socialscore`, undefined, { shallow: true })
 
         // console.log(searcheduserinfo.posts)
         // setshowSocialScore(true)
@@ -294,7 +294,8 @@ const SearchedProfile = (props) => {
 
 
     const launchfollowers = () => {
-        router.replace(`/${profile}?followers`, undefined, { shallow: true })
+        router.push(`/${profile}?followers`, undefined, { shallow: true })
+
 
         if (followerUserDetails.counter < 1) {
             // console.log('rann')
@@ -354,7 +355,7 @@ const SearchedProfile = (props) => {
 
     const showkwiksfunc = () => {
         router.replace(`/${profile}?kwiks`, undefined, { shallow: true })
-        
+
 
     }
 
@@ -405,6 +406,7 @@ const SearchedProfile = (props) => {
     const settingFunc = () => {
 
         router.push(`/${profile}/settings`)
+
     }
 
     const handleFollowClick = () => {
@@ -459,6 +461,8 @@ const SearchedProfile = (props) => {
 
 
     const handleUnfollowClick = () => {
+        console.log(_id)
+        console.log(guest)
         if (_id && guest == false) {
             if (window.confirm(`Unfollow ${searcheduserinfo.username} ?`) === true) {
                 unfollow()
@@ -816,7 +820,14 @@ const SearchedProfile = (props) => {
                                     </div>
                                     <div>
                                         <p onClick={() => window.scrollTo(0, 0)
-                                        } style={{ margin: '0 1rem', fontWeight: "500", cursor: "pointer", color: "silver" }} >{searcheduserinfo.username}</p>
+                                        } style={{ margin: '0 1rem', fontWeight: "500", cursor: "pointer", color: "silver" }} >{searcheduserinfo.username} 
+                                            {router.asPath === `/${profile}?kwiks` ? " / kwiks" : ""}
+                                            {router.asPath === `/${profile}?products` ? " / products" : ""}
+                                            {router.asPath === `/${profile}?media` ? " / media" : ""}
+
+                                        </p>
+
+
                                     </div>
                                 </div>
 
@@ -983,15 +994,15 @@ const SearchedProfile = (props) => {
                                     <Row style={{ opacity: "1", display: 'flex', justifyContent: "center", }} >
                                         <Col id='krish' className='segmain'   >
                                             <p className={router.asPath === `/${profile}` ? 'seg segactive ' : 'seg'} onClick={showallfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >All</p>
-                                            <p className={router.asPath === `/${profile}?products` ? 'seg segactive ' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >
-                                                <RiShoppingCartLine color="white" size={20} />
-                                            </p>
+
                                             <p className={router.asPath === `/${profile}?media` ? 'seg segactive' : 'seg'} onClick={showpostsfunc} style={{ marginBottom: 0, fontWeight: 'bold' }} >
                                                 {/* Photos */}
                                                 <MdPhotoCameraFront size={25} />
                                             </p>
                                             <p className={router.asPath === `/${profile}?kwiks` ? 'seg segactive' : 'seg'} onClick={showkwiksfunc} style={{ marginBottom: 0, fontWeight: 'bold', }} >Kwiks</p>
-                                            {/* <p className={showprdcts ? 'p_showprdcts' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, borderRadius: "0.5rem", fontWeight: 'bold' }} >Reviews</p> */}
+                                            <p className={router.asPath === `/${profile}?products` ? 'seg segactive ' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >
+                                                <RiShoppingCartLine color="white" size={20} />
+                                            </p>
                                         </Col>
                                     </Row>
 

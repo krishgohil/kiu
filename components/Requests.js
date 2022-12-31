@@ -13,10 +13,10 @@ const Requests = ({ userId, n }) => {
 
     useEffect(() => {
         console.log('ran')
-        // dispatch(fetch_requests_notis())
+        fetch_requests_notis()
     }, [])
 
-    const fetch_requests_notis = () => async dispatch => {
+    async function fetch_requests_notis() {
         console.log('hello')
         try {
             const response = await fetch(`${host}/api/users/fetch_requests`, {
@@ -40,21 +40,15 @@ const Requests = ({ userId, n }) => {
                 // setshownotifications(true)
                 setshowrequests(true)
                 // let x = notificationCount - 1
-                dispatch({
-                    type: SET_NOTIFICATION_COUNT,
-                    payload: 0
-                })
+                // dispatch({
+                //     type: SET_NOTIFICATION_COUNT,
+                //     payload: 0
+                // })
             }
         } catch (error) {
             console.error(error.message);
         }
     }
-
-
-
-
-
-
 
 
 
@@ -71,7 +65,7 @@ const Requests = ({ userId, n }) => {
                             setshownotifications(false)
                         }
                     }>
-                        <span style={{ fontWeight: "600",fontSize:'14px' }} >Requests</span>
+                        <span style={{ fontWeight: "600", fontSize: '14px' }} >Requests</span>
                     </div>
                     <div className={shownotifications ? "req_noti_back uitaklk" : "req_noti_back"} onClick={
                         () => {
@@ -79,9 +73,9 @@ const Requests = ({ userId, n }) => {
                             setshowrequests(false)
                         }
                     } >
-                        <span style={{ fontWeight: "600" ,fontSize:'14px'}}  >Notifications</span>
+                        <span style={{ fontWeight: "600", fontSize: '14px' }}  >Notifications</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }} onClick={()=>router.back()} >
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }} onClick={() => router.back()} >
                         <AiOutlineClose size={26} color='red' className='delImg' onClick={n} />
                     </div>
                 </div>

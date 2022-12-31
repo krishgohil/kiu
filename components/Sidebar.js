@@ -272,6 +272,16 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
                     </li>
                 </Link>
 
+                <div style={{}} >
+
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/about' >About </Link>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/terms-of-service' >Terms Of Service </Link>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/privacy' >Privacy </Link>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/contact-us' >Contact Us </Link>
+                    <p className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/' >Privacy </p>
+
+                </div>
+
 
 
             </nav>

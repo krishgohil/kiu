@@ -26,8 +26,13 @@ const Layout = ({ children }) => {
 
     useEffect(() => {
 
-        setcbar(true)
-    }, [router.isReady])
+        if (router.pathname !== "/[profile]" && router.pathname !== "/products" && router.pathname !== "/products/[productId]" ) {
+            setcbar(true)
+        }else{
+        setcbar(false)
+
+        }
+    }, [router.isReady, router.asPath])
 
 
 
@@ -49,7 +54,7 @@ const Layout = ({ children }) => {
                     <Container style={{ padding: 0, margin: 0 }} >
 
                         {
-                           cbar ?
+                            cbar ?
                                 <CategoriesBar sethomeScroll={sethomeScroll} /> : ''
                         }
                         {children}

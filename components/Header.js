@@ -374,12 +374,12 @@ const Header = ({ handleToggleSidebar, colour, overflowhidden, showAddBtn, navba
                 className={styles.header_menu}
                 size={20}
                 onClick={() => handleToggleSidebar()}
-                style={{ marginLeft: "1rem" }}
+                style={{ marginLeft: "1rem",marginRight:"0.5rem" }}
               />
               <img alt="img" className={styles.companyLogo}
                 // onClick={ja}
                 src="/star-removebg-preview.png" style={{ zIndex: 999 }} />
-              <span className={styles.companyName} style={{ color: 'white', fontFamily: 'cursive', marginLeft: "1rem" }}
+              <span className={styles.companyName} style={{ color: 'white', fontFamily: 'cursive', marginLeft: "0.5rem" }}
               // onClick={ja}  
               >
                 <b> <>

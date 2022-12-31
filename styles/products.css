@@ -13,6 +13,7 @@
     width: 100%;
     flex-wrap: wrap;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 .prdctupdown {
@@ -60,7 +61,7 @@
 .productTitle {
     font-size: 1.5rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     cursor: pointer;
@@ -173,7 +174,7 @@
 }
 
 .singlePrdct {
-    width: 45%;
+    width: 30%;
     border: 1px solid #242323;
     display: flex;
     flex-direction: column;
@@ -212,7 +213,7 @@
     color: #cbcbcb;
     margin-top: 0.25rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -368,9 +369,7 @@
         width: 100%;
     }
 
-    .prdctdiv {
-        flex-direction: column;
-    }
+   
 
     .prdctimg {
         width: 100%;
@@ -382,7 +381,7 @@
     }
 
     .singlePrdct {
-        width: 100%;
+        width: 45%;
     }
 
 
@@ -396,6 +395,9 @@
         width: 100vw;
         border-radius: 1rem 1rem 0 0;
     }
+    .prdctdiv {
+        flex-direction: column;
+    }
     .filterMain {
         width: 80vw;
     }
@@ -404,6 +406,10 @@
         display: flex;
         justify-content: flex-end;
 
+    }
+    
+    .singlePrdct {
+        width: 100%;
     }
 
     .pmprice {
@@ -559,7 +565,7 @@
     }
 
     .prdctDescription {
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
 
     }
 

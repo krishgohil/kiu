@@ -37,7 +37,7 @@
     align-items: center;
     padding: 1rem;
     background-color: #16181b;
-    height: 8vh;
+    height: 56px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -61,7 +61,7 @@
 
     background-color: #121417;
 
-    height: 8vh;
+    height: 56px;
     width: 100%;
     height: 56px;
 
@@ -238,6 +238,13 @@
 
 
 
+@media (max-width: 1200px) {
+    .header_menu {
+        display: block;
+        color: white;
+    }
+}
+
 @media (max-width: 1020px) {
     .notiMain {
         width: 60vw;
@@ -264,10 +271,7 @@
         margin-top: 1rem;
     }
 
-    .header_menu {
-        display: block;
-        color: white;
-    }
+
 
     .header {
         background-color: black;

@@ -31,7 +31,7 @@ const Products = () => {
     const router = useRouter()
     const { productId } = router.query
     const context = useAppContext()
-    const { _id, username, profileImg } = context
+    const { _id, username, guest } = context.sharedState
     const [productModal, setproductModal] = useState(false)
     const [first, setfirst] = useState()
     const restorationRef = React.useRef(null);
@@ -295,11 +295,11 @@ const Products = () => {
             var stickbar = document.getElementById('stickbar')
             if (stickbar) {
                 if (window.scrollY < keep) {
-                    stickbar.style.top = "8vh"
+                    stickbar.style.top = "56px"
                     // console.log(stickbar, 'stickbar', keep)
                 } else {
                     // console.log("eles")
-                    stickbar.style.top = "-8vh"
+                    stickbar.style.top = "-56px"
                 }
                 keep = window.scrollY
             } else {
@@ -326,7 +326,7 @@ const Products = () => {
         else if (window.location.pathname == `/product/${productId}`) {
             setproductModal(true)
         }
-       
+
 
     }
 
@@ -375,7 +375,7 @@ const Products = () => {
     return (
 
         <>
-            <div className='stickbar' id='stickbar' style={{ width: '100%', scrollMargin: 0, scrollbarWidth: 0, height: "6vh", display: 'flex' }} >
+            <div className='stickbar' id='stickbar' style={{ width: '100%', scrollMargin: 0, scrollbarWidth: 0, display: 'flex' }} >
                 <ProductCategoriesBar keywords={keywords} filterBtnfunc={filterBtnfunc} />
                 {/* <div>JAIHO</div> */}
             </div>
@@ -410,7 +410,7 @@ const Products = () => {
                                             {
 
                                                 feed && feed.product ?
-                                                    <SingleProduct key={i} feed={feed} i={i} gotoprdct={gotoprdct} _id={_id} username={username} restorationRef={first == feed._id ? restorationRef : null}
+                                                    <SingleProduct key={i} feed={feed} i={i} gotoprdct={gotoprdct} _id={_id} username={username} restorationRef={first == feed._id ? restorationRef : null} guest={guest}
                                                         c={current_pcategory} filterStars={filterStars} filterCategory={filterCategory} minprice={minprice} maxprice={maxprice} />
                                                     : ""
                                             }
@@ -524,8 +524,8 @@ const Products = () => {
 export default Products
 
 
-export const SingleProduct = ({ feed, i, gotoprdct, _id, username, restorationRef, c, filterStars, minprice, maxprice }) => {
-   
+export const SingleProduct = ({ feed, i, gotoprdct, _id, username, guest, restorationRef, c, filterStars, minprice, maxprice }) => {
+
 
     const [totalComments, settotalComments] = useState(0)
     const [rated, setrated] = useState(false)
@@ -543,6 +543,66 @@ export const SingleProduct = ({ feed, i, gotoprdct, _id, username, restorationRe
     const [avgStar, setavgStar] = useState(0)
     const [lehrado, setlehrado] = useState(false)
 
+
+    useEffect(() => {
+        // console.log(feed)
+
+
+
+        // if (window.location.pathname == "/upp/product") {
+        if (c == sessionStorage.getItem('productc')) {
+            let y = sessionStorage.getItem('productScroll')
+
+            // sessionStorage.removeItem("productScroll")
+            // console.log(y)
+            // alert(y)
+            window.scrollTo({ top: y, left: 0, behavior: "instant" });
+        }
+
+        var comments = 0
+        var hasRated = false
+        var _rating = 0
+        var totalstars = 0
+        var my_rating = 0
+
+        for (let i = 0; i < feed.product.ratedBy.length; i++) {
+            totalstars = feed.product.ratedBy[i].starRating + totalstars
+
+            if (feed.product.ratedBy[i].raterId == _id) {
+                hasRated = true
+                _rating = feed.product.ratedBy[i].starRating
+            }
+
+            if (feed.product.ratedBy[i].raterComment.length > 0) {
+                comments = comments + 1
+            }
+
+        }
+
+        settotalStars(totalstars)
+        sethasRated(hasRated)
+        if (hasRated == true) {
+            setrating(_rating)
+            setstar(true)
+        }
+        settotalComments(comments)
+
+        console.log(totalstars / feed.product.ratedBy.length)
+
+        if (feed.product.reposts) {
+            setrepostCount(feed.product.reposts)
+        }
+
+        if (feed.product.reposters) {
+
+            for (let j = 0; j < feed.product.reposters.length; j++) {
+                if (feed.product.reposters[j].reposterId == _id) {
+                    sethasReposted(true)
+                }
+            }
+        }
+    }, [])
+
     useEffect(() => {
         console.log('here')
 
@@ -557,7 +617,7 @@ export const SingleProduct = ({ feed, i, gotoprdct, _id, username, restorationRe
     }, [minprice, maxprice])
 
 
-    
+
     const sendFunc = (sendTo, notificationToken, notificationSettings) => {
 
         let ok = _id.toString()
@@ -878,7 +938,7 @@ export const SingleProduct = ({ feed, i, gotoprdct, _id, username, restorationRe
 
     return (
         <>
-           
+
             {tempdeleted == false ?
                 <div onMouseLeave={oml} className='singlePrdct' ref={restorationRef} >
 
@@ -893,7 +953,7 @@ export const SingleProduct = ({ feed, i, gotoprdct, _id, username, restorationRe
                         <div style={{ display: "flex", flexDirection: "column", marginRight: "1rem", justifyContent: 'center' }}  >
                             <div className='prdctTitle'  >{feed.product.title}</div>
                             <div className='prdctTagLine'>{feed.product.tagLine}</div>
-                            <div className='prdctDescription'>{feed.product.description}</div>
+                            <div className='prdctDescription' style={{ whiteSpace: 'pre-wrap', wordBreak: "break-word", }} >{feed.product.description}</div>
 
                             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }} >
                                 <div className='prdctprice'  >
@@ -904,7 +964,7 @@ export const SingleProduct = ({ feed, i, gotoprdct, _id, username, restorationRe
 
 
                                     <BiCategory color='gray' />
-                                    <span style={{ color: "gray", fontSize: "12px", marginLeft: '0.1rem' }} >
+                                    <span style={{ color: "gray", fontSize: "12px", marginLeft: '0.1rem', whiteSpace: 'pre-wrap', wordBreak: "break-word", }} >
                                         {feed.product.productCategory}
                                     </span>
 

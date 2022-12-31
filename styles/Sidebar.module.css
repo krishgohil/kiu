@@ -11,7 +11,7 @@
     text-decoration: none;
 
     position: sticky;
-    top: 8vh;
+    top: 56px;
     left: 0;
     -ms-overflow-style: none;
     /* for Internet Explorer, Edge */
@@ -30,7 +30,8 @@
 }
 
 .sidelink {
-    padding: 0 4px
+    padding: 0 4px;
+    text-decoration: none;
 }
 
 .li {
@@ -66,16 +67,23 @@
 
 @media (max-width: 1200px) {
     .sidebar {
-        width: 90px;
+        width: auto;
+        height: 92vh;
+        background-color: black;
+        z-index: 998;
+        transform: translateX(-100%);
+
+        position: fixed;
+        z-index: 999;
     }
 
-    .li {
+    /* .li {
         justify-content: center;
-    }
-
+    } */
+/* 
     .span {
         display: none;
-    }
+    } */
 }
 
 @media (max-width:600px) {
@@ -95,7 +103,7 @@
         z-index: 999;
     }
 
-    .span {
+    /* .span {
         display: flex;
-    }
+    } */
 }

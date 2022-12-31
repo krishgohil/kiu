@@ -116,7 +116,7 @@ body {
 
 .app__container {
   display: flex;
-  margin-top: 8vh;
+  margin-top: 56px;
   background-color: black;
   color: white;
   scroll-behavior: auto !important;
