@@ -10,7 +10,7 @@ import { useAppContext, useGeneralContext } from '../context';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
+const BottomBar = ({ navbar, category, overflowhidden, search, addpost, showsrchBar }) => {
     const [showComposePost, setshowComposePost] = useState(false)
     const [dikha, setdikha] = useState(false)
 
@@ -23,7 +23,7 @@ const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
     // const { username, _id, profileImg, guest } = useSelector(state => state.auth2)
     const context = useAppContext()
     const genContext = useGeneralContext()
-    const { _id, username, profileImg ,guest} = context.sharedState
+    const { _id, username, profileImg, guest } = context.sharedState
     // const { guest } = genContext.genstate
 
     const setcategory = () => async dispatch => {
@@ -67,10 +67,9 @@ const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
     }
 
     const searchfunc = () => {
-        console.log(categoryfromstore)
-        if (categoryfromstore && categoryfromstore == 'profile') {
-            router.push('/')
-        }
+        // if (categoryfromstore && categoryfromstore == 'profile') {
+        //     router.push('/')
+        // }
         search()
     }
 
@@ -82,7 +81,7 @@ const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
 
 
 
-                <Link href='/products' style={router.pathname == "/products" ? { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer", fontWeight: "600",backgroundColor:"rgb(20,20,20)" } : { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer" }} >
+                <Link href='/products' style={!showsrchBar && router.pathname == "/products" ? { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", fontWeight: "600", backgroundColor: "rgb(30,30,30)" } : { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer" }} >
                     <RiShoppingCartLine size={23} />
                     <span style={{ fontSize: "11px", }} >
                         Products
@@ -92,40 +91,36 @@ const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
                     </span> */}
                 </Link>
 
-                <div style={{ textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer" }} >
+                <div style={{ textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer" }} >
                     <RiAddCircleLine color='#f0f0f0' size={23} onClick={handleAddClick} />
                     <span style={{ fontSize: "11px", color: '#f0f0f0' }} >
                         Add
                     </span>
                 </div>
 
-                {/* 
-                <div href='/' style={{ textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh",width:'20vw',cursor:"pointer", }} >
+
+                {/* <Link href='/tribes' style={!showsrchBar && router.pathname == "/tribes" ? { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", fontWeight: "600", backgroundColor: "rgb(30,30,30)" } : { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer" }} >
                     <MdPeopleOutline size={23} color='#f0f0f0' position="relative" style={{ marginTop: "" }} />
-                    <span style={{ f
-                        ontSize: "11px", color: "#f0f0f0", }} >
+                    <span style={{ fontSize: "11px", color: "#f0f0f0", }} >
                         Tribes
                     </span>
-                </div> */}
-                <div onClick={() => router.push('/')} style={router.pathname == "/" ? { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer", fontWeight: "600",backgroundColor:"rgb(20,20,20)" } : { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer", }} >
+                </Link> */}
+                <Link href="/" onClick={() => search()} style={!showsrchBar && router.pathname == "/" ? { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", fontWeight: "600", backgroundColor: "rgb(30,30,30)" } : { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", }} >
                     {/* <MdHome size={25} /> */}
                     <RiHome2Line size={23} color='#f0f0f0' position="relative" style={{ marginTop: "" }} />
                     {/* <MdHome size={26} color='#f0f0f0' /> */}
                     <span style={{ fontSize: "11px", color: "#f0f0f0", }} >
                         Home
                     </span>
-                </div>
-                {/* <div style={{ textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh",width:'20vw',cursor:"pointer" }}>
+                </Link>
+                {/* <div style={{ textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer" }}>
 
                     <AiOutlineFire color='#f0f0f0' size={21} onClick={handleAddClick} />
                     <span style={{ fontSize: "11px", color: '#f0f0f0', }} >
                         Dhooms
                     </span>
                 </div> */}
-                <div onClick={searchfunc} style={
-                    // window.location.pathname == `/search` || window.location.pathname == `/search/${input}` || window.location.pathname == `/search/${input}/posts` || window.location.pathname == `/search/${input}/productss`
-                    false
-                        ? { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer", fontWeight: "600",backgroundColor:"rgb(20,20,20)" } : { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer" }}>
+                <div onClick={searchfunc} style={showsrchBar ? { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", fontWeight: "600", backgroundColor: "rgb(30,30,30)" } : { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", }}>
 
                     <RiSearch2Line size={23} color='#f0f0f0' />
                     <span style={{ fontSize: "11px", color: '#f0f0f0', }} >
@@ -133,11 +128,10 @@ const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
                     </span>
                 </div>
 
-                <div onClick={gotoprofile} className='mobprofimg' style={{ textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw',cursor:"pointer" }} >
+                <div onClick={gotoprofile} className='mobprofimg' style={!showsrchBar && router.pathname == `/${username}` ? { textDecoration: 'none', color: '#f0f0f0', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", fontWeight: "600", backgroundColor: "rgb(30,30,30)" } : { textDecoration: 'none', color: 'white', display: "flex", alignItems: "center", flexDirection: 'column', justifyContent: "space-evenly", height: "7vh", width: '20vw', cursor: "pointer", }} >
                     {
                         profileImg && profileImg !== '' ?
-                            <img alt="img" className='profimg' style={profile == username ?
-                                { height: '2rem', width: '2rem', cursor: "pointer", borderRadius: '10%', backgroundColor: 'white', } : { height: '2rem', width: '2rem', cursor: "pointer", borderRadius: '50%', backgroundColor: 'white', }} src={profileImg} /> :
+                            <img alt="img" className='profimg' style={{ height: '2rem', width: '2rem', cursor: "pointer", borderRadius: '50%', backgroundColor: 'white', }} src={profileImg} /> :
                             <FaUserCircle color='#f0f0f0' style={{ height: '2rem', width: '2rem', cursor: "pointer", borderRadius: '50%' }} />
                     }
                 </div>

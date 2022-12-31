@@ -139,8 +139,8 @@
 
 
 .companyLogo {
-    width: 2.5rem;
-    height: 2.4rem;
+    width: 36px;
+    /* height: 2.4rem; */
 }
 
 .profimg {
@@ -306,12 +306,12 @@
     }
 
 
-
+/* 
     .companyLogo {
 
         display: none;
 
-    }
+    } */
 
 
 }
@@ -352,13 +352,13 @@
 
 
 @media screen and (max-height: 400px) {
-    .companyLogo {
+    /* .companyLogo {
         width: 2.125rem;
         height: 2rem;
-    }
+    } */
 
-    .mobheader {
+    /* .mobheader {
         height: 20vh;
-    }
+    } */
 
 }

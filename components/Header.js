@@ -362,7 +362,7 @@ const Header = ({ handleToggleSidebar, colour, overflowhidden, showAddBtn, navba
 
 
       {
-        true ?
+        showsrchBar === false ?
 
           <div className={styles.header} style={showComposePost ? { overflow: 'hidden' } : { backgroundColor: colour }}>
 
@@ -374,7 +374,7 @@ const Header = ({ handleToggleSidebar, colour, overflowhidden, showAddBtn, navba
                 className={styles.header_menu}
                 size={20}
                 onClick={() => handleToggleSidebar()}
-                style={{ marginLeft: "1rem",marginRight:"0.5rem" }}
+                style={{ marginLeft: "1rem", marginRight: "0.5rem" }}
               />
               <img alt="img" className={styles.companyLogo}
                 // onClick={ja}
@@ -541,7 +541,22 @@ const Header = ({ handleToggleSidebar, colour, overflowhidden, showAddBtn, navba
           </div>
           :
 
-          <div className={styles.mobheader} style={showComposePost ? { overflow: 'hidden' } : { backgroundColor: colour }}>
+          <div className={styles.header} style={showComposePost ? { overflow: 'hidden' } : { backgroundColor: colour }}>
+
+            <div className={styles.company} >
+              <FaBars
+                className={styles.header_menu}
+                size={20}
+                onClick={() => handleToggleSidebar()}
+                style={{ marginLeft: "1rem", marginRight: "0.5rem" }}
+              />
+              <img alt="img" className={styles.companyLogo}
+                // onClick={ja}
+                src="/star-removebg-preview.png" style={{ zIndex: 999 }} />
+
+
+              {/* <img alt="img" className='companyLogo' src="/images/k.png"  style={{ zIndex: 999 }} /> */}
+            </div>
             <form className={styles._mobsrchbar}
               onSubmit={handleSubmit}
               style={{ width: '100%' }}>

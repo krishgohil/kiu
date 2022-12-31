@@ -12,6 +12,11 @@ const Layout = ({ children }) => {
     const router = useRouter()
     const [cbar, setcbar] = useState(false)
     const [show, setshow] = useState(false)
+
+    const [showsrchBar, setshowsrchBar] = useState(false)
+    const search = () => {
+        setshowsrchBar(value => !value)
+    }
     function addpost() {
         // router.push('/compose-post')
         setshow(true)
@@ -26,11 +31,16 @@ const Layout = ({ children }) => {
 
     useEffect(() => {
 
-        if (router.pathname !== "/[profile]" && router.pathname !== "/products" && router.pathname !== "/products/[productId]" ) {
+        if (router.pathname !== "/[profile]" && router.pathname !== "/products" && router.pathname !== "/products/[productId]") {
             setcbar(true)
-        }else{
-        setcbar(false)
+        } else {
+            setcbar(false)
+        }
 
+        if (router.pathname !== "/search/[query]") {
+            setshowsrchBar(false)
+        } else {
+            setshowsrchBar(true)
         }
     }, [router.isReady, router.asPath])
 
@@ -43,7 +53,7 @@ const Layout = ({ children }) => {
     return (
         <>
             <div  >
-                <Header addpost={addpost} handleToggleSidebar={handleToggleSidebar} ></Header>
+                <Header addpost={addpost} handleToggleSidebar={handleToggleSidebar} showsrchBar={showsrchBar} ></Header>
                 <div className='app__container'>
                     <Sidebar
                         handleToggleSidebar={handleToggleSidebar}
@@ -62,8 +72,9 @@ const Layout = ({ children }) => {
                 </div>
                 <div className='bBar' >
                     <BottomBar
+                        showsrchBar={showsrchBar}
                         addpost={addpost}
-                    // search={search}
+                        search={search}
                     // navbar={navbar ? navbar : false}
                     // category={category}
                     // overflowhidden={overflowhidden}

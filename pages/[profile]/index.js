@@ -820,7 +820,7 @@ const SearchedProfile = (props) => {
                                     </div>
                                     <div>
                                         <p onClick={() => window.scrollTo(0, 0)
-                                        } style={{ margin: '0 1rem', fontWeight: "500", cursor: "pointer", color: "silver" }} >{searcheduserinfo.username} 
+                                        } style={{ margin: '0 1rem', fontWeight: "500", cursor: "pointer", color: "silver" }} >{searcheduserinfo.username}
                                             {router.asPath === `/${profile}?kwiks` ? " / kwiks" : ""}
                                             {router.asPath === `/${profile}?products` ? " / products" : ""}
                                             {router.asPath === `/${profile}?media` ? " / media" : ""}
@@ -1003,6 +1003,9 @@ const SearchedProfile = (props) => {
                                             <p className={router.asPath === `/${profile}?products` ? 'seg segactive ' : 'seg'} onClick={showprdctsfunc} style={{ marginBottom: 0, fontWeight: 'bold', background: 'hidden', opacity: 1 }} >
                                                 <RiShoppingCartLine color="white" size={20} />
                                             </p>
+                                            <p className={router.asPath === `/${profile}?stars` ? 'seg segactive' : 'seg'} onClick={() =>
+                                                router.replace(`/${profile}?stars`, undefined, { shallow: true })
+                                            } style={{ marginBottom: 0, fontWeight: 'bold', }} >Stars</p>
                                         </Col>
                                     </Row>
 

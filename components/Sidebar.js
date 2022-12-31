@@ -7,7 +7,8 @@ import {
     MdSentimentDissatisfied,
     MdSportsTennis,
     MdHistory,
-    MdOutlineHome
+    MdOutlineHome,
+    MdPeopleOutline
 } from 'react-icons/md'
 
 import Link from 'next/link'
@@ -75,6 +76,22 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
                         {/* <MdHome size={23} /> */}
                         <RiHome2Line size={23} />
                         <span className={styles.span} >Home</span>
+                    </li>
+                </Link>
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'tribes' })
+
+                }} className={styles.sidelink} href='/tribes'
+                    // onClick={() => {
+                    //     if (window.location.pathname == "/") { sethomeScroll() };
+                    //     sessionStorage.setItem('currentcategory', 'product')
+                    // }}
+                    style={{ textDecoration: 'none', color: "white" }} >
+                    <li style={{ textDecoration: 'none' }} className={category === "tribes" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
+                        <MdPeopleOutline size={23}  />
+                        <span className={styles.span} >Tribes</span>
                     </li>
                 </Link>
                 <Link onClick={(e) => {
@@ -274,11 +291,11 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
 
                 <div style={{}} >
 
-                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/about' >About </Link>
-                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/terms-of-service' >Terms Of Service </Link>
-                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/privacy' >Privacy </Link>
-                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/contact-us' >Contact Us </Link>
-                    <p className={styles.li} style={{ color: "silver", fontSize: "12px",display:"block" , border:"1px solid #121417e3", paddingTop:"2px",paddingBottom:"2px" }} href='/' >Privacy </p>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px", display: "block", border: "1px solid #121417e3", paddingTop: "2px", paddingBottom: "2px" }} href='/about' >About </Link>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px", display: "block", border: "1px solid #121417e3", paddingTop: "2px", paddingBottom: "2px" }} href='/terms-of-service' >Terms Of Service </Link>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px", display: "block", border: "1px solid #121417e3", paddingTop: "2px", paddingBottom: "2px" }} href='/privacy' >Privacy </Link>
+                    <Link className={styles.li} style={{ color: "silver", fontSize: "12px", display: "block", border: "1px solid #121417e3", paddingTop: "2px", paddingBottom: "2px" }} href='/contact-us' >Contact Us </Link>
+                    <p className={styles.li} style={{ color: "silver", fontSize: "12px", display: "block", border: "1px solid #121417e3", paddingTop: "2px", paddingBottom: "2px" }} href='/' >@All rights reserved </p>
 
                 </div>
 

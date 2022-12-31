@@ -63,7 +63,7 @@ const CategoriesBar = ({ extra, sethomeScroll }) => {
     }
 
     return (
-        <div className='stickbar' id='stickbar' style={{ width: '100%', scrollMargin: 0, scrollbarWidth: 0, marginTop: "2px" }} >
+        <div className='stickbar' id='stickbar' style={{ width: '100%', scrollMargin: 0, scrollbarWidth: 0, }} >
             <div className='categoriesBar' id='content' >
 
                 {
