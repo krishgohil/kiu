@@ -8,8 +8,7 @@ import { host } from '../host'
 const Auth = () => {
     const context = useAppContext()
     const genContext = useGeneralContext()
-    const { _id } = context.sharedState
-    const { guest } = genContext.genstate
+    const { _id ,guest } = context.sharedState
     const [compareId, setcompareId] = useState()
     const router = useRouter()
 
@@ -64,10 +63,14 @@ const Auth = () => {
                     notificationCount: fetchuniqueser.notificationCount,
                 }
             )
-            genContext.setgenstate({ ...genContext.genstate, guest: false })
+            // genContext.setgenstate({ ...genContext.genstate, guest: false })
+            context.setsharedState({ ...context.sharedState, guest: false })
+
 
         } else if (!token && guest == null) {
-            genContext.setgenstate({ ...genContext.genstate, guest: true })
+            // genContext.setgenstate({ ...genContext.genstate, guest: true })
+            context.setsharedState({ ...context.sharedState, guest: true })
+
 
         }
         else {

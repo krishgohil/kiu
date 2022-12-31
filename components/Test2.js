@@ -32,8 +32,8 @@ const Test2 = ({ feed, i, restorationRef, gotoProfile, gotoContent }) => {
 
 
 
-    const { username, _id } = context.sharedState
-    const { flw_Recommendations, pollOptedPosts, starred_posts, reposted_posts, guest } = genContext.genstate
+    const { username, _id ,guest} = context.sharedState
+    const { flw_Recommendations, pollOptedPosts, starred_posts, reposted_posts, } = genContext.genstate
 
     let path = router.asPath
     const [repostCount, setrepostCount] = useState(0)

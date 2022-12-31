@@ -7,8 +7,8 @@ const FrndRecommendation = () => {
     const context = useAppContext()
     const genContext = useGeneralContext()
 
-    const { _id } = context.sharedState
-    const { guest } = genContext.genstate
+    const { _id ,guest} = context.sharedState
+    // const { guest } = genContext.genstate
     // const { flw_Recommendations } = useSelector(state => state.generalReducer)
     // const navigate = useNavigate()
 

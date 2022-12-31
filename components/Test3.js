@@ -32,8 +32,8 @@ const Test3 = ({ feed, i, restorationRef }) => {
   const context = useAppContext()
   const genContext = useGeneralContext()
   const router = useRouter()
-  const { username, _id, } = context.sharedState
-  const { flw_Recommendations, pollOptedPosts, starred_posts, recentChatsStore, reposted_posts, guest } = genContext.genstate
+  const { username, _id,guest } = context.sharedState
+  const { flw_Recommendations, pollOptedPosts, starred_posts, recentChatsStore, reposted_posts,  } = genContext.genstate
 
   let path = router.asPath
 

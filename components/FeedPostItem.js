@@ -41,9 +41,9 @@ import { useRouter } from 'next/router';
 const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
 
     const context = useAppContext()
-    const { _id, username, profileImg } = context.sharedState
+    const { _id, username, profileImg,guest } = context.sharedState
     const genContext = useGeneralContext()
-    const {guest} = genContext.genstate
+    // const {guest} = genContext.genstate
     const router = useRouter()
 
 

@@ -81,7 +81,7 @@ const Requests = ({ userId, n }) => {
                     } >
                         <span style={{ fontWeight: "600" ,fontSize:'14px'}}  >Notifications</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '0.5rem' }} onClick={()=>router.back()} >
                         <AiOutlineClose size={26} color='red' className='delImg' onClick={n} />
                     </div>
                 </div>

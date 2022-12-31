@@ -251,7 +251,8 @@ const Login = () => {
         //     payload: true
         // })
 
-        genContext.setgenstate({ ...genContext.genstate, guest: true })
+        // genContext.setgenstate({ ...genContext.genstate, guest: true })
+        context.setsharedState({...context.sharedState,guest:true})
 
         toast.success(`Continuing as Guest 😄`, {
             position: "top-center",

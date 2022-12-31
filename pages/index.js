@@ -12,8 +12,7 @@ import { toast, ToastContainer } from 'react-toastify'
 export default function Home() {
   const context = useAppContext()
   const genContext = useGeneralContext()
-  const { guest } = genContext.genstate
-  const { _id, username } = context.sharedState
+  const { _id, username ,guest} = context.sharedState
   const feed_context = useFeedContext()
   const [feed, setfeed] = useState([])
 

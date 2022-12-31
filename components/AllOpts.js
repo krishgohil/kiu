@@ -37,8 +37,8 @@ const AllOpts = ({ feed, restorationRef, g, c, i, showall, showposts, showkwiks,
     const context = useAppContext()
     const genContext = useGeneralContext()
 
-    const { username, _id, profileImg } = context.sharedState
-    const { guest } = genContext.genstate
+    const { username, _id, profileImg,guest } = context.sharedState
+    // const { guest } = genContext.genstate
     // const { pollOptedPosts, starred_posts, recentChatsStore } = useSelector(state => state.generalReducer)
 
 

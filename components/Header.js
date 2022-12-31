@@ -15,7 +15,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoFlashOutline } from 'react-icons/io5';
-import { useAppContext, useGeneralContext } from '../context';
+import { useAppContext, useFeedContext, useGeneralContext } from '../context';
 import { useRouter } from 'next/router';
 import Requests from './Requests';
 
@@ -23,16 +23,18 @@ import Requests from './Requests';
 
 
 
-const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAddBtn, navbar, showsrchBar, sethomeScroll, addpost }) => {
+const Header = ({ handleToggleSidebar, colour, overflowhidden, showAddBtn, navbar, showsrchBar, sethomeScroll, addpost }) => {
 
   const [_input, setInput] = useState('')
   const [dikha, setdikha] = useState(false)
   const [showComposePost, setshowComposePost] = useState(false)
   const [modalno, setmodalno] = useState(0)
   const context = useAppContext()
+  const context_feed = useFeedContext()
   const genContext = useGeneralContext()
-  const { guest } = genContext.genstate
-  const { _id, username, profileImg } = context.sharedState
+  const { category } = context_feed.feedstate
+  // const { guest } = genContext.genstate
+  const { _id, username, profileImg, guest } = context.sharedState
   const router = useRouter()
   const { query } = router.query
 
@@ -395,7 +397,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
                 className={styles.header_input}
                 type='text'
                 // placeholder={placeholder}
-                placeholder='Search'
+                placeholder={`Search ${category ? category : ""}`}
                 value={_input}
                 onChange={e => setInput(e.target.value)}
                 maxLength={100}
@@ -566,7 +568,7 @@ const Header = ({ handleToggleSidebar, colour, category, overflowhidden, showAdd
 
       {
         router.asPath === "/?notifications" && dikha ?
-          <dialog className={styles.req_noti_dialog} style={{padding:0}} open >
+          <dialog className={styles.req_noti_dialog} style={{ padding: 0 }} open >
             {/* <Post handlecancel={handlecancel} /> */}
             <div className={styles.notiMain} >
 

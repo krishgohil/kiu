@@ -23,8 +23,8 @@ const BottomBar = ({ navbar, category, overflowhidden, search, addpost }) => {
     // const { username, _id, profileImg, guest } = useSelector(state => state.auth2)
     const context = useAppContext()
     const genContext = useGeneralContext()
-    const { _id, username, profileImg } = context.sharedState
-    const { guest } = genContext.genstate
+    const { _id, username, profileImg ,guest} = context.sharedState
+    // const { guest } = genContext.genstate
 
     const setcategory = () => async dispatch => {
         console.log('chennai', category)

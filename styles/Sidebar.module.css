@@ -20,14 +20,15 @@
     overflow-y: scroll;
 }
 
-.open{
-    transform: translateX(0) !important ;
+.open {
+    transform: translateX(0) !important;
     text-decoration: none;
 }
 
 .sidebar::-webkit-scrollbar {
     display: none;
-  }
+}
+
 .sidelink {
     padding: 0 4px
 }
@@ -66,14 +67,10 @@
 @media (max-width: 1200px) {
     .sidebar {
         width: 90px;
+    }
 
-        /* li {
+    .li {
         justify-content: center;
-      }
-  
-      span {
-        display: none;
-      } */
     }
 
     .span {
@@ -82,6 +79,10 @@
 }
 
 @media (max-width:600px) {
+
+    .li {
+        justify-content: start;
+    }
 
     .sidebar {
         width: auto;
@@ -93,7 +94,8 @@
         position: fixed;
         z-index: 999;
     }
-    .span{
+
+    .span {
         display: flex;
     }
 }

@@ -18,8 +18,8 @@ const About = () => {
 
     const context = useAppContext()
     const genContext = useGeneralContext()
-    const { guest } = genContext.genstate
-    const { _id, username } = context.sharedState
+    // const {  } = genContext.genstate
+    const { _id, username,guest } = context.sharedState
     const router = useRouter()
 
 
@@ -50,7 +50,9 @@ const About = () => {
 
     const enterAsGuestFunc = () => {
         console.log("akfdksafkdsl")
-        genContext.setgenstate({ ...genContext.genstate, guest: true })
+        // genContext.setgenstate({ ...genContext.genstate, guest: true })
+        context.setsharedState({...context.sharedState,guest:true})
+
 
 
         toast.success(`Continuing as Guest 😄`, {

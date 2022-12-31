@@ -16,12 +16,15 @@ import { AiOutlineStock } from 'react-icons/ai'
 import { FaBitcoin, FaBookOpen, FaReact, FaRegLaugh, FaRegNewspaper, FaRegSmileBeam, FaSignInAlt, FaYoutube, FaUserSecret, FaMask } from 'react-icons/fa'
 
 import { RiHome2Line, RiShoppingCartLine } from 'react-icons/ri';
+import { useFeedContext } from '../context'
 
 
 
 
 const Sidebar = ({ sidebar, handleToggleSidebar }) => {
     const [active, setactive] = useState(false);
+    const context_feed = useFeedContext()
+    const { category } = context_feed.feedstate
 
 
     const logOutHandler = () => {
@@ -58,51 +61,70 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
 
             >
 
-                <Link className={styles.sidelink} href='/'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'home' })
+
+                }} className={styles.sidelink} href='/'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'home')
                     // }}
                     style={{ textDecoration: 'none', color: "white", paddingTop: "1rem" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.active}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "home" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         {/* <MdHome size={23} /> */}
                         <RiHome2Line size={23} />
                         <span className={styles.span} >Home</span>
                     </li>
                 </Link>
-                <Link className={styles.sidelink} href='/products'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'products' })
+
+                }} className={styles.sidelink} href='/products'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'product')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "products" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <RiShoppingCartLine size={23} />
                         <span className={styles.span} >Products</span>
                     </li>
                 </Link>
 
 
-                <Link className={styles.sidelink} href='/fun'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'fun' })
+
+                }} className={styles.sidelink} href='/fun'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'fun')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "fun" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <FaRegLaugh size={23} />
                         <span className={styles.span} >Fun</span>
                     </li>
                 </Link>
 
 
-                <Link className={styles.sidelink} href='/cryptos'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'cryptos' })
+
+                }} className={styles.sidelink} href='/cryptos'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'crypto')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }}  >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "cryptos" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <FaBitcoin size={23} />
                         <span className={styles.span} >Cryptos</span>
                     </li>
@@ -111,85 +133,120 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
 
 
 
-                <Link className={styles.sidelink} href='/movies'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'movies' })
+
+                }} className={styles.sidelink} href='/movies'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'movies')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "movies" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <BiMoviePlay size={23} />
                         <span className={styles.span} >Movies</span>
                     </li>
                 </Link>
 
-                <Link className={styles.sidelink} href='/books'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'books' })
+
+                }} className={styles.sidelink} href='/books'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'books')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }}>
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "books" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <FaBookOpen size={23} />
                         <span className={styles.span} >Books</span>
                     </li>
                 </Link>
 
-                <Link className={styles.sidelink} href='/stocks'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'stocks' })
+
+                }} className={styles.sidelink} href='/stocks'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'stocks')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "stocks" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <AiOutlineStock size={23} />
                         <span className={styles.span} >Stocks</span>
                     </li>
                 </Link>
-                <Link className={styles.sidelink} href='/news'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'news' })
+
+                }} className={styles.sidelink} href='/news'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'news')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "news" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <FaRegNewspaper size={23} />
                         <span className={styles.span} >News</span>
                     </li>
                 </Link>
 
-                <Link className={styles.sidelink} href='/science-tech'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'science-tech' })
+
+                }} className={styles.sidelink} href='/science-tech'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'science-tech')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "science-tech" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <FaReact size={23} />
                         <span className={styles.span} >Science-Tech</span>
                     </li>
                 </Link>
 
-                <Link className={styles.sidelink} href='/sports'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'sports' })
+
+                }} className={styles.sidelink} href='/sports'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'sports')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "sports" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <MdSportsTennis color='white' size={23} />
                         <span className={styles.span} >Sports</span>
                     </li>
                 </Link>
 
 
-                <Link className={styles.sidelink} href='/destress'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'destress' })
+
+                }} className={styles.sidelink} href='/destress'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'destress')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none' }} className={category === "destress" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         {/* <GiDistressSignal size={23} /> */}
                         {/* <GiBandit size={23} />  */}
                         {/* <GiBalaclava size={23} /> GiBandit GiBarbute GiBatMask GiBrute */}
@@ -198,13 +255,18 @@ const Sidebar = ({ sidebar, handleToggleSidebar }) => {
                     </li>
                 </Link>
 
-                <Link className={styles.sidelink} href='/youtube'
+                <Link onClick={(e) => {
+                    console.log(e.target.value)
+
+                    context_feed.setfeedstate({ ...context_feed.feedstate, category: 'youtube' })
+
+                }} className={styles.sidelink} href='/youtube'
                     // onClick={() => {
                     //     if (window.location.pathname == "/") { sethomeScroll() };
                     //     sessionStorage.setItem('currentcategory', 'youtube')
                     // }}
                     style={{ textDecoration: 'none', color: "white" }} >
-                    <li style={{ textDecoration: 'none' }} className={`${styles.li} ${styles.notactive}`}>
+                    <li style={{ textDecoration: 'none', }} className={category === "youtube" ? `${styles.li} ${styles.active}` : `${styles.li} ${styles.notactive}`}>
                         <FaYoutube size={23} />
                         <span className={styles.span} >Youtube</span>
                     </li>

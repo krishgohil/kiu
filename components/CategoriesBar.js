@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useFeedContext } from '../context';
 
 
 const CategoriesBar = ({ extra, sethomeScroll }) => {
@@ -8,6 +9,8 @@ const CategoriesBar = ({ extra, sethomeScroll }) => {
        
     }, [router.isReady])
 
+    const context_feed = useFeedContext()
+    const {category} = context_feed.feedstate
 
     const keywords = [
         // 'Home',
@@ -33,7 +36,10 @@ const CategoriesBar = ({ extra, sethomeScroll }) => {
         const link = value.toLowerCase()
         console.log("kdjskfjalk")
         if (router.asPath == "/") { sethomeScroll() };
+        
+        context_feed.setfeedstate({ ...context_feed.feedstate, category: link })
         router.push(`/${link}`)
+
 
 
     }
