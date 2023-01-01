@@ -3,6 +3,7 @@ import React from 'react'
 import { Col, Row, Spinner } from 'react-bootstrap'
 import { BsArrowLeft } from 'react-icons/bs'
 import { MdPhotoCameraFront, MdSettings } from 'react-icons/md'
+import { IoFlashOutline } from 'react-icons/io5';
 
 const Tribe = () => {
     const router = useRouter()

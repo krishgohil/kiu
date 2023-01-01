@@ -75,7 +75,7 @@ const CreateTribe = () => {
                             <option value="Television">Television</option>
                             <option value="Trauma Support">Trauma Support</option>
                             <option value="Travel">Travel</option>
-                            <option value="Women's Health">Women's Health</option>
+                            <option value="Women's Health">Womens Health</option>
                             <option value="World News">World News</option>
                             <option value="None of these">None of these</option>
 
