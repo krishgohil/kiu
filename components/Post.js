@@ -82,9 +82,7 @@ const Post = ({ handlecancel,setshow }) => {
                     setcredentials({ ...credentials, category: 'personal' })
                 } else {
                     setcredentials({ ...credentials, category: 'product' })
-
                 }
-
 
             } else {
                 // console.log("3")

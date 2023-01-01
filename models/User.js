@@ -187,9 +187,6 @@ const UserSchema = new Schema({
 
     }
   ]
-
-
-
 });
 
 

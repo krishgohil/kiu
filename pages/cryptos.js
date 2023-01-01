@@ -314,7 +314,7 @@ const Crypto = () => {
             <div className='centertest3'>
 
 
-              <div className='stickba' style={{ height: "6vh", padding: "0.5rem", position: "sticky", top: "8vh", zIndex: 99, backgroundColor: "black" }} >
+              <div className='stickba' style={{ height: "6vh", padding: "0.5rem", position: "sticky", top: "56px", zIndex: 99, backgroundColor: "black" }} >
 
                 <div className='pop' style={{ display: "flex", width: "100%", justifyContent: "space-evenly " }} >
 
@@ -412,7 +412,7 @@ const Crypto = () => {
           prices && coinPrices ?
 
             <div style={{ width: "100%" }} >
-              <div className='stickba' style={{ height: "6vh", padding: "0.5rem", position: "sticky", top: "8vh", zIndex: 99, backgroundColor: "black" }} >
+              <div className='stickba' style={{ height: "6vh", padding: "0.5rem", position: "sticky", top: "56px", zIndex: 99, backgroundColor: "black" }} >
 
                 <div className='pop' style={{ display: "flex", width: "100%", justifyContent: "space-evenly " }} >
 

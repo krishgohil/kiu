@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
 
     useEffect(() => {
 
-        if (router.pathname !== "/[profile]" && router.pathname !== "/products" && router.pathname !== "/products/[productId]") {
+        if (router.pathname !== "/[profile]" && router.pathname !== "/products" && router.pathname !== "/products/[productId]" && router.pathname !== "/tribes/[tribe]" && router.pathname !== "/tribes") {
             setcbar(true)
         } else {
             setcbar(false)
