@@ -6,7 +6,6 @@
     background-color: #121417e3;
     height: 92vh;
     scroll-margin: 0;
-    /* padding-top: 1rem; */
     transition: transform 0.2s ease-in;
     text-decoration: none;
 
@@ -14,9 +13,7 @@
     top: 56px;
     left: 0;
     -ms-overflow-style: none;
-    /* for Internet Explorer, Edge */
     scrollbar-width: none;
-    /* for Firefox */
     overflow-y: scroll;
 }
 

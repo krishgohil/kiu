@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { BsArrowUpRight, BsReply, BsStarFill } from 'react-icons/bs'
-import request from '../api'
 import { DateTime } from 'luxon'
 import { FaRegComment, FaRegStar, FaStar } from "react-icons/fa";
 import styles from "../styles/VideoHorizontal.module.css"
@@ -13,6 +12,7 @@ import { IoFlashOutline } from 'react-icons/io5';
 import { host } from "../host"
 // import io from "socket.io-client";
 import parse from 'html-react-parser';
+import request from '../api';
 
 // const ENDPOINT = 'https://keepitupp.herokuapp.com'
 const ENDPOINT = host

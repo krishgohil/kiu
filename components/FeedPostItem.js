@@ -1380,7 +1380,7 @@ const FeedpostItems = ({ feed, i, g, c, restorationRef }) => {
                                                 slidesPerView={1}
                                                 navigation={true}
                                                 autoHeight={true}
-                                                pagination={{ clickable: true }}
+                                                pagination={{ clickablez: true }}
                                                 scrollbar={{ draggable: true }}
                                                 mousewheel={true}
                                                 forceToAxis={true}
